@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>demo_sda.knit</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">AnalyzeResp</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="functions.html">Functions</a>
+</li>
+<li>
+  <a href="tutorials-main.html">Demos &amp; Vocab</a>
+</li>
+<li>
+  <a href="troubleshooting.html">Troubleshoting</a>
+</li>
+<li>
+  <a href="references.html">References</a>
+</li>
+<li>
+  <a href="progressNotes.html">Updates</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Resources
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="about.html">Aquatic respiromtery</a>
+    </li>
+    <li>
+      <a href="QC_protocol.html">QC protocols</a>
+    </li>
+    <li>
+      <a href="workshops.html">Workshops</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:&lt;kkraskura@ucsb.edu&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/kraskura/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<h5>
+<a name="setup" style="color:black; font-weight: bold;  text-align: center">Specific dynamic action SDA - short tutorial</a>
+</h5>
+<div id="set-working-directory-with-raw-.txt-firesting-data-files.-this-is-the-location-where-all-analysis-files-will-be-organized" class="section level5">
+<h5>1. set working directory with raw (.txt) Firesting data files. This is the location where all analysis files will be organized</h5>
+<pre class = "sourceCode yaml"> 
+setwd("./Test/")
+</pre>
+</div>
+<div id="create-all-working-directories" class="section level5">
+<h5>2. create all working directories</h5>
+<pre class = "sourceCode yaml"> 
+organize_MR_analysis(create = "SDA")
+</pre>
+</div>
+<div id="convert-the-files" class="section level5">
+<h5>3. convert the files</h5>
+<pre class = "sourceCode yaml">
+<p>txt_csv_convert(txt_file = “Aug7_2019_PAAR17-20_box1_sda.txt”, path = “SDA”, N_Ch = 4) <yaml></p>
+</div>
+<div id="run-the-smr-file-on-this" class="section level5">
+<h5>4. run the SMR file on this</h5>
+<p>change WD first</p>
+<pre class = "sourceCode yaml">
+<p>setwd(“./SDA/csv_files/”) SMR(data=“Aug7_2019_PAAR17-20_box1_sda.csv”, inventory_data=NA, cycle_start=7, cycle_end=15, chop_start=10/60, chop_end=0, flush_plot=“OFF”, N_Ch=4, path=“LocalSDAFolders”, date_format = “m/d/y”) </yaml></p>
+</div>
+<div id="run-the-mmr_smr_as_epoc-function-to-get-smr-values-and-epoc" class="section level5">
+<h5>6. Run the MMR_SMR_AS_EPOC function to get SMR values, and EPOC</h5>
+<pre class = "sourceCode yaml"> 
+MMR_SMR_AS_EPOC(data.SMR ="Aug7_2019_PAAR17-20_box1_sda_analyzed_GLUED_n3.csv",
+                data.MMR ="none",
+                AnimalID = c("hawk1","hawk2", "hawk3","hawky4"),
+                BW.animal = c(0.005, 0.006, 0.01, 0.01),
+                resp.V = c(0.300, 0.300, 0.300,0.300),
+                r2_threshold_smr = 0.9,
+                date_format = "m/d/y",
+                drop_ch = NULL,
+                N_Ch = 4,
+                min_length_mmr = 60,
+                MLND = FALSE,
+                epoc_threshold = "SMR",## must have
+                end_EPOC_Ch = c(NA, NA, NA, 1), # in minutes?
+                recovMMR_threshold = 0.5,
+                background_prior = "Aug7_2019_PAAR17-20_box1_sda_analyzed_BACKPRE_dummy.csv",
+                background_post = "Aug7_2019_PAAR17-20_box1_sda_analyzed_BACKPOST_dummy.csv",
+                background_linear_gr = TRUE,
+                # background_slope = NULL, background.V = NULL,
+                match_background_Ch = TRUE,
+                path = "Foldering")
+</pre>
+<p>And SDA</p>
+<pre class = "sourceCode yaml"> 
+SDA(data.SDA ="Jul20_2019_PAAR8-16_box1_sda_analyzed_GLUED_n4.csv",
+    analyzed_MR="Jul19_2019_PAAR_box1_smr_analyzed_MR_analyzed.csv",
+    AnimalID = c("PAAR9","PAAR10","PAAR11","PAAR12"),
+    BW.animal = c(0.002,0.002,0.001,0.002),
+    resp.V = c(0.76, 0.78, 0.78, 0.78),
+    r2_threshold_smr = 0.9, date_format = "m/d/y",
+    drop_ch = c(3,4), N_Ch = 4,
+    SMR_calc = FALSE, # FALSE for no SMR calculations ## must have
+   # SMR_vals = c(NA,NA,NA,NA), ## must have
+    MLND = FALSE,
+  #  end_SDA_Ch = c(26,26, NA, NA), # in h
+    #sda_threshold = "SMR_mean10minVal",
+    sda_threshold_level = c("SMR_mean10minVal", 1.15),## must have
+    background_prior = "Jul19_2019_PAAR_box1_back2_analyzed.csv",
+    background_post = "Jul22_2019_PAAR_box1_back3_analyzed.csv",
+    background_linear_gr = TRUE,
+    # background_slope = NULL, background.V = NULL,
+    match_background_Ch = TRUE,
+    path = "SDAfolders",
+    handling_delay = 0,
+    begin_smr_hr_zero=TRUE) # in minutes, currently not used
+</pre>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div>
+    <ul class = "pull-left" style = "color:grey; text-align:left;"> Built using <a href="https://bootswatch.com/3/sandstone/">Bootsrap 3</a>, Powered by Github pages</ul>
+    <!-- <ul class = "pull-right" href="#top" style = "color:rgb(109, 95, 95);"> Back to top</ul> -->
+</div>
+
+
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

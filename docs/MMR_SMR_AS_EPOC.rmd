@@ -1,0 +1,214 @@
+
+
+<div class="page-header">
+  <h2 style="font-size: 30px; text-align:left;"> Aerobic scope, AS, and excess post exercise oxygen consumption, EPOC </h2>
+  <p>Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a></p>
+</div>
+
+
+`MMR_SMR_AS_EPOC`
+<br>
+<br>
+
+<h4 style="color:#495057; font-weight: bold;  text-align: left">About</h4>
+<ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
+  <li><a href="#Arguments">Arguments</a></li>
+  <li><a href="#Value">Value</a></li>
+  <li><a href="#Details">Details</a></li>
+  <li><a href="#Example">Example</a></li>
+  <li><a href="#"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>
+</ul>
+
+
+<h4 style="color:#495057; font-weight: bold;  text-align: left">Description</h4>
+
+<!-- <h4 style="color:#495057; font-weight: bold;  text-align: left">Before running the SMR function </h4><br> -->
+
+A flexible function that will estimate MMR, SMR, Aerobic scope, and several metrics describing recovery performance of a specific animal while taking in account i) the volume of respirometer, ii) the body mass of an individual, the iii) background respiration in the respirometer overnight. The iput files to this function are the output files genereted by running `SMR` and `MMR`. 
+
+
+<h4><a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a></h4>
+
+
+  Argument       | Description | Default
+---: | :------------- | :---
+**data.MMR**             | The mmr data file (_"...analyzed.csv"_; a character string) file. This is an output file from `MMR` function. If file is not available, enter `"none"` | --
+**data.SMR**             | The mmr data file (_"...analyzed.csv"_; a character string) file. This is an output file from `SMR` function. If file is not available, enter `"none"`| --
+**AnimalID**             | Animal ID’s. This must be a character vector with 4 variables. If respirometry not analyzed in a channel, write “NA” | --
+**BW.animal**            | Animal body weights (kg). This must be a numeric vector with 4 variables. If respirometry not analyzed in a channel, write 0 | --
+**resp.V**               | Volume (L) of respirometer chamber. This is a vector of 4 numbers (e.g. c()) |  --
+**r2_threshold_smr**     | R2 threshold for smr | --
+**r2_threshold_mmr**     | R2 threshold for mmr | --
+**min_length_mmr**       | The mmr length to be used for analysis (s) | --
+**scaling_exponent_mmr** | body mass scaling exponent to correct MMR values for body size. MR=aBW^b (MR = metabolic rate, BW = body weoght, a = scaling coefficient [the intercept], and b= scaling exponent [the power term]) | `1` (no scaling)
+**scaling_exponent_smr** | body mass scaling exponent to correct all SMR values for body size. Same details as above. |
+**plot_smr_quantile**    | Indicating what percentile lower MO~2~ values to plot, options are 10, 15, and 20 |=`15`, 
+**mmr_type**             |    | = `"min"`, # the standard way
+**N_Ch**                 | The number of channels of the FireSting. Must be either 4 or 8. Default = `4`
+**mmr_type**             | Currently an unused argument | `"min"`
+**drop_ch**              | Indicate which channel is dropped or entirely excluded from analysis. This must be a numerical vector | `NULL`
+**MLND**                 | Logical argument indicating whether or now, SMR is calculated using Mean Lowest Normal Distribution analysis. More details in [Chabot et al 2016]( https://doi.org/10.1111/jfb.12845).| `TRUE`
+**epoc_threshold**       | Numeric. The metabolic rate threshold to calculate end time of recovery (time at which metabolic rate has returned to `epoc_threshold` level, typically to SMR level). The default is the SMR level, alternatively any % SMR by indicating a proportion for multiplication. For example to use 20% SMR enter `epoc_threshold = 1.2`. | `"SMR"`
+**recovMMR_threshold**   | A proportional (%) level MMR may be used to describe recovery (EPOC, time to EPOC). The default indicates 50 % MMR, this can be adjusted to any % level by using numeric values (e.g 0.3 for 30% MMR, 0.8 for 80% MMR) | `0.5`
+**end_EPOC_Ch**          | Manually assigned end time (min) of recovery (EPOC). The time can be assigned for each channel independently; use numerical vector with 4 variables one for each channel in correct order, for automatic calculation enter `NA`. | `NA`
+**background_prior**     | The _..._analyzed.csv_ file from an empty chamber control run performed before the respirometry trial run (background respiration before the test). | `NA`
+**background_post**      | The same as `background_prior`, only post respirometry trial run.| `NA`
+**background_slope**     | Manually assigned background slope that will be used to correct all metabolic rate values equally. A single numeric value in mgO~2~/L/h | `NULL`
+**background.V**         | Manually assigned respirometer volumes. This is a numeric vector with 4 variables, one for each channel | `NULL`
+**background_linear_gr** | Logical argument indicating whether or not to assume linear bacterial growth over the course of respirometry trial. If `TRUE` all metabolic rate vales will be corrected using the estimated background values from the linear growth curve. It only works if both `background_prior` and `background_post` are provided. | `FALSE`
+**match_background_Ch**  | Logical. If `TRUE`, the background will be estimated in Channel-specific manner. The default will calculate a mean background respiration rate.| `FALSE`
+**mmr_background**       | Specifies what background value should be used to correct MMR value. Options: i) `"back_prior"` will take only a respiration rate estimated from `background_prior` file, ii)`"SAME_slope"` will use the same common slope as used for SMR respiration rate measurements (this is default), and iii) a specific respiration rate value mgO~2~/L/h may be added. | `SAME_slope`
+**path**                 | The directory where all output files will be saved. There are two options, either all files will be saved in the current working directory, the other option requires the folders created by `organize_MR_analysis` | `"."` (local directory)
+**date_format**          | The date format used in the original FireSting files. Must specify one of the following: `c("m/d/y","d/m/y","y-m-d")` | `"m/d/y"`
+**mo2_val_for_calc**     | Options: `mo2_common_mass_kg`, `mo2_individual_kg ` | `"mo2_1kg"`
+**common_mass**          | metabolic performances will be calculated per unit mass (kg), this argument defines what is the common mass (default units are MO~2~ mgO~2~kg^-1^min^-1^, which is common mass of 1 kg. units = kg | `1`
+**spars_levels**         | Select levels of smoothing for the recovery performance (EPOC) estimates. Passed down to [smooth.spline](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/smooth.spline) | `c(0.1, 0.2, 0.3)`
+
+
+<br><h4><a name="Value" style="color:#495057; font-weight: bold;  text-align: left">Value</a></h4>
+
+<h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Data outputs</h5>
+
+1. _.csv files_
+
+* ()_analyzed_MMR__EPOC_DATA.csv
+  - Local directory when using `organise_MR_analysis` function: csv_analyzed_EPOC
+  - Primary metrics included: Time%MMR, Time to full EPOC, EPOC (total), hourly EPOC. 
+  - full documantation and file example: 
+* ()_MMR_analyzed.csv
+  - Local dir: csv_analyzed_MMR
+  - Primary metrics included: MMR (MO2, mgO2/min/kg, and in absolute values mgO2/min/ whole animal), temperature at the time of MMR recording. 
+  - Any MO2 values with desired metabolic scaling corrections applied
+  - full documantation and file example: 
+* ()_MR_analyzed.csv
+  - Local dir: csv_analyzed_MR
+  - Primary metrics included: Estimated **SMR** values using all methods (mean of lowest q quantile, mean lowest n values, mlnd) (same units as MMR, see above), **Aerobic scopes** using all SMR estimates (same units as above), **Number of MO2** values recoreded overnight and that were used to estimate the SMR (or RMR), **MMR**, length of the MMR rescording, **body mass** (kg) of animals, **temperature**. 
+  - This is one of the most comprehensive files with many key metabolic performance included.
+  - full documantation and file example:  
+* ()_SMR_analyzed.csv
+  - Local dir: csv_analyzed_SMR
+  - Primary metrics included: estimated MO2 values (MO2, mgO2/min/kg, and in absolute values mgO2/min/ whole animal) for each measurement recorded, temperature for each measurement, **background** associated with each measurement.  
+  - Any MO2 values with desired metabolic scaling corrections applied
+  - full documantation and file example: 
+
+2. _.png files_
+
+* jul04_2019_opasize_box4_mmr_analyzed_MMR__Ch2_EPOC_PLOT
+  - Local dir: plots_ch_EPOC 
+  - Figure with MO2 over time. This figure shows the full recovery trend and has printed EPOC estimate values. One plot for each selected smoothing level will be plotted (arg: `spar_levels`). Time to X% MMR, and time to full EPOC are indicated
+* jul04_2019_opasize_box4_smr_analyzed_SMR_PLOT_SMR_methodsALL
+  - Local dir: plots_methods_sum_SMR
+  - Figure displaying all SMR estimated values (3 different methods). Partircularly useful to compare the different SMR estimate values on the same data trends
+* jul04_2019_opasize_box4_smr_analyzed_SMR_PLOT_SMR_analyses
+  - Local dir: plots_min_values_SMR
+  - 2-panel figure. 1) all MR values recorded, the lowest 5 values are red, the next lowest are green from which SMR is estimated, 2) the same plot, but lowest 10% (turquoise), 15% (blue) and 20% (purple) values are colored; each % can be used to estimate SMR
+* jul04_2019_opasize_box4_smr_analyzed_SMR_Ch1_MLND_SMR_analysed
+  - Local dir: plots_mlnd_SMR
+  - Figure with diagnostic plots for the mean lowest normal distribution
+* jul04_2019_opasize_box4_smr_analyzed_SMR_PLOT_BACKGROUND.png
+  - only plotted if background files are provided. 
+  - Local dir: plots_background
+  - Figure showing the estimate 
+
+
+<br><h4><a name="Details" style="color:#495057; font-weight: bold;  text-align: left">Details</a></h4> <br>
+
+<h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Support functions</h5>
+
+`EPOC.spar` Arguments: <a style="color:grey"> spar, d,  EPOCdata, mmr.val, epoc_threshold , recovMMR_threshold , newdata.smr, MLND </a>
+
+
+<br><h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Messages in Console</h5>
+
+- `MMR 1st: 3.72 < MMR overall 3.85`: indicates if any MR value fro overnight measurements is greater than the MMR measurement (1st measurement)
+- `Ch1: MMR = 3.85`: The value of estimated MMR for each channel / animal
+- `EPOC threshold = SMR`: indicates the selected SMR threshold
+- `Save MMR, SMR, and MR files`: confirms the files are saved 
+
+<br><h4 style="color:#495057; font-weight: bold;  text-align: left;"> References</h4>
+
+[Chabot et al 2016, Journal of Fish Biology](http://doi.wiley.com/10.1111/jfb.12845)
+
+
+
+<br><h4><a name="Example" style="color:#495057; font-weight: bold;  text-align: left">Example</a></h4> <br>
+
+
+<pre class = "sourceCode yaml"> 
+
+# run using defaults, where possible:
+MMR_SMR_AS_EPOC( data.MMR = "jul04_2019_opasize_box4_mmr_analyzed.csv",
+                 data.SMR = "jul04_2019_opasize_box4_smr_analyzed.csv",
+                 AnimalID = c("23-rbred","27-ltred","27-lbred","27-rtred"),
+                 BW.animal = c(0.065,0.068,0.061,0.062),
+                 resp.V = c(1.890,1.890,1.4475,1.4475),
+                 r2_threshold_smr = 0.85,
+                 r2_threshold_mmr = 0.9,
+                 min_length_mmr = 120)
+                 
+# parametrised run, no background:
+MMR_SMR_AS_EPOC(
+      	data.MMR = "jul04_2019_opasize_box4_mmr_analyzed.csv",
+      	data.SMR = "jul04_2019_opasize_box4_smr_analyzed.csv",
+        AnimalID = c("FISH1","FISH2","FISH3","FISH4"),
+        BW.animal = c(0.065,0.068,0.061,0.062),
+      	resp.V = c(1.9,1.9,1.5,1.5),
+      	r2_threshold_smr = 0.85,
+      	r2_threshold_mmr = 0.9,
+        scaling_exponent_mmr = 1,
+      	scaling_exponent_smr = 1,
+        epoc_threshold = 1,
+      	drop_ch = 1,
+      	recovMMR_threshold = 0.7,
+      	plot_smr_quantile=10, 
+      	mo2_val_for_calc = "mo2_1kg", # "mo2_1kg", mo2_common_mass_kg, mo2_per_individual_kg
+        end_EPOC_Ch = c(NA, NA, NA, NA), # must match how many channels are there, use NA otherwise
+      	min_length_mmr = 120,
+      	spars_levels = c(0.1, 0.3),
+        MLND=TRUE,
+        path="foldering",
+      	date_format = "m/d/y",
+      	N_Ch = 4, 
+      	common_mass= 1) # in kg
+
+# run with background respiration. 
+MMR_SMR_AS_EPOC(
+      	data.MMR = "jul04_2019_opasize_box4_mmr_analyzed.csv",
+      	data.SMR = "jul04_2019_opasize_box4_smr_analyzed.csv",
+        AnimalID = c("FISH1","FISH2","FISH3","FISH4"),
+        BW.animal = c(0.065,0.068,0.061,0.062),
+      	resp.V = c(1.9,1.9,1.5,1.5),
+      	r2_threshold_smr = 0.85,
+      	r2_threshold_mmr = 0.9,
+        scaling_exponent_mmr = 1,
+      	scaling_exponent_smr = 1,
+        epoc_threshold = 1,
+      	# drop_ch = 1,
+      	recovMMR_threshold = 0.7,
+      	plot_smr_quantile=10, 
+      	mo2_val_for_calc = "mo2_1kg", # "mo2_1kg", mo2_common_mass_kg, mo2_per_individual_kg
+        end_EPOC_Ch = c(NA, NA, NA, NA), # must match how many channels are there, use NA otherwise
+      	# mmr_type = "mean",
+      	min_length_mmr = 120,
+      	spars_levels = c(0.1, 0.3),
+        background_prior = "jul04_2019_box4_back_pre_dummy_analyzed.csv" ,
+        background_post = "jul04_2019_box4_back_post_dummy_analyzed.csv" ,
+        background_slope = NULL,
+        background.V = NULL,
+        MLND=TRUE,
+        match_background_Ch = TRUE,
+        mmr_background = "SAME_slope",
+        background_linear_gr = TRUE,
+        path="foldering",
+      	date_format = "m/d/y",
+      	N_Ch = 4, 
+      	common_mass= 1) # in kg
+
+
+</pre>
+
+
+
+
+
+

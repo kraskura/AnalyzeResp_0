@@ -1,0 +1,100 @@
+
+
+
+
+<div class="page-header">
+  <h2 style="font-size: 30px; text-align:left;">Splitting data files</h2>
+  <p>Source code: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a></p>
+</div>
+
+
+`csv_file_split`
+<br>
+<br>
+
+<h4 style="color:#495057; font-weight: bold;  text-align: left">About</h4>
+<ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
+  <li><a href="#Arguments">Arguments</a></li>
+  <li><a href="#Value">Value</a></li>
+  <li><a href="#Details">Details</a></li>
+  <li><a href="#Example">Example</a></li>
+  <li><a href="#"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>
+</ul>
+
+
+<h4 style="color:#495057; font-weight: bold;  text-align: left">Description</h4>
+
+<!-- <h4 style="color:#495057; font-weight: bold;  text-align: left">Before running the SMR function </h4><br> -->
+
+Use this function to split your files in 2 parts at a defined time point. Most commonly this is needed when MMR and SMR parts are together in one file. For example, when manually controlled part of the data recording (manually initiated flush:measure cycles; typically MMR) is immediately followed by automatic data recording (auto timer controlled flush:measure cycles; typically SMR/RMR). These two parts are analyzed using different functions and so need to be in different _.csv_ files.
+
+<h4><a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a></h4>
+
+
+
+  Argument       | Description | Default
+---: | :------------- | :---
+**data**            | Data _.csv_ to be split in two (manual/MMR and auto/SMR _.csv_ files). Input must be a character | --
+**split_data_name** | The name that will be used to save all output files. Input must be a character| --
+**cycle_full_min**  | cycle length (min) that the auto file was run on, this includes both flush + measure; no default | --
+**timeSplit**       | The time at which the file will be split in two (the split time (min)). This time will be shown in output plots | --
+**date_format**     | The date format. It must be provided, and can be either: `"m/d/y"`, `"d/m/y"`, `"y-m-d"`. | `NULL`
+**split**           | Logical argument. When `TRUE` the original file will be cut and 2 _.csv_ saved in the local directory | `FALSE`
+**N_Ch**            | The number of FireSting channels. Options include 2, 4, 8. Note, if either a 2- or 4-Channel FireSting was used, this argument can be ignored |`4`       
+
+<br><h4><a name="Value" style="color:#495057; font-weight: bold;  text-align: left">Value</a></h4>
+
+<h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Data outputs</h5>
+
+1. _.csv files_ (  - Saved locallly only if `split = TRUE`_)
+* "split_data_name"_mmr_split.csv.
+  - The first part is as indicated, so should use the naming system
+  - The MMR part of the file, ready to go in MMR function
+* "split_data_name"_smr_split.csv.
+  - The SMR part of the file, ready to go in SMR function
+
+2. _.png files_
+* "split_data_name"_respo_cycles.png 
+  - all data displayed with indicator lines for the 'splitting' time and auto file cycle periods.
+* "split_data_name"_respo_confirm.png
+  - a zoomed in version (2 min) of the O2 trend data, plot contains lines and coloration to indicate where the 'split' would occur. 
+* "split_data_name"_respo.png
+  - Saved locallly only if `split = TRUE`
+  
+
+<br><h4><a name="Details" style="color:#495057; font-weight: bold;  text-align: left">Details</a></h4> <br>
+
+
+<br><h4><a name="Example" style="color:#495057; font-weight: bold;  text-align: left">Example</a></h4> <br>
+
+
+<pre class = "sourceCode yaml"> 
+
+csv_file_split(data="Sep24_2019_box0_fullfile.csv",
+               split_data_name="Sep24_2019_box0_TEST-8ch", # note to use the naming system for easy downstream work
+               cycle_full_min=10,
+               timeSplit=42,
+               split=FALSE,
+               N_Ch=8,
+               date_format="d/m/y")
+
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+

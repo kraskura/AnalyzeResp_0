@@ -1,0 +1,48 @@
+
+
+
+<div class="page-header">
+<h2 style="font-size: 30px; text-align:left;">Functions</h2>
+</div>
+
+### Metabolic performance functions
+
+<ul>
+  <li><a href="./SMR.html" style = "color:#8e8c84; font-weight:bold;"><code>SMR</code></a>
+    <p> processes continuous data recorded on consitent open(flush):closed(measure) cycles commonly used in <a href ="./about.html" style = "color:gray;">aquatic respirometry</a></p></li> 
+  <li><a href="./MMR.html" style = "color:#8e8c84; font-weight:bold;"><code>MMR</code></a>
+    <p> to processes maximum metabolic rate measurement</p></li> 
+  <li><a href="./MMR_SMR_AS_EPOC.html" style = "color:#8e8c84; font-weight:bold;"><code>MMR_SMR_AS_EPOC</code></a>
+    <p> estimates the metaoblic performances of animals: MMR, SMR, EPOC (recovery), and Aerobic Scope</p></li> 
+  <li><a href="./SDA.html" style = "color:#8e8c84; font-weight:bold;"><code>SDA</code></a>
+    <p> estimates metabolic performances associated with digestion</p></li> 
+</ul>
+
+
+### Setup functions
+
+<ul>
+  <li><a href="./organize_MR_analysis.html" style = "color:#8e8c84; font-weight:bold;"><code>organize_MR_analysis</code></a>
+    <p> automatically creates a collection of local diresctories for data organisation (suggested)</p></li> 
+  <li><a href="./txt_csv_convert.html" style = "color:#8e8c84; font-weight:bold;"><code>txt_csv_convert</code></a>
+    <p> to clean up and convert raw txt files to csv files</p></li> 
+  <li><a href="./csv_file_split.html" style = "color:#8e8c84; font-weight:bold;"><code>csv_file_split</code></a>
+    <p> splits continous files to any desired chuncks, useful when need to use relative times (ie. each files starts at 0 min)</p></li> 
+  <li><a href="./combine_smr.html" style = "color:#8e8c84; font-weight:bold;"><code>combine_smr</code></a>
+    <p> estimates metabolic performances associated with digestion</p></li> 
+</ul>
+
+
+### Additional Funcitons 
+
+<ul>
+  <li><a href="./sum_backgr.html" style = "color:#8e8c84; font-weight:bold;"><code>sum_backgr</code></a>
+    <p> summarizes background respiration rates across multiple test trials</p></li> 
+</ul>
+
+
+
+
+
+
+

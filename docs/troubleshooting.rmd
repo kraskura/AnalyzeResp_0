@@ -1,0 +1,106 @@
+
+
+
+<div class="page-header">
+  <h2 style="font-size: 30px; text-align:left;">QA for troubleshooting</h2>
+  <p>Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp0</a></p>
+</div>
+
+<h4 style="color:#495057; font-weight: bold;  text-align: left">Question topics</h4>
+<ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
+  <li><a href="#setupanddata">Setup and data formats</a></li>
+  <li><a href="#MMR">MMR</a></li>
+  <li><a href="#SMR">SMR</a></li>
+  <li><a href="#AS">Aerobic scopes</a></li>
+  <li><a href="#Recovery">Recovery</a></li>
+  <li><a href="#SDA">Digestion</a></li>
+  <li><a href="#Back">Background</a></li>
+  <li><a href="#Temp">Temperature</a></li>
+  <li><a href="#QC">QC</a></li>
+</ul>
+
+
+<br><h5><a name = "setupanddata" style = "color:purple; font-weight:bold;">Setup and data format</a></h5>
+
+**Are the data in correct format?**
+
+**Can this be run on 2-channel Firesting?** 
+  
+  + This code was build using 4-channel FireSting files. For all 4 variable vectors, it still should work for 2- channel FireSting. Just indicate the missing data correctly.
+
+**Cannot find the converted .txt --> .csv files**
+
+  + If using `organize_MR_analysis` for organization, be sure to have all _.txt_ files in the same directory as the all main folders (i.e. _AUTO, MANUAL, MMR_SMR_AS_EPOC)_ , otherwise the code will ot be able to find the specific _csv_files_ subfolder.
+
+**What R2 threshold  to set?**
+
+  + If it is too high, all measurement cycle data may be discarded leaving you with no data.
+
+**Are you in correct working directory?**
+
+**Leaky respirometry chambers?**
+
+**Is water hypoxic? how to identify this?**
+  
+  + use sodium sulfite or N2 gas to deoxygenate water and then run that in closed phase to see if the O2 gets in
+
+
+
+
+<br><h5><a name = "MMR" style = "color:purple; font-weight:bold;">MMR related </a></h5>
+
+**How to choose what length measurement to use?**
+
+
+**What if my animals reach MMR during any other cycle, and not at the beginning, e.g. from chasing.**
+
+**Warning message about reading files**
+
+  + This is most likely related to inventory csv file. It likely reads in the file and applied the directed 'cleaning' with no problem (it is always a responsibility of our own to check!). 
+  `Warning message: In read.table(file = file, header = header, sep = sep, quote = quote,  : incomplete final line found by readTableHeader on 'MMR_template_TESTJan2022.csv'`
+
+
+<br><h5><a name = "SMR" style = "color:purple; font-weight:bold;"> SMR related</a></h5>
+
+
+**Warning message about reading files**
+
+  + This is most likely related to inventory csv file. It likely reads in the file and applied the directed 'cleaning' with no problem (it is always a responsibility of our own to check!). 
+  `Warning message: In read.table(file = file, header = header, sep = sep, quote = quote,  : incomplete final line found by readTableHeader on 'MMR_template_TESTJan2022.csv'`
+
+<br><h5><a name = "AS" style = "color:purple; font-weight:bold;"> AS, EPOC related</a></h5>
+
+
+
+
+<br><h5><a name = "Recovery" style = "color:purple; font-weight:bold;"> Recovery</a></h5>
+
+**Smoothing leads to big dip at the beginning.**
+
+
+<br><h5><a name = "SDA" style = "color:purple; font-weight:bold;"> Digestion, SDA</a></h5>
+
+
+
+<br><h5><a name = "Back" style = "color:purple; font-weight:bold;"> Background respiration</a></h5>
+
+
+**Have a blank respirometer running aside with different volume (L) than the one with an animal. How to account for it?**
+  
+  + In function `MMR_SMR_AS_EPOC`: `background_slope` and `background.V` must be provided together. The function will fail having only one without the other
+
+
+**Have one background measurement for each trail, how to add it to the function?**
+
+**I have a background respiration estimates already, can I use it without giving a raw csv file?**
+  
+  + Absolutley, In function `MMR_SMR_AS_EPOC`: if using `background_linear_gr = TRUE`, both `background_prior` and `background_post` must be provided
+
+
+<br><h5><a name = "Temp" style = "color:purple; font-weight:bold;"> Temperature</a></h5>
+
+
+
+
+<br><h5><a name = "QC" style = "color:purple; font-weight:bold;"> QC</a></h5>
+

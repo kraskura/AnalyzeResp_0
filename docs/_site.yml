@@ -1,0 +1,38 @@
+name: "AnalyzeResp-website"
+output_dir: "."
+navbar:
+  title: "AnalyzeResp"
+  left:
+    - icon: fa-home
+      href: index.html
+    - text: "Functions"
+      href: functions.html
+    - text: "Demos & Vocab"
+      href: tutorials-main.html
+    - text: "Troubleshoting"
+      href: troubleshooting.html
+    - text: "References"
+      href: references.html
+    - text: "Updates"
+      href: progressNotes.html
+    - text: "Resources"
+      menu:
+      - text: "Aquatic respiromtery"
+        href: about.html
+      - text: "QC protocols"
+        href: QC_protocol.html
+      - text: "Workshops"
+        href: workshops.html
+
+  right:
+    - icon: fa-envelope fa-lg
+      href: mailto:<kkraskura@ucsb.edu>
+    - icon: fa-github fa-lg
+      href: http://github.com/kraskura/
+  
+output:
+  html_document:
+    theme: sandstone
+    include:
+      after_body: footer.html
+

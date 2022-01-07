@@ -1,0 +1,135 @@
+
+
+
+
+<div class="page-header">
+  <h2 style="font-size: 30px; text-align:left;">SMR: Standard metabolic rates</h2>
+  <p>Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a></p>
+</div>
+
+
+`SMR`
+<br>
+<br>
+
+<h4 style="color:#495057; font-weight: bold;  text-align: left">About</h4>
+<ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
+  <li><a href="#Arguments">Arguments</a></li>
+  <li><a href="#Value">Value</a></li>
+  <li><a href="#Details">Details</a></li>
+  <li><a href="#Example">Example</a></li>
+  <li><a href="#"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>
+</ul>
+
+
+<h4 style="color:#495057; font-weight: bold;  text-align: left">Description</h4>
+
+This function is taking in an uninterrupted oxygen recording file and extracting each oxygen consumption rate slope. It requires that the measurement cycles are constant through the entire respirometry trial and it assumes that the automatic measurement trial starts with a flush. The regression slopes can be visually assessed and cleaned using this function as well.
+
+
+<h4><a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a></h4>
+
+
+
+  Argument       | Description | Default
+---: | :------------- | :---
+**data**             | The name of the raw input file _.csv_, a character. | --
+**cycle_start**      | The stat time (min) of auto cycle. This indicates the start of the measurement (relative to min 0). | --
+**cycle_start**      | The time (min) of auto cycle; end of the measurement (relative to min 0) | --
+**chop_start**       | The time (min) to be chopped off at the start of each measurement cycle. | --
+**chop_end**         | The time (min) to be chopped off at the end of each measurement cycle. | --
+**N_Ch**             | The number of channels of the FireSting. Must be either 4 or 8. 8 Channel Firesting has 4 temperature measurements and 4 oxygen content measurements | `4`
+**inventory_data**   | The inventory file (.csv file; must be in the same working directory). | --
+**flush_plot**       | Two opetions, plot additional figures where full cycle is visualized (measure:flush). To plot this specify it with character string:`"ON"` at this argument| `"OFF"`
+**path**             | The directory where all output files will be saved. There are two options, either all files will be saved in the current working directory, the other option requires the folders created by `organize_MR_analysis` |  `"."` (local directory)  
+**date_format**      | The date format used in the original FireSting files. Must specify one of the following: `c("m/d/y","d/m/y","y-m-d")` | `"m/d/y"`
+**plot_temp**   | Logical  indicating whether or not temperature trends for each cycle will be plotted | `TRUE`
+
+
+
+<br><h4><a name="Value" style="color:#495057; font-weight: bold;  text-align: left">Value</a></h4>
+
+<h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Data outputs</h5>
+
+1. _.csv files_
+*()_analyzed.csv
+  - Local dir(s): csv_analyzed (in two parent directories: AUTO/csv_analyzed, MMR_SMR_AS_EPOC/csv_analyzed)
+  - Primary metrics included: the regression parameters (slope = m, intercept = b, and R~2~) for each recorded measurement period, the temparature for each measurement period, time length of each measurement. 
+
+2. _.png files_
+* ()_ALL_TOGETHER.png
+  - Local dir: plots_all_together
+  - Figure with all slope values, a proxy for MR, are plotted over full respirometry trial.
+* ()_ChX.png
+  - Local dir: plots_channel
+  - Large figure, where each measurment cycle is plotted. The regressions are displayed on the top margin of the figure. 
+  - If inventory or QC is performed, the changes will be indicated; shaded grey sections are periods that are selected to be used, i.e. good quality. 
+* ()_cycle_ChX.png
+  - Local dir: plots_channel_cycle
+  - Figure, same than ()_ChX.png, but plotted is full measurement cycle where timing of each flush to measurement (or open to closed) phase transitions is indicated
+  - Only plotted if arg `flush_plot = TRUE` 
+* ()_ChX_temp.png
+  - Local dir: plots_channel_temperature
+  - Figure conceptualy the same as the _ChX.png displaying change of oxygen across time, but for temperature
+  - Only plotted if arg `plot_temp = TRUE` 
+* ()_cycle_ChX_temp.png
+  - Local dir: plots_channel_temperature_cycle
+  - Figure conceptualy the same as the _cycle_ChX.png but for temperature
+  - Only plotted if arg `plot_temp = TRUE` 
+* ()_all_ChO2
+ - plots_summary_respo
+ - Figure with all measurements plotted across the the full respiromtery trial. Each channel is represented in a seperate panel.
+
+<br><h4><a name="Details" style="color:#495057; font-weight: bold;  text-align: left">Details</a></h4> <br>
+
+The timeframes of SMR measurement cycles can be quality controlled to select only high quality desired data parts (e.g. exclude any blips, etc, that appear due to experimental or technical reasons). See relevant suggestions in <a href="./QC_protocol.html" style = "color:#8e8c84; font-weight:bold;">QC section</a> for more information. 
+
+We call these inventory files to create traceable and clear selection of all manually applied changes. Template can be found [here on GitHub page](herehere) 
+**Important**: All channels are assumed to work on the same open:closed cycle regimen. 
+
+<br><h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Support functions</h5>
+
+`Channel_slope_analysis` Arguments: <a style="color:grey"> Ch, seq_st, seq_end, plotname, data1, chop_start, chop_end,  inv.data, newdata </a>
+`Channel` Arguments: <a style="color:grey">Ch, temp, seq_st, seq_end, plotname, data1, chop_start, chop_end,  inv.data, newdata</a>
+`Channel_cycle` Arguments: <a style="color:grey"> Ch, seq_end,seq_st, flush, plotname, data1 </a>
+
+
+<br><h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Messages on Console</h4>
+
+- `Minimal O2: [Ch1: 6.68] [Ch2: 6.77] [Ch3: 6.42] [Ch4: 6.8] (mgO2/L)`: A visual first pass indicator of minimal oxygen levels in each chamber, the values go 
+- `plot -cycle`: indicates plotting a full cycle (will apear if arg `flush_plot = TRUE`), it will repeat for each channel
+- `plot -cycle temp`:: indicates plotting a full cycle (will apear if arg `flush_plot = TRUE`), it will repeat for each channel
+- `ChX: NO inventory data`: Channel X has no adjustemnts, all measurement cycles used as is
+- `ChX: Inventory: data are cleaned for quality sections only`: Channel X time for measurements changed as specified in the provided inventory data file
+
+
+<br>
+<h4><a name="Example" style="color:#495057; font-weight: bold;  text-align: left">Example</a></h4> <br>
+
+
+<pre class = "sourceCode yaml"> 
+
+SMR(data="jul04_2019_opasize_box4_smr.csv",
+    inventory_data=NA,
+    cycle_start=7,
+    cycle_end=15,
+    chop_start=10/60, # 10 seconds
+    chop_end=0,
+    flush_plot="OFF",
+    N_Ch=4,
+    path="UseFolders",
+    date_format = "m/d/y", plot_temp = FALSE)
+
+# With inventory data provided.
+SMR(data="jul04_2019_opasize_box4_smr.csv",
+    inventory_data= "smr_inventory_test.csv",
+    cycle_start=8, # length of a full cycle, with open and closed phases together
+    cycle_end=15, # this will take first 10 sec off as a wait period, can be decimal
+    chop_start=10/60, 
+    chop_end=0,
+    flush_plot="OFF",
+    N_Ch=4,
+    path="UseFolders",
+    date_format = "m/d/y")
+
+</pre>

@@ -1,0 +1,78 @@
+
+
+
+<div class="page-header">
+  <h2 style="font-size: 30px; text-align:left;">Setup function: create local directories</h2>
+  <p>Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a></p>
+</div>
+
+
+`organize_MR_analysis`
+<br>
+<br>
+
+<h4 style="color:#495057; font-weight: bold;  text-align: left">About</h4>
+<ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
+  <li><a href="#Arguments">Arguments</a></li>
+  <li><a href="#Value">Value</a></li>
+  <li><a href="#Details">Details</a></li>
+  <li><a href="#Example">Example</a></li>
+  <li><a href="#"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>
+</ul>
+
+
+<h4 style="color:#495057; font-weight: bold;  text-align: left">Description</h4>
+ 
+Used to create folders in the local directory that may be used to keep all input and output files organized during analysis of animal metabolic performances.
+
+<!-- <h4 style="color:#495057; font-weight: bold;  text-align: left">Before running the SMR function </h4><br> -->
+
+<h4><a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a></h4>
+
+
+  Argument       | Description | Default
+---: | :------------- | :---
+create      | One or more folders/directories and all respective subfolders will be created in the local directory. No default, one of the following options must be used: `"AUTO", "MANUAL", "Full", "BACTERIAL_RESP", "SDA"`. When using `"Full"`, all but SDA folders will be created. | --
+
+
+
+<br><h4><a name="Value" style="color:#495057; font-weight: bold;  text-align: left">Value</a></h4>
+
+<h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Data outputs</h5>
+
+1. .csv files
+2. .png files
+
+<br><h4><a name="Details" style="color:#495057; font-weight: bold;  text-align: left">Details</a></h4> <br>
+
+<h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Support functions</h5>
+
+
+<br><h4><a name="Example" style="color:#495057; font-weight: bold;  text-align: left">Example</a></h4> <br>
+
+
+<pre class = "sourceCode yaml"> 
+
+
+example
+example
+example
+example
+
+
+
+
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+

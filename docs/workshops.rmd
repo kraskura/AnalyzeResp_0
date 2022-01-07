@@ -1,0 +1,90 @@
+
+
+<div class="page-header">
+  <h2 style="font-size: 30px; text-align:left;">Workshops and events</h2>
+  <!-- <p>Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a></p> -->
+</div>
+
+Professor Erika Eliason has hosted two respirometry workshops at UCSB (Oct 25-26 2018, and April 3 2020). The goal of these workshops are to bring collaborators, students, researchers, postdocs, and anyones interested together to discuss best practices of aquatic respirometry. Discussed topics include, but are not limited to:
+
+*i)* What metabolic performances  
+
+
+
+\
+\
+
+#### Notes from the respo retreat @ UCSB, April 3 2020
+
+**SMR**
+
+- why is it beneficial to have low SMR?
+  * low energy requirements, eat less
+- why have high SMR?
+  * higher MMR?
+  * boldness? growth rates
+  * but these relationships are not super consistent
+
+**RMR? - what is it?**
+
+  * resting vs routine. routine is the average of some period of time, resting is commonly a point measurement
+
+**MMR**
+
+  * typically exercise.
+  * what can limit MMR?
+  * why is it beneficial to have low MMR?
+    - higher performance, e.g. swimming
+  * but can be beneficial to have low MMR
+    - don't need to maintain
+
+**AS = MMR-SMR**
+
+  - what is needed? when to have a large or low AS?
+  - ecological relevance, for what performance
+  - life stages
+
+**FAS = MMR/SMR**
+
+**EPOC!, and more about recovery**
+
+- recovery from anaerobic exercise, any type anaerobic. Very ecologically relevant!
+- The big question is: how much time and resources are needed to recover ENOUGH to keep going
+  * animals don't need to recover back to SMR level (and realistically - they  never do!)
+  * we know that fish can fully repeat max swim performance (Ucrit, Umax) with only 45 min recovery (Jain's work, Erika's repeat swim)
+  * lactate ~ 10 mmol, MMR50% or MMR75%
+  * the plus! don't need an actual SMR, focus on the time to 50% MMR
+  * MMR50% may show the first indications of impaired recovery
+
+**SDA**
+
+  * peak SDA
+  * SDA - the integral
+  * SDA coefficient (what was this?)
+
+
+**Scaling from Chris Jerde :**
+
+Three main option to adjust MR to animals body size:
+
+1. Just divide MR/size to get per unit mass metabolism (this would also be the same as scaling exponent of 1)
+2. Use some common scaling exponent and divide MR  by mass^b; b= scaling exponent
+3. Estimate scaling from the original data of the study (not universal) or correct for size otherwise:
+  * use residuals to run stats
+  * bring all fish to some mean same size
+  * use local scaling exponent (what size range is actually enough large to trust this?)
+
+- There are NO agreed upon methods to size-correct MR for body size.
+
+
+
+Emily Hardiosn: cleaning to overcome wonky temperature readings and leaky respos (and other sources of messiness!)
+
+- Measure background and estimate the error from different potential sources:
+  * leaky respos
+  * bad temp readings
+  * old probes
+  * weird technical errors
+  * pump not flushing right or having some issues
+- Random walk model (correlated random walk)
+  * with the autocorrelation - the correlation is changing over time. correlation constant = no leak (hypothetically), correlation is changing = leak

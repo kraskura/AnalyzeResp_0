@@ -1,0 +1,42 @@
+---
+title: 'Respirometry Performances: Code Updates and To do list'
+author: "Krista Kraskura"
+---
+
+**To do list:**
+
+1. Improve the naming dependency, take that out. 
+2. Add more flexibility of different oxygen units, for example, % air saturation in the local functions.
+3. Development of function that estimates hypoxia tolerance, P-crit analysis
+4. (?) Temperature in the MMR_SMR_AS_EPOC/csv_analyzed_MR/ data output files is just for the MMR section of the data, needs adjustment. 
+5. Add N=xxx in the quantile plots
+6. Add FAS analysis
+7. Fix units when calculating MO2 for either: i) animal (mgO2/min/animal) ii) mass-specific, per kg (mO2/min/kg), iii) stanadardised mass using scaling 
+8. script and demo on how to use our code with non Firesting data files
+
+
+#### Updates, for 2022 current version:  
+
+
+- MMR function arguments: 
+	- mmr_Ch1, mmr_Ch2, etc instead of just plain Ch1
+	- 
+
+Date| Description | Previous | UPDATE
+:----| :--- | :------------- | :---
+Jan 2022 | | |
+
+
+#### New arguments:
+
+Sept 5-6, 2020
+
+```
+common_mass = 1, # in kg
+mo2_val_for_calc = "mo2_1kg", # mo2_common_mass_kg, mo2_per_individual_kg
+plot_smr_quantile=15 # 10, 15, or 20 
+
+
+plot(x=c(1,2,3),y=c(1,2,3) )
+
+```

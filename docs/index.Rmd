@@ -1,0 +1,51 @@
+
+
+>This is 'AnalyzeResp' *package* is a project that started as one file with few functions in R customise to analyse collected experimental data. It then began to grow into a more comprehensive package, and it continues to grow to this day. We continue to use it and while using it, new tools, capabilities are added to the function.
+The maintenance and development of R script is lead by Krista Kraskura, a PhD Candidate at UCSB, but this would not be possible without the valuable feedback and support from the [Erika Eliason's Lab](www.erikaeliason.com) and collaborators. 
+
+<p style = "text-align:left;">&#128031; Author: Krista Kraskura (author) </p>
+<p style = "text-align:left;">&#128031; Contributors: Emily Hardison, Terra Dressler, Jacey Van Wert, Sam Csik, Erika Eliason </p>
+<br>
+
+<h4 style="color:#495057; font-weight: bold;  text-align: left">Get started</h4> 
+
+Fork the repository from GitHub directly. 
+
+Please cite the GitHub Repo when used to analyze data. I will appreciate if you reach out when using our functions, I will add your work to the <a href="./references.html" >reference list</a>
+
+
+**The community:** check out these packages and functions in R
+
+- **RespR** by Januar Harianto & Nicholas Carey [web](https://januarharianto.github.io/respR/index.html)
+- **respirometry** by Matthew A. Birk [CRAN](https://cran.r-project.org/web/packages/respirometry/index.html)
+- **fishMO2** by Denis Chabot [GitHub](https://github.com/denis-chabot/fishMO2)
+- **rMR** by Tyler L. Moulton [CRAN](https://cran.r-project.org/web/packages/rMR/index.html)
+- **FishResp** by Sergey Morozov & R.J. Scott McCairns [CRAN](https://cran.r-project.org/web/packages/FishResp/index.html)
+
+
+Our script is writtem to analyze data that was measured using [Firesting multichannel](https://www.pyroscience.com/en/263) oxygen sensor boxes from Pyroscience. But it can be easily adapted to be compatible with any other setup (vignette on how to achieve this coming soon!). 
+
+<h4><a name="Example" style="color:#495057; font-weight: bold;  text-align: left"> What is this for? </a></h4> <br>
+
+The raw (.tx) export files from the Firesting complementary software are then directly fed into our function (in a specific sequence) to estimate oxygen consumption rates of our study animals (i.e. a proxy of metabolic rate, MR). Then all compiled metabolic rate measurements are used specifically estimate different ecologically valuable performances, Maximum metabolic rates, Standard (and Resting) metabolic rates, Aerobic scope, Digestions Costs and Time, Recovery performance. And we plan to expand the capability of these functions furter. 
+
+**Strengths?** Very fine ability to visualize all data, perform user specific quality control, track progress, make work reproducible using R script. All input and output files can be saved locally (default, but can be optional). 
+
+**More resources** on aquatic respirometry can be found in our [demos with background](./tutorial-main.html) 
+
+**Library dependencies:** 
+```
+rMR, ggplot2, gridExtra, chron, lubridate, dplyr, pryr, ggpubr, magrittr, tidyr ,broom, purrr, mclust, data.table, stringr, DescTools
+
+```
+
+
+
+
+
+
+
+
+
+
+

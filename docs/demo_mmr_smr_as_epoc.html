@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>demo_mmr_smr_as_epoc.knit</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">AnalyzeResp</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="functions.html">Functions</a>
+</li>
+<li>
+  <a href="tutorials-main.html">Demos &amp; Vocab</a>
+</li>
+<li>
+  <a href="troubleshooting.html">Troubleshoting</a>
+</li>
+<li>
+  <a href="references.html">References</a>
+</li>
+<li>
+  <a href="progressNotes.html">Updates</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Resources
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="about.html">Aquatic respiromtery</a>
+    </li>
+    <li>
+      <a href="QC_protocol.html">QC protocols</a>
+    </li>
+    <li>
+      <a href="workshops.html">Workshops</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:&lt;kkraskura@ucsb.edu&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/kraskura/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<!-- <pre class = "sourceCode yaml"> 
+</pre> 
+*documentation:* -->
+<div class="page-header">
+<h2 style="font-size: 30px; text-align:left;">
+Step-by-step example to perform full analysis
+</h2>
+<p>
+Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp0</a>
+</p>
+</div>
+<h4 style="color:#495057; font-weight: bold;  text-align: left">
+Steps and short descriptions
+</h4>
+<ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
+<li>
+<a href="#step1">Step 1</a>
+</li>
+<li>
+<a href="#step2">Step 2</a>
+</li>
+<li>
+<a href="#step3">Step 3</a>
+</li>
+<li>
+<a href="#step4">Step 4</a>
+</li>
+<li>
+<a href="#step5">5. </a>
+</li>
+<li>
+<a href="#step6">6. </a>
+</li>
+<li>
+<a href="#step7">7. </a>
+</li>
+<li>
+<a href="#step-add">Misc Steps</a>
+</li>
+</ul>
+<h5 style="font-weight: bold">
+<a name = "step1" style="color:black;
+ font-weight: bold;
+ border: 3px solid grey;
+ border-radius: 5px;
+ padding: 5px;"> STEP 1:  </a>   Set up, working directories, and formatting data files
+</h5>
+<p>First need to source the functions so they are available for use at the current R session, in the global environment:</p>
+<pre class = "sourceCode yaml"> 
+source("./MR_firesting_v2.1.0.R")
+# any directory where the script with all used functions lives. Like a forked GitHub repo.
+
+setwd() # set any working directory dedicated for metabolic performance analysis.
+</pre>
+<p><strong>1. Set up a local working directory:</strong></p>
+<p>There are many evaluation and analysis csv and image (.png) export files. These are automatically saved on the local directory. Each funciton has two general options for how these files are saved: i) all in one folder (local directory as specified by the user: “./”), ii) in local directories (data folders), all files are automatically placed buy functions (suggested for organisation).</p>
+<p>To create the automatic organisation, run the following:</p>
+<pre class = "sourceCode yaml"> 
+organize_MR_analysis(create = "Full") # will create a full suite of folders and subfolders within in prep to analyze SMR, MMR, AAS
+organize_MR_analysis(create = "SDA") # similar setup but selected folders for SDA analysis
+
+</pre>
+<p><em>documentation:</em> <a href="#./organize_MR_analysis.html" style = "color:#8e8c84; font-weight:bold;"><code>organize_MR_analysis</code></a>) <em>Note! - sorry for the strange not always intuitive names of the folder, please share any suggestions with preffered names of the files, directories and sub-directories</em></p>
+<p><br></p>
+<p><strong>2. Converting and formatting files to .csv format</strong> In their original format, the files in .txt format (from Pyroscience, Firesting), but the data analysis functions require .csv files. Therefore, a part of the setup is the file conversion from text files to csv files. This can be done with one of the functions.</p>
+<p>To convert raw firesting data files into compatable .csv file format <strong>first</strong> open the chosen working directory for this analysis and copy-in replicate .txt files to work with (always suggest working off copies of the original files). This part applied whether using a general repo, or directories created after running <code>organize_MR_analysis.html</code>.</p>
+<p>, either in AUTO or MANUAL or bacterial main folders, accordingly. # if path is not specified then just save converted files in the current directory, the default option.</p>
+<pre class = "sourceCode yaml"> 
+
+# for MMR files:
+txt_csv_convert(txt_file = "./jul04_2019_opasize_box4_mmr.txt",  path = "MANUAL" , N_Ch = 4) # formated csv files is automatically save them in "MANUAL/csv_files" subfolders
+txt_csv_convert(txt_file = "./jul04-2019-opasize-box4-mmr.txt",  path = "MANUAL" , N_Ch = 4) # formated csv files is automatically save them in "MANUAL/csv_files" subfolders
+
+# for SMR overnight files:
+txt_csv_convert(txt_file = "./jul04_2019_opasize_box4_smr.txt",  path = "AUTO" , N_Ch = 4) # formated csv files is automatically save them in "AUTO/csv_files" subfolders
+txt_csv_convert(txt_file = "./jul04-2019-opasize-box4-smr.txt",  path = "AUTO" , N_Ch = 4) # formated csv files is automatically save them in "AUTO/csv_files" subfolders
+
+# and example for files that were used to run bacterial respiration background: (here not considered)
+txt_csv_convert(txt_file = "./jun01_2021_box1_back-allRespos.txt",  path = "BACTERIAL_RESP" , N_Ch = 4)
+
+</pre>
+<p><em>documentation:</em> <a href="#./txt_csv_convert.html" style = "color:#8e8c84; font-weight:bold;"><code>txt_csv_convert</code></a></p>
+<p><strong>Outcome:</strong> A new <em>.csv</em> file will be created either locally (with <code>path = "."</code>) or in the <em>csv_files</em> subfolder (<code>path = "AUTO"</code> or <code>path = "MANUAL"</code>), the original .txt file will remain in the current working directory.</p>
+<p>
+ 
+</p>
+<h5 style="font-weight: bold">
+<a name = "step2" style="color:black;
+ font-weight: bold;
+ border: 3px solid grey;
+ border-radius: 5px;
+ padding: 5px; "> STEP 2:  </a>   Analysis of MMR, finding the steepest slope
+</h5>
+<p>The following script is to obtain oxygen decrease rates over time during a specific measurement cycle. This is originally written to analyze MMR of up to 4 individuals, each associated with a seperate channel in Firesting oxygen meter boxes.</p>
+<p>To use the ‘MMR’ function, first, the working directory needs to be set where the file is located. Then can execute the function with many parameters</p>
+<pre class = "sourceCode yaml"> 
+
+# setting working directory 
+setwd("./MANUAL/csv_files/")
+
+# calling the MMR function
+MMR(data.MMR = "./jul04_2019_opasize_box4_mmr.csv", # specify the .csv data file
+    cycles = 2,  # this file will have two measurement (closed phase) cycles
+    cycle_start = c(0, 11.02), # first cycle start at 0 min, and 2nd cycle starts at 11.2 min (retive time of the file)
+    cycle_end = c(4.0, 15.95), # first cycle ends at 4 min, and 2nd cycle ends at 15.95 min (retive time of the file)
+    Ch1 = 1, # an animal in channel 1 has the MMR measured in the first cycle. 
+    Ch2 = 2, # an animal in channel 2 has the MMR measured in the second cycle. 
+    Ch3 = 1, # an animal in channel 3 has the MMR measured in the first cycle. 
+    Ch4 = 2, # an animal in channel 4 has the MMR measured in the second cycle. 
+    clean_Ch1=c(0,0), # channel specific timeframes for the measurement 
+    clean_Ch2=c(0,0), 
+    clean_Ch3=c(0,0),
+    clean_Ch4=c(0,0),
+    path ="Folders", # this will automatically save output files in the dedicated output folders
+    N_Ch = 4, # 4 channel firesting, 1 temperature probe
+    date_format = "m/d/y", # the format of the date
+    inv.data = NA) # no inventory data to perform more finedetail user-define measurement adjustments. 
+
+</pre>
+<p><em>documentation:</em> <a href="./MMR.html" style = "color:#8e8c84; font-weight:bold;"><code>MMR</code></a></p>
+<ul>
+<li>If the MMR file is shorter than 3 min, the sliding window analysis for MMR measurement is not performed. But, it always calculates the regression parameters for the full slope. The time frame to be used for the representative MMR estimates is later selected in <code>MMR_SMR_AS_EPOC</code> function.</li>
+<li>The <code>path</code> argument can be anything, it could be “HappyFishInFolders”, “yayData”, “myfolder”…</li>
+</ul>
+<p><strong>Outcome:</strong></p>
+<p>
+ 
+</p>
+<h5 style="font-weight: bold">
+<a name = "step3" style="color:black;
+ font-weight: bold;
+ border: 3px solid grey;
+ border-radius: 5px;
+ padding: 5px;"> STEP 3  </a>   Analysis of SMR slopes recorded on automatic cycles
+</h5>
+<p>There will likely be two seperate runs using <code>SMR</code> function.</p>
+<p><strong>1. First pass: A parametrized run without any QC</strong> As before, be sure to set the correct working directory, if <code>organize_MR_analysis</code> was used for organization, the code below may be used.</p>
+<p>The example below will be for calculating oxygen decrease rates for all measurement cycles; in this example case the cycles are specified to be 15 min long total, with 8:7 flush(open):measurement(closed) phase. None of the measurement cycles will be modified or otherwise cleaned (no inventory data).</p>
+<p>In some setups an additional wait period is used between the flush and measurement (flush:wait:measure). This code still may be used to analyze such files by either i) adding the wait time to the flush time that way it will be automatically excluded from the analysis, ii) adding the wait period to the measurement cycle time and use <code>chop_start</code> argument to exclude it from the analysis. In the example below, the first 10 seconds will be chopped off from each measurement cycle regression as a wait period.</p>
+<p>When something seems to be out of order with the auto cycles, run the code with <code>flush_plot = TRUE</code> and check whether the flush:measure cycle lengths are specified correctly. Otherwise, it may be better to keep <code>flush_plot = FALSE</code> because it takes a more time and computer memory.</p>
+<pre class = "sourceCode yaml"> 
+setwd("../../AUTO/csv_files")
+
+SMR(data="jul04_2019_opasize_box4_smr.csv",
+    inventory_data=NA,
+    cycle_start=8, # length of a full cycle, with open and closed phases together
+    cycle_end=15, # this will take first 10 sec off as a wait period, can be decimal
+    chop_start=10/60,
+    chop_end=0,
+    flush_plot="OFF",
+    N_Ch=4,
+    path="UseFolders",
+    date_format = "m/d/y")
+</pre>
+</pre>
+<p><em>documentation:</em> <a href="./SMR.html" style = "color:#8e8c84; font-weight:bold;"><code>SMR</code></a></p>
+<p><strong>2. Second pass: applying QC as necessary</strong></p>
+<p>Everything remains the same if the cycles are correct, and the 10 sec wait time was confirmed appropriate; the only addition is the inventory data file (in .csv format). The inventory file must be in the csv_files folder.</p>
+<p>The downstream function incorporate cutoffs such as R<sup>2</sup>. We firmly believe that visual inspection of all oxygen decrease slopes is critical step of data analysis.</p>
+<pre class = "sourceCode yaml"> 
+
+SMR(data="jul04_2019_opasize_box4_smr.csv",
+    inventory_data= "smr_inventory_test.csv",
+    cycle_start=8, # length of a full cycle, with open and closed phases together
+    cycle_end=15, # this will take first 10 sec off as a wait period, can be decimal
+    chop_start=10/60,
+    chop_end=0,
+    flush_plot="OFF",
+    N_Ch=4,
+    path="UseFolders",
+    date_format = "m/d/y")
+
+</pre>
+<p><strong>Outcome:</strong> The same plots as before, but any specified section to be <strong>used</strong> for further analysis is indicated in grey shadowed box.</p>
+<p><strong>3. Likely third run: to estimate background respiration</strong> This exact same function can be run to analyze background respiration. If background was run on cycles that were not automatic, then best may be splitting the files up, or running the function through the <code>MMR</code> function.</p>
+<h5 style="font-weight: bold">
+<a name = "step4" style="color:black;
+ font-weight: bold;
+ border: 3px solid grey;
+ border-radius: 5px;
+ padding: 5px;"> STEP 4  </a>   Estimating metabolic performances
+</h5>
+<p><em>Before further analysis considerations</em>: The Need MMR_SMR_EPOC_AS function can be provided with one .csv file that represents SMR measurements and one .csv file that represents MMR measurements. Have more than one SMR file? - several SMR files can be combined and formatted using <code>combine_smr</code> function: see and example of this step under <a href="#step-misc">Misc Steps</a></p>
+<p>Once again, is starts with setting the working directory (example below)</p>
+<p>In this example, both MMR and SMR files were recorded and have been analyzed using <code>MMR</code> and <code>SMR</code> functions, respectively.</p>
+<p>Some example customization for desired outcomes:</p>
+<ul>
+<li>The regression R<sup>2</sup> cut off is set 0.9 for MMR and 0.85 for SMR. All regression slopes that are below these thresholds will not be used. The MMR value will be calculated from the steepest 120-second slope, but if this length is not sufficient to keep the R<sup>2</sup> at the chosen 0.9 level, it will automatically go to the next longer sliding window option (here would be 180 seconds). The goal is to keep R<sup>2</sup> at the specified level, and have measurement period as specified or as close to it as possible, never shorter.</li>
+<li><code>epoc_threshold = 1.1</code>: The end time of recovery will be estimated as the time it takes for the animal to recover from its MMR level to 110% SMR. (= 1.1 X SMR). All other EPOC parameters will also be dependent on this value.</li>
+<li><code>recovMMR_threshold = 0.5</code>: It will find the time it takes for the animal to recover from its MMR level to 50% MMR (EPOC to 50% MMR and time to 50 % MMR will be calculated)</li>
+<li><code>drop_ch = 1</code>: channel 1 will be entirely excluded from the analysis</li>
+<li><code>MLND = FALSE</code>: MLND method will not be used to estimate SMR.</li>
+</ul>
+<p>In this example, background respiration is assumed to be negligible and is not considered when calculating MO2 values (all background arguments are comment out)</p>
+<pre class = "sourceCode yaml"> 
+setwd("/Users/kristakraskura/Github_repositories/Respirometry_Performances/Test/MMR_SMR_AS_EPOC/csv_input_files")
+
+MMR_SMR_AS_EPOC(
+        data.MMR = "jul04_2019_opasize_box4_mmr_analyzed.csv",
+        data.SMR = "jul04_2019_opasize_box4_smr_analyzed.csv",
+        AnimalID = c("23-rbred","27-ltred","27-lbred","27-rtred"),
+        BW.animal = c(0.065,0.068,0.061,0.062),
+        resp.V = c(1.890,1.890,1.4475,1.4475),
+        r2_threshold_smr = 0.85,
+        r2_threshold_mmr = 0.9,
+        scaling_exponent_mmr = 1,
+        scaling_exponent_smr = 1,
+        epoc_threshold = 1,
+        drop_ch = 1,
+        recovMMR_threshold = 0.7,
+        plot_smr_quantile=10, 
+        mo2_val_for_calc = "mo2_1kg", # "mo2_1kg", mo2_common_mass_kg, mo2_per_individual_kg
+        end_EPOC_Ch = c(NA, NA, NA, NA), # must match how many channels are there, use NA otherwise
+        # mmr_type = "mean",
+        min_length_mmr = 120,
+        # background_prior = "jul04_2019_opasize_box4_back_prior_dummy.csv" ,
+        # background_post = "jul04_2019_opasize_box4_back_post_dummy.csv",
+        # background_slope = NULL,
+        # background.V = NULL,
+        MLND=FALSE,
+        # match_background_Ch = TRUE,
+        # mmr_background = "SAME_slope",
+        # background_linear_gr = FALSE,
+        path="foldering",
+        date_format = "m/d/y",
+        N_Ch = 4, 
+        common_mass= 1) # in kg
+
+</pre>
+<p><em>documentation:</em> <a href="./MMR_SMR_AS_EPOC.html" style = "color:#8e8c84; font-weight:bold;"><code>MMR_SMR_AS_EPOC</code></a></p>
+<p>Below is an example <code>MMR_SMR_AS_EPOC</code> function run using the minimum number of required parameters and that will still allow function to run nicely. Although, I suggest specifying a few arguments every single time and ignore their default value, those include: * <code>path = "StayOrganizedWithPoorlyNamedFolders"</code>. If <code>organize_MR_analysis</code> was not used, then default is local directory. Two things regardings this option: i) the input files need to located in the set (current “.”) working directory, and ii) a pile of exported files will be all saved in this directory, can feel disorganised while getting used to using this function. * <code>date_format = "m/d/y"</code> (the default) is the most common date format in Firesting .txt files, but if that is not the case for files on hnad, it will hit back an error.</p>
+<pre class = "sourceCode yaml"> 
+
+MMR_SMR_AS_EPOC( data.MMR = "jul04_2019_opasize_box4_mmr_analyzed.csv",
+      data.SMR = "jul04_2019_opasize_box4_smr_analyzed.csv",
+      AnimalID = c("23-rbred","27-ltred","27-lbred","27-rtred"),
+      BW.animal = c(0.065,0.068,0.061,0.062),
+      resp.V = c(1.890,1.890,1.4475,1.4475),
+      r2_threshold_smr = 0.85,
+      r2_threshold_mmr = 0.9,
+      min_length_mmr = 120)
+
+</pre>
+<h5 style="font-weight: bold">
+<a name = "step5" style="color:black;
+ font-weight: bold;
+ border: 3px solid grey;
+ border-radius: 5px;
+ padding: 5px;"> STEP 5  </a>   title title title
+</h5>
+<h5>
+<a name="setup" style="color:black; font-weight: bold;  text-align: center"> Aerobic scope, AS, and Excess post exercise oxygen consumption, EPOC</a>
+</h5>
+<p><br> <a name = "step7" style="color:black;
+ font-weight: bold;
+ border: 3px solid grey;
+ border-radius: 5px;
+ padding: 5px;
+ "> STEP 7 </a></p>
+<h5 style="font-weight: bold">
+<a name = "step-misc" style="color:black;
+ font-weight: bold;
+ border: 3px solid grey;
+ border-radius: 5px;
+ padding: 5px;
+ "> STEP-misc:  </a>   Additional steps that may be needed
+</h5>
+<p><strong>1. Splitting files that contain a part of non-regular measurement cycles and part automatic measurement cycles.</strong> Example situation, when MMR and SMR/RMR cycling is all recorded in one continous file. One way to handle this would be to note the time when the <em>split</em> needs to happen and then create two csv files, one for “AUTO” cyclical measurment analysis, and one for analysis of “MANUAL”, manually chosen, measurement cycles (typically MMR). Note each file is assumed to start with relatve time 0 min. There is a function to handle these situations.</p>
+<p><em>Notes:</em> First, be sure to set the working directory where the file is located. All outputs will be saved locally (no automatic folders here)</p>
+<ul>
+<li>Handy, when MMR/MANUAL and SMR/AUTO data are recorded in one continuous file.</li>
+<li>Handy, When the SMR/AUTO files does not start with a flush</li>
+<li>Use, <em>after</em> <a href="#step1">step 1</a> when files are formatter to .csv for the analysis</li>
+<li>Tip: seperate all files to be split in entirely different directory and perform all analysis locally</li>
+</ul>
+Example:
+<pre class = "sourceCode yaml"> 
+# 4 channnel Firesting example
+csv_file_split(data="Aug16_2017_Box1_fullfile.csv",
+               split_data_name="TEST_split-4ch",
+               cycle_full_min=10,
+               timeSplit=58.5,
+               split=TRUE,
+               N_Ch=4,
+               date_format="m/d/y")
+
+# 8 ch Firesting example
+csv_file_split(data="Sep24_2019_box0_fullfile.csv",
+               split_data_name="TEST_split-8ch",
+               cycle_full_min=10,
+               timeSplit=42,
+               split=TRUE,
+               N_Ch=8,
+               date_format="d/m/y") # notice the different time/date format
+</pre>
+<p><strong>2. To combine smr files (if needed)</strong></p>
+<p>To use MMR_SMR_AS_EPOC function, only one “auto” or “smr” file can be used. In case when there are multiple files, they need to be first combined.</p>
+<ul>
+<li>Handy, when multiple files were started during the automatic measurement phase. Can be the same or different measurement:flushing cycle ratios.</li>
+<li>Use, before <a href="#step4">step 4</a></li>
+</ul>
+<p>The combined file will get a with the tag “GLUED_nX” (x = n of files), which will be saved in two places: i) the local directory and ii) in the folder “MMR_SMR_AS_EPOC/input_files”.</p>
+<pre class = "sourceCode yaml"> 
+
+setwd("/Users/kristakraskura/Desktop/BOX/UCSB/Research/Perch /data/Respiromtery data- preggo- acute/AUTO/csv_analyzed/")
+combine_smr(smr_files=c("jun01_2021_box1_smr1_mgO2L_analyzed.csv",
+                        "jun01_2021_box1_smr2_mgO2L_analyzed.csv",
+                        "jun01_2021_box1_smr3_mgO2L_analyzed.csv"),
+            date_format = "m/d/y")
+
+</pre>
+<p><strong>3. Convert all csv files from AS to mgO2.L</strong></p>
+<p>While working I am using a loop t</p>
+<pre class = "sourceCode yaml"> 
+convert.o2.Firesting(csv.data = "FileToCovert.csv", n_ch = 4, sal = 35)
+
+setwd("/Users/kristakraskura/Desktop/BOX/UCSB/Research/P erch /data/Respiromtery data- preggo- acute/MANUAL/csv_files/")
+n.mmr.files<-length(list.files())
+mmr.files<-list.files("/Users/kristakraskura/Desktop/BOX/UCSB/Research/Perch /data/Respiromtery data- preggo- acute/MANUAL/csv_files/")
+
+for (i in 1:n.mmr.files){
+  
+  mr.file<-mmr.files[i]
+  convert.o2.Firesting(csv.data = mr.file, n_ch = 4, sal = 35)
+}
+
+</pre>
+<p><em>documentation:</em></p>
+<div id="these-will-be-saved-in-your-current-working-directory-with-the" class="section level1">
+<h1>These will be saved in your current working directory with the</h1>
+</div>
+<div id="i-am-looping-through-all-files-to-get-this-work." class="section level1">
+<h1>I am looping through all files to get this work.</h1>
+</div>
+<div id="for-a-single-file-example" class="section level1">
+<h1>For a single file example:</h1>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div>
+    <ul class = "pull-left" style = "color:grey; text-align:left;"> Built using <a href="https://bootswatch.com/3/sandstone/">Bootsrap 3</a>, Powered by Github pages</ul>
+    <!-- <ul class = "pull-right" href="#top" style = "color:rgb(109, 95, 95);"> Back to top</ul> -->
+</div>
+
+
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+
+
+
+
+<div class="page-header">
+  <h2 style="font-size: 30px; text-align:left;">Converting and reformatting raw text data files</h2>
+  <p>Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a></p>
+</div>
+
+
+`txt_csv_convert`
+<br>
+<br>
+
+<h4 style="color:#495057; font-weight: bold;  text-align: left">About</h4>
+<ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
+  <li><a href="#Arguments">Arguments</a></li>
+  <li><a href="#Value">Value</a></li>
+  <li><a href="#Details">Details</a></li>
+  <li><a href="#Example">Example</a></li>
+  <li><a href="#"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>
+</ul>
+
+
+<h4 style="color:#495057; font-weight: bold;  text-align: left">Description</h4>
+
+<!-- <h4 style="color:#495057; font-weight: bold;  text-align: left">Before running the SMR function </h4><br> -->
+
+The original FireSting datafiles are in _.txt_ format and cannot be used with this analysis package. Use this function to convert _.txt_ files into a _.csv_ format that can be used in the next steps. Note, this function only takes a portion of data available in the original file. 
+
+<h4><a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a></h4>
+
+  Argument       | Description | Default
+---: | :------------- | :---
+**txt_file**    | The original _.txt_ file from FireSting | --
+**N_Ch**        | The number of FireSting channels. Options include 2, 4, 8. Note, if either a 2- or 4-Channel FireSting was used, this argument can be ignored | `4`
+**path**        | Specify the folder where all converted _.csv_ files will be saved. It can be either `AUTO`, `MANUAL`, `BACTERIAL_RESP`, or `SDA` folders (see details for additional information) | `"."` (local directory)
+
+
+<br><h4><a name="Value" style="color:#495057; font-weight: bold;  text-align: left">Value</a></h4>
+
+<h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Data outputs</h5>
+
+1. _.csv files_
+* * same name file as the text file, but with '.csv' extension
+  - Local dir: `"."` or in one of the respective subfolders: `./AUTO/csv_files`, `./MANUAL/csv_files`, `./BACTERIAL_RESP/csv_files`, or `S./DA/csv_files` (see details)
+  - The file is distilled to the primary columns: computer recorded date, time, time in seconds, O2 for each channel, and temperature. 
+
+
+<br><h4><a name="Details" style="color:#495057; font-weight: bold;  text-align: left">Details</a></h4> <br>
+
+**Setup tip:** place all text files in a working directory, then run the <a href="./organise_MR_analysis.html" style = "color:#8e8c84; font-weight:bold;"><code>organise_MR_analysis</code></a> function to create new local working directories (./AUTO/, ./MANUAL, ./BACTERIAL_RESP). Now all the text files and newly created directories should be in one parent directory. By adding arg `path = "AUTO"` the cleaned up csv file will be placed in "./AUTO/csv_files", similarly, by indicating `path = "MANUAL"` the cleaned up csv file will be placed in "./MANUAL/csv_files", and the same for background respiration files. Then teh text files can be consolidated in one directory to make a clean work environment. 
+
+<br><h4><a name="Example" style="color:#495057; font-weight: bold;  text-align: left">Example</a></h4> <br>
+
+
+<pre class = "sourceCode yaml"> 
+
+# dir() # check the working direcotry setup
+ 
+#  [1] "AUTO"
+#  [2] "BACTERIAL_RESP"                   
+#  [3] "jul04_2019_opasize_box4_mmr.txt"
+#  [4] "jul04_2019_opasize_box4_smr.txt"  
+#  [5] "MANUAL" 
+#  [6] "MMR_SMR_AS_EPOC"                  
+                     
+txt_csv_convert(txt_file = "./jul04_2019_opasize_box4_mmr.txt",  path = "MANUAL" , N_Ch = 4)
+txt_csv_convert(txt_file = "./jul04_2019_opasize_box4_smr.txt",  path = "AUTO" , N_Ch = 4)
+
+</pre>
