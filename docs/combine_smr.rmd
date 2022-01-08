@@ -1,9 +1,7 @@
 
 
 <div class="page-header">
-  <h2 style="font-size: 30px; text-align:left;">Combining multiple SMR or AUTO data files</h2>
-  <p>Source code: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a></p>
-  <p>Source page: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a></p>
+  <h2 style="font-size: 30px; text-align:left;">Combining multiple SMR (AUTO) data files</h2>
 </div>
 
 
@@ -17,13 +15,10 @@
   <li><a href="#Value">Value</a></li>
   <li><a href="#Details">Details</a></li>
   <li><a href="#Example">Example</a></li>
-  <li><a href="#"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>
 </ul>
 
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left">Description</h4>
-
-<!-- <h4 style="color:#495057; font-weight: bold;  text-align: left">Before running the SMR function </h4><br> -->
 
 There may be more than one AUTO file recorded for one respirometry trial. Use this function to combine several files together to then calculate SMR/RMR using all measurement cycle values on one continuous (relative, start with 0 min) timescale.
 
@@ -55,9 +50,8 @@ The output can be directly used in the MMR_SMR_AS_EPOC function. The input files
 <pre class = "sourceCode yaml"> 
 # any n files will combine. 
 
-combine_smr(smr_files=c("jun01_2021_box1_smr1_mgO2L_analyzed.csv",
-                        "jun01_2021_box1_smr2_mgO2L_analyzed.csv",
-                        "jun01_2021_box1_smr3_mgO2L_analyzed.csv"),
+combine_smr(smr_files=c("anyfile_smr1_mgO2L_analyzed.csv",
+                        "anyfile_smr2_mgO2L_analyzed.csv"),
             date_format = "m/d/y")
 </pre>
 

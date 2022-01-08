@@ -1,7 +1,7 @@
 
 <div class="page-header">
   <h2 style="font-size: 30px; text-align:left;">MMR: Maximum metabolic rates</h2>
-  <p>Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a></p>
+  <p>Source: <a href = "#" style = "color:gray;">https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/MMR.Rmd</a></p>
 </div>
 
 

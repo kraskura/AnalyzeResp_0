@@ -1,15 +1,9 @@
 
 
 
-
-<!-- <pre class = "sourceCode yaml"> 
-</pre> 
-*documentation:* -->
-
-
 <div class="page-header">
   <h2 style="font-size: 30px; text-align:left;">Step-by-step example to perform full analysis</h2>
-  <p>Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp0</a></p>
+  <p>Source: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/demo_mmr_smr_as_epoc.rmd" style = "color:gray;">docs/demo_mmr_smr_as_epoc.rmd</a></p>
 </div>  
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left">Steps and short descriptions</h4>
@@ -19,9 +13,6 @@
   <li><a href="#step2">Step 2</a></li>
   <li><a href="#step3">Step 3</a></li>
   <li><a href="#step4">Step 4</a></li>
-  <li><a href="#step5">5. </a></li>
-  <li><a href="#step6">6. </a></li>
-  <li><a href="#step7">7. </a></li>
   <li><a href="#step-add">Misc Steps</a></li>
 </ul>
 

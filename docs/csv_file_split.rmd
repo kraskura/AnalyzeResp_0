@@ -1,10 +1,7 @@
 
 
-
-
 <div class="page-header">
   <h2 style="font-size: 30px; text-align:left;">Splitting data files</h2>
-  <p>Source code: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a></p>
 </div>
 
 

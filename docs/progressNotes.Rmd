@@ -1,9 +1,14 @@
----
-title: 'Respirometry Performances: Code Updates and To do list'
-author: "Krista Kraskura"
----
+
+<div class="page-header">
+  <h2 style="font-size: 30px; text-align:left;">Updates and To-Do List</h2>
+  <p>Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a></p>
+</div>
+
+
 
 **To do list:**
+
+0. Make packgdown, and rework it for an actual package in R
 
 1. Improve the naming dependency, take that out. 
 2. Add more flexibility of different oxygen units, for example, % air saturation in the local functions.
@@ -13,30 +18,17 @@ author: "Krista Kraskura"
 6. Add FAS analysis
 7. Fix units when calculating MO2 for either: i) animal (mgO2/min/animal) ii) mass-specific, per kg (mO2/min/kg), iii) stanadardised mass using scaling 
 8. script and demo on how to use our code with non Firesting data files
+9. Make one rmd with all files running as entirely reproducible example, consolidate the existing files
+
 
 
 #### Updates, for 2022 current version:  
 
 
-- MMR function arguments: 
-	- mmr_Ch1, mmr_Ch2, etc instead of just plain Ch1
-	- 
-
 Date| Description | Previous | UPDATE
 :----| :--- | :------------- | :---
-Jan 2022 | | |
+Jan 2022 | MMR function arguments, names changed| `Ch1`, `Ch2`, `Ch3`, `Ch4` | `mmr_Ch1`, `mmr_Ch2`, `mmr_Ch3`, `mmr_Ch4` 
+Jan 2022 | MMR figure (new), analytical for displaying difference for sliding windows, slope and R~2~|  | 
+Jan 2022 | MMR_SMR_AS_EPOC smoothing, fewers trends plotted, new argument for user input| NA  | `spar_levels` & better plot
+Jan 2022 | SMR |  | 
 
-
-#### New arguments:
-
-Sept 5-6, 2020
-
-```
-common_mass = 1, # in kg
-mo2_val_for_calc = "mo2_1kg", # mo2_common_mass_kg, mo2_per_individual_kg
-plot_smr_quantile=15 # 10, 15, or 20 
-
-
-plot(x=c(1,2,3),y=c(1,2,3) )
-
-```

@@ -2,7 +2,7 @@
 
 <div class="page-header">
   <h2 style="font-size: 30px; text-align:left;"> Aerobic scope, AS, and excess post exercise oxygen consumption, EPOC </h2>
-  <p>Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a></p>
+  <p>Source: <a href = "#" style = "color:gray;">https://github.com/kraskura/AnalyzeResp_0/blob/ccf6f96e629939be6b5f33f88e435a7b973e6fff/docs/MMR_SMR_AS_EPOC.rmd</a></p>
 </div>
 
 

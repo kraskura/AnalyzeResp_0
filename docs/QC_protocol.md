@@ -1,6 +1,7 @@
 
 <div class="page-header">
 <h2 style="font-size: 30px; text-align:left;">Quality Control - our perspective</h2>
+  <p>Source: <a href = "#" style = "color:gray;">https://github.com/kraskura/AnalyzeResp_0/blob/ccf6f96e629939be6b5f33f88e435a7b973e6fff/docs/QC_protocol.md</a></p>
 </div>
 
 
