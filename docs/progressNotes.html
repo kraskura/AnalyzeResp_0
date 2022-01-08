@@ -9,10 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Krista Kraskura" />
 
 
-<title>Respirometry Performances: Code Updates and To do list</title>
+<title>progressNotes.knit</title>
 
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
@@ -306,33 +305,40 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Respirometry Performances: Code Updates and To do list</h1>
-<h4 class="author">Krista Kraskura</h4>
 
 </div>
 
 
+<div class="page-header">
+<h2 style="font-size: 30px; text-align:left;">
+Updates and To-Do List
+</h2>
+<p>
+Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a>
+</p>
+</div>
 <p><strong>To do list:</strong></p>
-<ol style="list-style-type: decimal">
-<li>Improve the naming dependency, take that out.</li>
-<li>Add more flexibility of different oxygen units, for example, % air saturation in the local functions.</li>
-<li>Development of function that estimates hypoxia tolerance, P-crit analysis</li>
-<li>(?) Temperature in the MMR_SMR_AS_EPOC/csv_analyzed_MR/ data output files is just for the MMR section of the data, needs adjustment.</li>
-<li>Add N=xxx in the quantile plots</li>
-<li>Add FAS analysis</li>
-<li>Fix units when calculating MO2 for either: i) animal (mgO2/min/animal) ii) mass-specific, per kg (mO2/min/kg), iii) stanadardised mass using scaling</li>
-<li>script and demo on how to use our code with non Firesting data files</li>
+<ol start="0" style="list-style-type: decimal">
+<li><p>Make packgdown, and rework it for an actual package in R</p></li>
+<li><p>Improve the naming dependency, take that out.</p></li>
+<li><p>Add more flexibility of different oxygen units, for example, % air saturation in the local functions.</p></li>
+<li><p>Development of function that estimates hypoxia tolerance, P-crit analysis</p></li>
+<li><p>(?) Temperature in the MMR_SMR_AS_EPOC/csv_analyzed_MR/ data output files is just for the MMR section of the data, needs adjustment.</p></li>
+<li><p>Add N=xxx in the quantile plots</p></li>
+<li><p>Add FAS analysis</p></li>
+<li><p>Fix units when calculating MO2 for either: i) animal (mgO2/min/animal) ii) mass-specific, per kg (mO2/min/kg), iii) stanadardised mass using scaling</p></li>
+<li><p>script and demo on how to use our code with non Firesting data files</p></li>
+<li><p>Make one rmd with all files running as entirely reproducible example, consolidate the existing files</p></li>
 </ol>
 <div id="updates-for-2022-current-version" class="section level4">
 <h4>Updates, for 2022 current version:</h4>
-<ul>
-<li>MMR function arguments:
-<ul>
-<li>mmr_Ch1, mmr_Ch2, etc instead of just plain Ch1</li>
-<li></li>
-</ul></li>
-</ul>
 <table>
+<colgroup>
+<col width="18%" />
+<col width="14%" />
+<col width="51%" />
+<col width="14%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Date</th>
@@ -344,23 +350,30 @@ $(document).ready(function () {
 <tbody>
 <tr class="odd">
 <td align="left">Jan 2022</td>
+<td align="left">MMR function arguments, names changed</td>
+<td align="left"><code>Ch1</code>, <code>Ch2</code>, <code>Ch3</code>, <code>Ch4</code></td>
+<td align="left"><code>mmr_Ch1</code>, <code>mmr_Ch2</code>, <code>mmr_Ch3</code>, <code>mmr_Ch4</code></td>
+</tr>
+<tr class="even">
+<td align="left">Jan 2022</td>
+<td align="left">MMR figure (new), analytical for displaying difference for sliding windows, slope and R<sub>2</sub></td>
 <td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Jan 2022</td>
+<td align="left">MMR_SMR_AS_EPOC smoothing, fewers trends plotted, new argument for user input</td>
+<td align="left">NA</td>
+<td align="left"><code>spar_levels</code> &amp; better plot</td>
+</tr>
+<tr class="even">
+<td align="left">Jan 2022</td>
+<td align="left">SMR</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div id="new-arguments" class="section level4">
-<h4>New arguments:</h4>
-<p>Sept 5-6, 2020</p>
-<pre><code>common_mass = 1, # in kg
-mo2_val_for_calc = &quot;mo2_1kg&quot;, # mo2_common_mass_kg, mo2_per_individual_kg
-plot_smr_quantile=15 # 10, 15, or 20 
-
-
-plot(x=c(1,2,3),y=c(1,2,3) )
-</code></pre>
 </div>
 
 <br>

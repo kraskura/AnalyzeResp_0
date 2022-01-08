@@ -3,7 +3,7 @@
 
 <div class="page-header">
   <h2 style="font-size: 30px; text-align:left;">Step-by-step example to perform full analysis</h2>
-  <p>Source: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/demo_mmr_smr_as_epoc.rmd" style = "color:gray;">docs/demo_mmr_smr_as_epoc.rmd</a></p>
+  <p>Source: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/demo_mmr_smr_as_epoc.rmd" style = "color:gray;">AnalyzeResp_0/docs/demo_mmr_smr_as_epoc.rmd</a></p>
 </div>  
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left">Steps and short descriptions</h4>

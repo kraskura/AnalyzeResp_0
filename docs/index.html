@@ -312,6 +312,7 @@ $(document).ready(function () {
 <blockquote>
 <p>This is ‘AnalyzeResp’ <em>package</em> is a project that started as one file with few functions in R customise to analyse collected experimental data. It then began to grow into a more comprehensive package, and it continues to grow to this day. We continue to use it and while using it, new tools, capabilities are added to the function. The maintenance and development of R script is lead by Krista Kraskura, a PhD Candidate at UCSB, but this would not be possible without the valuable feedback and support from the <a href="www.erikaeliason.com">Erika Eliason’s Lab</a> and collaborators.</p>
 </blockquote>
+<p><strong>Not published on CRAN</strong></p>
 <p style="text-align:left;">
 🐟 Author: Krista Kraskura (author)
 </p>
@@ -319,11 +320,7 @@ $(document).ready(function () {
 🐟 Contributors: Emily Hardison, Terra Dressler, Jacey Van Wert, Sam Csik, Erika Eliason
 </p>
 <p><br></p>
-<h4 style="color:#495057; font-weight: bold;  text-align: left">
-Get started
-</h4>
-<p>Fork the repository from GitHub directly.</p>
-<p>Please cite the GitHub Repo when used to analyze data. I will appreciate if you reach out when using our functions, I will add your work to the <a href="./references.html" >reference list</a></p>
+<p>We thank and recognise the work by Chabot, D., Steffensen, J. F. and Farrell, A. P. (2016) The determination of the standard metabolic rate in fishes. Journal of Fish Biology 88, 81-121. We have incorporated the mean of the lowest normal distribution (MLND) approach as one of the users options to robustly estimate of standard metabolic rates in aquatic animals (SMR).</p>
 <p><strong>The community:</strong> check out these packages and functions in R</p>
 <ul>
 <li><strong>RespR</strong> by Januar Harianto &amp; Nicholas Carey <a href="https://januarharianto.github.io/respR/index.html">web</a></li>
@@ -332,14 +329,23 @@ Get started
 <li><strong>rMR</strong> by Tyler L. Moulton <a href="https://cran.r-project.org/web/packages/rMR/index.html">CRAN</a></li>
 <li><strong>FishResp</strong> by Sergey Morozov &amp; R.J. Scott McCairns <a href="https://cran.r-project.org/web/packages/FishResp/index.html">CRAN</a></li>
 </ul>
-<p>Our script is writtem to analyze data that was measured using <a href="https://www.pyroscience.com/en/263">Firesting multichannel</a> oxygen sensor boxes from Pyroscience. But it can be easily adapted to be compatible with any other setup (vignette on how to achieve this coming soon).</p>
+<h4 style="color:#495057; font-weight: bold;  text-align: left">
+Get started
+</h4>
+<ul>
+<li><p>Fork the repository from GitHub directly.</p></li>
+<li><p>Use the demo tutorials to guide the analyses of the data. Use the troubleshooting page for help.</p></li>
+<li><p>We always welcome emails with any questions, feedback, and suggestions to improve this work.</p></li>
+<li><p>Please cite the GitHub Repo when used to analyze data. We will appreciate if you reach out when using our functions, and your work will be added to the <a href="./references.html" >reference list</a></p></li>
+</ul>
 <h4>
 <a name="Example" style="color:#495057; font-weight: bold;  text-align: left"> What is this for? </a>
 </h4>
 <p><br></p>
+<p>Our script is writtem to analyze data that was measured using <a href="https://www.pyroscience.com/en/263">Firesting multichannel</a> oxygen sensor boxes from Pyroscience. But it can be easily adapted to be compatible with any other setup (vignette on how to achieve this coming soon!).</p>
 <p>The raw (.tx) export files from the Firesting complementary software are then directly fed into our function (in a specific sequence) to estimate oxygen consumption rates of our study animals (i.e. a proxy of metabolic rate, MR). Then all compiled metabolic rate measurements are used specifically estimate different ecologically valuable performances, Maximum metabolic rates, Standard (and Resting) metabolic rates, Aerobic scope, Digestions Costs and Time, Recovery performance. And we plan to expand the capability of these functions furter.</p>
 <p><strong>Strengths?</strong> Very fine ability to visualize all data, perform user specific quality control, track progress, make work reproducible using R script. All input and output files can be saved locally (default, but can be optional).</p>
-<p><strong>More resources</strong> on aquatic respirometry can be found <a href="./about.html">here</a></p>
+<p><strong>More resources</strong> on aquatic respirometry can be found in our <a href="./tutorial-main.html">demos with background</a></p>
 <p><strong>Library dependencies:</strong></p>
 <pre><code>rMR, ggplot2, gridExtra, chron, lubridate, dplyr, pryr, ggpubr, magrittr, tidyr ,broom, purrr, mclust, data.table, stringr, DescTools
 </code></pre>
