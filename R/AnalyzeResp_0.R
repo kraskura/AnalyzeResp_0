@@ -4600,8 +4600,8 @@ MMR_SMR_AS_EPOC<-function(data.MMR,
 			geom_point(data=a00, aes(x=min_start, y=mo2), color="red", pch=19, size=3)+
 			geom_point(data=min10_MO2, aes(x=min_start, y=mo2), colour="green4",size=3, alpha=0.7)+
 			geom_line(size=0.5, alpha=0.)+
-			theme_classic()+
-			ggtitle("Lowest 10 values, excluding the 5 lowest values")+
+		  theme_light()+
+		  ggtitle("Lowest 10 values, excluding the 5 lowest values")+
 			theme(legend.position="top")+
 			facet_grid(Ch~.)+
 		  ylab(mo2_lab)+
@@ -4662,7 +4662,7 @@ MMR_SMR_AS_EPOC<-function(data.MMR,
 		  geom_point(data=d_SMR[which(d_SMR$Ch=="Ch3" & d_SMR$mo2<=a2$mo2_perc[row_ch3_10perc]),], aes(x=min_start, y=mo2), colour="darkturquoise",size=3)+
 		  geom_point(data=d_SMR[which(d_SMR$Ch=="Ch4" & d_SMR$mo2<=a2$mo2_perc[row_ch4_10perc]),], aes(x=min_start, y=mo2), colour="darkturquoise",size=3)+
 		  # geom_p# geom_line(size=0.5, alpha=0.5)+
-			theme_bw()+
+			theme_light()+
 			# ggtitle("10th percentile")+
 			theme(legend.position="top")+
 		  ylab(mo2_lab)+

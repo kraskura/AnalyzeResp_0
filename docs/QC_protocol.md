@@ -12,18 +12,18 @@
     - Visually inspect all MO2 plots (all files - background, MMR, SMR)
 
 2. Clean Data
-    - Identify all clean MO2 data with linear decline - keep
+    - Identify all clean MO~2~ data with linear decline - keep
     - Identify any plots with minor issues - correct
-    - Identify erroneous MO2 plots - remove
+    - Identify erroneous MO~2~ plots - remove
 
 3. Background
     - Assess if background is present
-    - If background is present, correct all MO2 slopes for background respiration (see Rosewarne et al 2016 for guidance)
+    - If background is present, correct all MO~2~ slopes for background respiration (see Rosewarne et al 2016 for guidance)
     - We generally assume a linear increase between the “before” and “after” background and apply that to the slopes.
 
 4. Plot the data and calculate MR values
-    - ALWAYS plot MO2 vs time and temperature vs time. ESSENTIAL for every fish.
-    - Calculate SMR, RMR, MMR, EPOC, time to MMR50, MMR 75
+    - ALWAYS plot MO~2~ vs time and temperature vs time. ESSENTIAL for every fish.
+    - Calculate SMR, RMR, MMR, EPOC, time to 50% MMR (Time[MMR50]) or 75% MMR (Time[MMR75])
     - Many ways to do this – talk to collogues and peers (i.e. which sliding measurement window; which SMR value; which EPOC threshold)
 
 5. Assess metabolic scaling
@@ -38,7 +38,7 @@
 
 2. _Notes and suggestions:_ 
     - Do not cut the recovery or resting metabolic rate measurement down to below the “sliding window” length selected for MMR.
-    - For cleaning: R^2 below 0.7 are immediately rejected-- no cleaning
+    - For cleaning: R^2^ below 0.7 are immediately rejected-- no cleaning
     - Experimental notes: If there are any measurements with a complementary note that anyone was messing with the respirometry chamber (relieving a bubble, etc) or where data is missing from the measurement (low signal in probe can cause this), it is aadvised to exclude the measurement. 
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left"> A sequence of our identified occasianal anomolies and our suggested solutions</h4>

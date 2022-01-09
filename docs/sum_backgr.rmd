@@ -45,7 +45,7 @@ _Note: this is a developing function_
 1. .csv files
 * ()_BACK_SLOPES.csv
   - Saved in local directory
-  - Metrics included: Channel ID, temperature, R~2~ (min, max, mean), slopes (min, max, mean), the number of measurements, the ID and volume of respirometer, and the datafile name. 
+  - Metrics included: Channel ID, temperature, R^2^ (min, max, mean), slopes (min, max, mean), the number of measurements, the ID and volume of respirometer, and the datafile name. 
 2. _.png files_
 * ()_ChX_backSlopes_PLOT.png (X = the number of channel)
   - All files saved in the local directory

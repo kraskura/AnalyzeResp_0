@@ -1,9 +1,12 @@
 
-### Demos:
+<div class="page-header">
+  <h2 style="font-size: 30px; text-align:left;">Demos</h2>
+</div>
 
 <ul>
-  <li><a href="./demo_mmr_smr_as_epoc.html" style = "color:#29abe0; font-weight:bold;">Full analysis example for MMR, SMR, Absolute AS, recovery</a>
+  <li><a href="./demo_mmr_smr_as_epoc.html" style = "color:#29abe0; font-weight:bold;">Full analysis example for MMR, SMR, Absolute AS, and EPOC or recovery</a>
   <li><a href="./demo_sda.html" style = "color:#29abe0; font-weight:bold;">Analysis for SDA (prelim)</a>
+  <li><a href="https://github.com/kraskura/AnalyzeResp_0/blob/main/R/Test_AnalyzeResp_0_clean.R" style = "color:grey;">Example Test R script: AnalyzeResp_0/R/Test_AnalyzeResp_0_clean.R</a>
 </ul>
 ____________________________________________________________________________________________________________________________
 <br>
@@ -14,7 +17,7 @@ ________________________________________________________________________________
 There are steps in the analysis that depend on unique identifyiers for each input files. Because of that the name of the file matters in order for the function to recognise it and process it. Be cautious of this starting the analysis. 
 The "box#" must be a part of the name of this folder, but it can be anywhere in the file after the initial "date_year" part of the name.
 
-<p style="color:darkred; font-weight: bold;  text-align: left"> Important inneficiency, easy to overcome </h5>
+<p style="color:darkred; font-weight: bold;  text-align: left"> Important ineficiency, easy to overcome </h5>
 <img src="./Images/naming.png" alt="jul04_2019_box1_fishfile1_smr" style="max-width: 400px; height: auto; display: block;
   margin-left: auto; margin-right: auto;">
 <br>
@@ -34,21 +37,22 @@ The "box#" must be a part of the name of this folder, but it can be anywhere in 
 <br>
 
 <h4 style="color:#325d88; font-weight: bold;  text-align: left"> Relating data analysis to experimental work</h4>
+<h5 style="color:#325d88; font-weight: bold;  text-align: left"> Measuring maximum metabolic rates in 4 individuals</h5>
 
-***Maximum metabolic rates in 4 individuals**
+In this figure below... 
 
 <img src="./Images/MANUAL_conceptual.png" alt="" style="max-width: 1000px; height: auto; display: block;
   margin-left: auto; margin-right: auto;">
 <br>
 
-***Standard (and routine/resting) metabolic rates using automatic repeat measurement cycles**
+<h5 style="color:#325d88; font-weight: bold;  text-align: left"> Standard (and routine/resting) metabolic rates using automatic repeat measurement cycles</h5>
 
 <img src="./Images/AUTO_conceptual.png" alt="" style="max-width: 800px; height: auto; display: block;
   margin-left: auto; margin-right: auto;">
 <br>
 
 
-**Putting it together, metabolic performance using aquatic respiromtery**
+<h5 style="color:#325d88; font-weight: bold;  text-align: left"> Standard (and routine/resting) metabolic rates using automatic repeat measurement cycles**Putting it together, metabolic performance using aquatic respiromtery</h5>
 
 <img src="./Images/Full_trend_concept.png" alt="" style="max-width: 1000px; height: auto; display: block;
   margin-left: auto; margin-right: auto;">

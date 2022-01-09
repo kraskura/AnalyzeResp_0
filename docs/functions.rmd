@@ -19,7 +19,7 @@ All functions are currently compiled in one R script.
   <li><a href="./MMR.html" style = "color:#8e8c84; font-weight:bold;"><code>MMR</code></a>
     <p> to processes maximum metabolic rate measurement</p></li> 
   <li><a href="./MMR_SMR_AS_EPOC.html" style = "color:#8e8c84; font-weight:bold;"><code>MMR_SMR_AS_EPOC</code></a>
-    <p> estimates the metaoblic performances of animals: MMR, SMR, EPOC (recovery), and Aerobic Scope</p></li> 
+    <p> estimates the metabolic performances of animals: MMR, SMR, EPOC (recovery), and Aerobic Scope</p></li> 
   <li><a href="./SDA.html" style = "color:#8e8c84; font-weight:bold;"><code>SDA</code></a>
     <p> estimates metabolic performances associated with digestion</p></li> 
 </ul>

@@ -94,7 +94,7 @@ MMR(data.MMR="jul04_2019_opasize_box4_mmr.csv",
 
 SMR(data="jul04_2019_opasize_box4_smr.csv",
     inventory_data=NA,
-    cycle_start=7,
+    cycle_start=8,
     cycle_end=15,
     chop_start=10/60,
     chop_end=0,
@@ -158,7 +158,7 @@ MMR_SMR_AS_EPOC(
       	recovMMR_threshold = 0.5,
       	plot_smr_quantile=10, 
       	mo2_val_for_calc = "mo2_1kg", # "mo2_1kg", mo2_common_mass_kg, mo2_per_individual_kg
-        end_EPOC_Ch = c(NA, NA, NA, NA), # must match how many channels are there, use NA otherwise
+        end_EPOC_Ch = c(NA, NA, NA, (600)), # must match how many channels are there, use NA otherwise
       	# mmr_type = "mean",
       	min_length_mmr = 120,
       	spars_levels = c(0.1, 0.3),
@@ -173,7 +173,7 @@ MMR_SMR_AS_EPOC(
         path="foldering",
       	date_format = "m/d/y",
       	N_Ch = 4, 
-      	common_mass= 0.5) # in kg
+      	common_mass= 1) # in kg
 
 # relying on defaults
 MMR_SMR_AS_EPOC( data.MMR = "jul04_2019_opasize_box4_mmr_analyzed.csv",

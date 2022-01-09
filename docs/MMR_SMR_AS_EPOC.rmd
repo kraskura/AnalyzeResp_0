@@ -43,7 +43,7 @@ A flexible function that will estimate MMR, SMR, Aerobic scope, and several metr
 **scaling_exponent_mmr** | body mass scaling exponent to correct MMR values for body size. MR=aBW^b (MR = metabolic rate, BW = body weoght, a = scaling coefficient [the intercept], and b= scaling exponent [the power term]) | `1` (no scaling)
 **scaling_exponent_smr** | body mass scaling exponent to correct all SMR values for body size. Same details as above. |
 **plot_smr_quantile**    | Indicating what percentile lower MO~2~ values to plot, options are 10, 15, and 20 |=`15`, 
-**mmr_type**             |    | = `"min"`, # the standard way
+**mmr_type**             | (currently irrelevant)   | = `"min"`, # the standard way
 **N_Ch**                 | The number of channels of the FireSting. Must be either 4 or 8. Default = `4`
 **mmr_type**             | Currently an unused argument | `"min"`
 **drop_ch**              | Indicate which channel is dropped or entirely excluded from analysis. This must be a numerical vector | `NULL`
