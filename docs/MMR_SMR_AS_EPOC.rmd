@@ -2,13 +2,10 @@
 
 <div class="page-header">
   <h2 style="font-size: 30px; text-align:left;"> Aerobic scope, AS, and excess post exercise oxygen consumption, EPOC </h2>
-  <p>Source: <a href = "#" style = "color:gray;">https://github.com/kraskura/AnalyzeResp_0/blob/ccf6f96e629939be6b5f33f88e435a7b973e6fff/docs/MMR_SMR_AS_EPOC.rmd</a></p>
-</div>
-
-
 `MMR_SMR_AS_EPOC`
 <br>
-<br>
+</div>
+
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left">About</h4>
 <ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
@@ -16,15 +13,13 @@
   <li><a href="#Value">Value</a></li>
   <li><a href="#Details">Details</a></li>
   <li><a href="#Example">Example</a></li>
-  <li><a href="#"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>
+  <li><a href="https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/MMR_SMR_AS_EPOC"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>
 </ul>
 
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left">Description</h4>
 
-<!-- <h4 style="color:#495057; font-weight: bold;  text-align: left">Before running the SMR function </h4><br> -->
-
-A flexible function that will estimate MMR, SMR, Aerobic scope, and several metrics describing recovery performance of a specific animal while taking in account i) the volume of respirometer, ii) the body mass of an individual, the iii) background respiration in the respirometer overnight. The iput files to this function are the output files genereted by running `SMR` and `MMR`. 
+A flexible function that estimates MMR, SMR, Aerobic scope, and several metrics describing recovery performance of a specific animal. The following are considered: i) the volume of respirometer, ii) the body mass of an individual, the iii) background respiration in the respirometer overtime(night). The input files to this function are the output files genereted by running `SMR` and `MMR`. 
 
 
 <h4><a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a></h4>
@@ -43,7 +38,7 @@ A flexible function that will estimate MMR, SMR, Aerobic scope, and several metr
 **scaling_exponent_mmr** | body mass scaling exponent to correct MMR values for body size. MR=aBW^b (MR = metabolic rate, BW = body weoght, a = scaling coefficient [the intercept], and b= scaling exponent [the power term]) | `1` (no scaling)
 **scaling_exponent_smr** | body mass scaling exponent to correct all SMR values for body size. Same details as above. |
 **plot_smr_quantile**    | Indicating what percentile lower MO~2~ values to plot, options are 10, 15, and 20 |=`15`, 
-**mmr_type**             | (currently irrelevant)   | = `"min"`, # the standard way
+**mmr_type**             | (currently irrelevant)   | = `"min"`
 **N_Ch**                 | The number of channels of the FireSting. Must be either 4 or 8. Default = `4`
 **mmr_type**             | Currently an unused argument | `"min"`
 **drop_ch**              | Indicate which channel is dropped or entirely excluded from analysis. This must be a numerical vector | `NULL`
@@ -127,7 +122,7 @@ A flexible function that will estimate MMR, SMR, Aerobic scope, and several metr
 
 <br><h4 style="color:#495057; font-weight: bold;  text-align: left;"> References</h4>
 
-[Chabot et al 2016, Journal of Fish Biology](http://doi.wiley.com/10.1111/jfb.12845)
+Chabot, D., Steffensen, J.F. and Farrell, A.P. (2016), The determination of standard metabolic rate in fishes. J Fish Biol, 88: 81-121. [https://doi.org/10.1111/jfb.12845](http://doi.wiley.com/10.1111/jfb.12845)
 
 
 

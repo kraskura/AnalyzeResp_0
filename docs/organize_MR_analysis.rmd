@@ -3,13 +3,10 @@
 
 <div class="page-header">
   <h2 style="font-size: 30px; text-align:left;">Setup function: create local directories</h2>
-  <p>Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a></p>
-</div>
-
-
 `organize_MR_analysis`
 <br>
-<br>
+</div>
+
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left">About</h4>
 <ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
@@ -17,7 +14,6 @@
   <li><a href="#Value">Value</a></li>
   <li><a href="#Details">Details</a></li>
   <li><a href="#Example">Example</a></li>
-  <li><a href="#"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>
 </ul>
 
 
@@ -25,23 +21,57 @@
  
 Used to create folders in the local directory that may be used to keep all input and output files organized during analysis of animal metabolic performances.
 
-<!-- <h4 style="color:#495057; font-weight: bold;  text-align: left">Before running the SMR function </h4><br> -->
-
 <h4><a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a></h4>
 
 
   Argument       | Description | Default
 ---: | :------------- | :---
-create      | One or more folders/directories and all respective subfolders will be created in the local directory. No default, one of the following options must be used: `"AUTO", "MANUAL", "Full", "BACTERIAL_RESP", "SDA"`. When using `"Full"`, all but SDA folders will be created. | --
+**create**      | One or more folders/directories and all respective subfolders will be created in the local directory. No default, one of the following options must be used: `"AUTO/MANUAL/Full/BACTERIAL_RESP/SDA"`. When using `"Full"`, all but SDA folders will be created. | `"Full"`
 
 
 
 <br><h4><a name="Value" style="color:#495057; font-weight: bold;  text-align: left">Value</a></h4>
 
-<h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Data outputs</h5>
+<h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Outputs</h5>
 
-1. .csv files
-2. .png files
+Local directortories that will be propogated with files created during data analysis:
+  * ./AUTO
+    - ./AUTO/csv_analyzed
+    - ./AUTO/csv_files
+    - ./AUTO/plots_all_together
+    - ./AUTO/plots_channel_cycle
+    - ./AUTO/plots_channel
+    - ./AUTO/plots_summary_respo
+
+  * ./BACTERIAL_RESP
+    - ./BACTERIAL_RESP
+    - ./BACTERIAL_RESP/csv_analyzed
+    - ./BACTERIAL_RESP/csv_files
+    - ./BACTERIAL_RESP/plots_all_together
+    - ./BACTERIAL_RESP/plots_channel_cycle
+    - ./BACTERIAL_RESP/plots_channel
+    - ./BACTERIAL_RESP/plots_summary_respo
+  
+   * ./MANUAL
+    - ./MANUAL
+    - ./MANUAL/csv_analyzed
+    - ./MANUAL/csv_files
+    - ./MANUAL/channel_plots
+    - ./MANUAL/channel_plots_MMRanalysis
+    - ./MANUAL/channel_sliding_sets
+
+   * ./MMR_SMR_AS_EPOC){
+    - ./MMR_SMR_AS_EPOC
+    - ./MMR_SMR_AS_EPOC/csv_analyzed_EPOC
+    - ./MMR_SMR_AS_EPOC/csv_analyzed_MMR
+    - ./MMR_SMR_AS_EPOC/csv_analyzed_SMR
+    - ./MMR_SMR_AS_EPOC/csv_analyzed_MR
+    - ./MMR_SMR_AS_EPOC/csv_input_files
+    - ./MMR_SMR_AS_EPOC/plots_ch_EPOC
+    - ./MMR_SMR_AS_EPOC/plots_methods_sum_SMR
+    - ./MMR_SMR_AS_EPOC/plots_min_values_SMR
+    - ./MMR_SMR_AS_EPOC/plots_mlnd_SMR
+
 
 <br><h4><a name="Details" style="color:#495057; font-weight: bold;  text-align: left">Details</a></h4> <br>
 
@@ -53,14 +83,7 @@ create      | One or more folders/directories and all respective subfolders will
 
 <pre class = "sourceCode yaml"> 
 
-
-example
-example
-example
-example
-
-
-
+organize_MR_analysis(create = "Full")
 
 </pre>
 

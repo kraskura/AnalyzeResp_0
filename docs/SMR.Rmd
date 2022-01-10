@@ -4,13 +4,10 @@
 
 <div class="page-header">
   <h2 style="font-size: 30px; text-align:left;">SMR: Standard metabolic rates</h2>
-  <p>Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a></p>
-</div>
-
-
 `SMR`
 <br>
-<br>
+</div>
+
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left">About</h4>
 <ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
@@ -18,7 +15,7 @@
   <li><a href="#Value">Value</a></li>
   <li><a href="#Details">Details</a></li>
   <li><a href="#Example">Example</a></li>
-  <li><a href="#"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>
+  <li><a href="https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/AUTO"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>
 </ul>
 
 
@@ -77,14 +74,14 @@ This function is taking in an uninterrupted oxygen recording file and extracting
   - Figure conceptualy the same as the _cycle_ChX.png but for temperature
   - Only plotted if arg `plot_temp = TRUE` 
 * ()_all_ChO2
- - plots_summary_respo
- - Figure with all measurements plotted across the the full respiromtery trial. Each channel is represented in a seperate panel.
+  - Local dir: plots_summary_respo
+  - Figure with all measurements plotted across the the full respiromtery trial. Each channel is represented in a seperate panel.
 
 <br><h4><a name="Details" style="color:#495057; font-weight: bold;  text-align: left">Details</a></h4> <br>
 
-The timeframes of SMR measurement cycles can be quality controlled to select only high quality desired data parts (e.g. exclude any blips, etc, that appear due to experimental or technical reasons). See relevant suggestions in <a href="./QC_protocol.html" style = "color:#8e8c84; font-weight:bold;">QC section</a> for more information. 
+The timeframes of SMR measurement cycles can be selectively modulated to choose only high quality desired data parts (e.g. exclude any blips, etc, that appear due to experimental or technical reasons). See relevant suggestions in <a href="./QC_protocol.html" style = "color:#8e8c84; font-weight:bold;">quality control (QC) section</a> for more information. 
 
-We call these inventory files to create traceable and clear selection of all manually applied changes. Template can be found [here on GitHub page](herehere) 
+Quality control (or I called them inventory files) are developed as stan-alone files with the goal to create traceable and clear selection of all manually applied changes. Excel template can be found [here on GitHub page](https://github.com/kraskura/AnalyzeResp_0/blob/main/Test/AUTO_inventory_template.xlsx), note that the input file is needs to be in csv format.
 **Important**: All channels are assumed to work on the same open:closed cycle regimen. 
 
 <br><h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Support functions</h5>

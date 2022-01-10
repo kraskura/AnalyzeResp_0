@@ -313,11 +313,8 @@ $(document).ready(function () {
 <h2 style="font-size: 30px; text-align:left;">
 SMR: Standard metabolic rates
 </h2>
-<p>
-Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a>
-</p>
+<p><code>SMR</code> <br></p>
 </div>
-<p><code>SMR</code> <br> <br></p>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">
 About
 </h4>
@@ -335,7 +332,7 @@ About
 <a href="#Example">Example</a>
 </li>
 <li>
-<a href="#"><i class="fas fa-download"></i>  See datafiles on GitHub</a>
+<a href="https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/AUTO"><i class="fas fa-download"></i>  See datafiles on GitHub</a>
 </li>
 </ul>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">
@@ -463,17 +460,19 @@ Description
 <li>Figure conceptualy the same as the _cycle_ChX.png but for temperature</li>
 <li>Only plotted if arg <code>plot_temp = TRUE</code></li>
 </ul></li>
-<li>()_all_ChO2</li>
-<li>plots_summary_respo</li>
+<li>()_all_ChO2
+<ul>
+<li>Local dir: plots_summary_respo</li>
 <li>Figure with all measurements plotted across the the full respiromtery trial. Each channel is represented in a seperate panel.</li>
+</ul></li>
 </ul>
 <br>
 <h4>
 <a name="Details" style="color:#495057; font-weight: bold;  text-align: left">Details</a>
 </h4>
 <p><br></p>
-<p>The timeframes of SMR measurement cycles can be quality controlled to select only high quality desired data parts (e.g. exclude any blips, etc, that appear due to experimental or technical reasons). See relevant suggestions in <a href="./QC_protocol.html" style = "color:#8e8c84; font-weight:bold;">QC section</a> for more information.</p>
-<p>We call these inventory files to create traceable and clear selection of all manually applied changes. Template can be found <a href="herehere">here on GitHub page</a> <strong>Important</strong>: All channels are assumed to work on the same open:closed cycle regimen.</p>
+<p>The timeframes of SMR measurement cycles can be selectively modulated to choose only high quality desired data parts (e.g. exclude any blips, etc, that appear due to experimental or technical reasons). See relevant suggestions in <a href="./QC_protocol.html" style = "color:#8e8c84; font-weight:bold;">quality control (QC) section</a> for more information.</p>
+<p>Quality control (or I called them inventory files) are developed as stan-alone files with the goal to create traceable and clear selection of all manually applied changes. Excel template can be found <a href="https://github.com/kraskura/AnalyzeResp_0/blob/main/Test/AUTO_inventory_template.xlsx">here on GitHub page</a>, note that the input file is needs to be in csv format. <strong>Important</strong>: All channels are assumed to work on the same open:closed cycle regimen.</p>
 <br>
 <h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;">
 <i class="fas fa-ellipsis-h"></i>  Support functions
@@ -530,8 +529,7 @@ SMR(data="jul04_2019_opasize_box4_smr.csv",
 <br>
 <br>
 <div>
-    <ul class = "pull-left" style = "color:grey; text-align:left;"> Built using <a href="https://bootswatch.com/3/sandstone/">Bootsrap 3</a>, Powered by Github pages</ul>
-    <!-- <ul class = "pull-right" href="#top" style = "color:rgb(109, 95, 95);"> Back to top</ul> -->
+    <ul class = "pull-left" style = "color:grey; text-align:left;"> Krista Kraskura (kkraskura@ucsb.edu) <a href="https://bootswatch.com/3/sandstone/">Web theme here</a></ul>
 </div>
 
 

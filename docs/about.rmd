@@ -1,0 +1,46 @@
+
+<div class="page-header">
+  <h2 style="font-size: 30px; text-align:left;">About Aquatic Respirometry</h2>
+  <p>Source: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/about.rmd" style = "color:gray;">AnalyzeResp_0/docs/about.rmd</a></p>
+</div>
+
+
+<h4 style="color:#325d88; font-weight: bold;  text-align: left"> Abbreviations / Vocabulary </h4>
+
+- MR: Metabolic rate
+- MO~2~: oxygen consumption rate
+- SMR: Standard metabolic rate, the minimim MR required to sustain life
+- MMR: Maximum metabolic rate, the maximim MR that an animal can elicit
+- EPOC: excess post exercise oxygen consumption, long term / full recovery 
+- Time[MMR50]: the time it takes to recover MO~2~ to 50% of the MMR
+- SDA: specific dynamic action, digestion costs 
+- QC: quality control, manual checking and ensuring data quality, data cleaning to exclude technical or experimental anomolous recordings.
+
+<br>
+
+----------------------------------------------
+
+<h4 style="color:#325d88; font-weight: bold;  text-align: left"> Full picture first </h4>
+
+A time series of all automatic measurements to obtain SMR and/or RMR, and recovery if the first measurement is MMR. This repeat measurement period can differ in length, e.g. some species achieve resting metabolic state much sooner (within few hours) after being placed in the respirometer, in which case overnight measurements are not necessary.
+In the figure below is an example O2 ~ time trend resulting from automatic metabolic rate measurements using intermittent flow respirometry. This may be used to enter the parameters in the SMR function correctly too, or to better relate to some data output files. Typically this measurement pattern is running overnight, producing several dozen of these cycles. The oxygen consumption rates a proxy of metabolic rates are recorded in animals that are undisturbed, not stressed, and is at post-absorptive state (common RMR and SMR assumption).
+
+<img src="./Images/Full_trend_concept.png" alt="" style="max-width: 1000px; height: auto; display: block;
+  margin-left: auto; margin-right: auto;">
+<br>
+
+<h4 style="color:#325d88; font-weight: bold;  text-align: left"> Measuring maximum metabolic rates in 4 individuals </h4>
+
+There are several experimental approaches to measure maximum metabolic rates. The method that we have used is conceptually depicted below. 
+
+<img src="./Images/MANUAL_conceptual.png" alt="" style="max-width: 1000px; height: auto; display: block;
+  margin-left: auto; margin-right: auto;">
+<br>
+
+<h5 style="color:#325d88; font-weight: bold;  text-align: left"> Measuring standard (and routine/resting) metabolic rates using automatic repeat measurement cycles</h5>
+
+Resting metabolic rate is an estimate measurement calculated from many recorded metabolic rate values in an individual. 
+<img src="./Images/AUTO_conceptual.png" alt="" style="max-width: 800px; height: auto; display: block;
+  margin-left: auto; margin-right: auto;">
+<br>
+

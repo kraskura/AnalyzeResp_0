@@ -313,11 +313,8 @@ $(document).ready(function () {
 <h2 style="font-size: 30px; text-align:left;">
 MMR: Maximum metabolic rates
 </h2>
-<p>
-Source: <a href = "#" style = "color:gray;">https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/MMR.Rmd</a>
-</p>
+<p><code>MMR</code> <br></p>
 </div>
-<p><code>MMR</code> <br> <br></p>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">
 About
 </h4>
@@ -335,14 +332,14 @@ About
 <a href="#Example">Example</a>
 </li>
 <li>
-<a href="#"><i class="fas fa-download"></i>  See datafiles on GitHub</a>
+<a href="https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/MANUAL"><i class="fas fa-download"></i>  See datafiles on GitHub</a>
 </li>
 </ul>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">
 Description
 </h4>
 <!-- <h4 style="color:#495057; font-weight: bold;  text-align: left">Before running the SMR function </h4><br> -->
-<p>This function will take files with maximum metabolic rate recordings in up to 4 Channels/animals (8-channel FireSting has 4 oxygen sensor channels and 4 temperature probes). This function finds the highest metabolic rate section for each Channel within a specified measurement cycle; it is using a sliding window method (more in <a href="https://doi.org/10.1086/708673">Little et al 2020</a>). The steepest regression slope is found for the following time periods: 60, 90, 120, and 180 s. The full length regression is always calculated. All non-MMR cycles are analyzed using full time period without sliding window approach.</p>
+<p>This function will take files with maximum metabolic rate recordings in up to 4 Channels/animals (8-channel FireSting has 4 oxygen sensor channels and 4 temperature probes). This function finds the steepest oxygen decrease over 60, 90, 120, and 180 second timeframes for each Channel within a specified measurement cycle; it is using a sliding window method (more in <a href="https://doi.org/10.1086/708673">Little et al 2020</a>). The regression slope is estimated for above mentioned time periods and the entire measurement cycle. All non-MMR cycles are analyzed using full time period without the sliding window approach.</p>
 <h4>
 <a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a>
 </h4>
@@ -556,8 +553,7 @@ MMR(data.MMR="jul04_2019_opasize_box4_mmr.csv",
 <br>
 <br>
 <div>
-    <ul class = "pull-left" style = "color:grey; text-align:left;"> Built using <a href="https://bootswatch.com/3/sandstone/">Bootsrap 3</a>, Powered by Github pages</ul>
-    <!-- <ul class = "pull-right" href="#top" style = "color:rgb(109, 95, 95);"> Back to top</ul> -->
+    <ul class = "pull-left" style = "color:grey; text-align:left;"> Krista Kraskura (kkraskura@ucsb.edu) <a href="https://bootswatch.com/3/sandstone/">Web theme here</a></ul>
 </div>
 
 

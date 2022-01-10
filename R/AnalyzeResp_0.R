@@ -153,7 +153,7 @@ convert.o2.Firesting <- function(csv.data, units_from = "pct", units_to = "mg/L"
 # create directories
 
 
-organize_MR_analysis <- function (create = c("AUTO", "MANUAL", "Full", "BACTERIAL_RESP", "SDA")) {
+organize_MR_analysis <- function (create =  "Full") {
   
   if(create == "AUTO"){
     if (!dir.exists("./AUTO")){

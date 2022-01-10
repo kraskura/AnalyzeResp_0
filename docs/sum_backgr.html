@@ -311,13 +311,11 @@ $(document).ready(function () {
 
 <div class="page-header">
 <h2 style="font-size: 30px; text-align:left;">
-Understanding system-wide background respiration rates
+Understanding setup- and channel-specific background respiration
 </h2>
-<p>
-Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a>
-</p>
+<p><code>sum_backgr</code> <br></p>
 </div>
-<p><code>sum_backgr</code> <br> <br></p>
+<p><br></p>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">
 About
 </h4>
@@ -334,15 +332,11 @@ About
 <li>
 <a href="#Example">Example</a>
 </li>
-<li>
-<a href="#"><i class="fas fa-download"></i>  See datafiles on GitHub</a>
-</li>
 </ul>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">
 Description
 </h4>
-<!-- <h4 style="color:#495057; font-weight: bold;  text-align: left">Before running the SMR function </h4><br> -->
-<p>This function summarises many background files. It is most useful when in need to summarise background respiration that was measured for longer period of time (many measurement cycles). It becomes useful when trying to better understand system-wide respiration rate, across all channels. For example, it may be used to explore the variability of background respiration rates between different respirometry chambers,or to explore overtime changes in backgrounds respiration. This is shorthand way to get background MO2 <a style="color:grey">mgO2/L/min<a> through <code>MMR_SMR_AS_EPOC</code> function.</p>
+<p>This function summarises many background files. It is most useful when in need to summarise background respiration that was measured for longer period of time (many measurement cycles). It becomes useful when trying to better understand system-wide respiration rate, across all channels. For example, it may be used to explore the variability of background respiration rates between different respirometry chambers,or to explore overtime changes in backgrounds respiration. This is shorthand way to get background MO<sub>2</sub> mgO<sub>2</sub>L<sup>-1</sup>min<sup>-1</sup> through <code>MMR_SMR_AS_EPOC</code> function.</p>
 <p><em>Note: this is a developing function</em></p>
 <h4>
 <a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a>
@@ -419,7 +413,7 @@ Description
 <pre class = "sourceCode yaml"> 
 
  sum_backgr(data = "jul04_2019_box4_back_post_dummy_analyzed.csv",
-            Ch = c(1,2,3,4),
+            Ch = c(1,2,3,4), 
             resp.ID = c("A", "B", "D", "E"),
             resp.Vol = c(1.5, 1.5, 1.5, 1.5))
 
@@ -433,8 +427,7 @@ Description
 <br>
 <br>
 <div>
-    <ul class = "pull-left" style = "color:grey; text-align:left;"> Built using <a href="https://bootswatch.com/3/sandstone/">Bootsrap 3</a>, Powered by Github pages</ul>
-    <!-- <ul class = "pull-right" href="#top" style = "color:rgb(109, 95, 95);"> Back to top</ul> -->
+    <ul class = "pull-left" style = "color:grey; text-align:left;"> Krista Kraskura (kkraskura@ucsb.edu) <a href="https://bootswatch.com/3/sandstone/">Web theme here</a></ul>
 </div>
 
 

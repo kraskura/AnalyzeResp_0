@@ -3,7 +3,7 @@
 
 <div class="page-header">
   <h2 style="font-size: 30px; text-align:left;">QA for troubleshooting</h2>
-  <p>Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp0</a></p>
+  <p>Source: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/troubleshooting.rmd" style = "color:gray;">AnalyzeResp_0/docs/troubleshooting.rmd</a></p>
 </div>
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left">Question topics</h4>

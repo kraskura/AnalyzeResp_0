@@ -1,7 +1,7 @@
 
 <div class="page-header">
   <h2 style="font-size: 30px; text-align:left;">Updates and To-Do List</h2>
-  <p>Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a></p>
+  <p>Source: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/progressNotes.Rmd" style = "color:gray;">/AnalyzeResp_0/docs/progressNotes.Rmd</a></p>
 </div>
 
 

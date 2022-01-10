@@ -4,13 +4,10 @@
 
 <div class="page-header">
   <h2 style="font-size: 30px; text-align:left;">Converting and reformatting raw text data files</h2>
-  <p>Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a></p>
-</div>
-
-
 `txt_csv_convert`
 <br>
-<br>
+</div>
+
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left">About</h4>
 <ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
@@ -42,7 +39,7 @@ The original FireSting datafiles are in _.txt_ format and cannot be used with th
 <h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Data outputs</h5>
 
 1. _.csv files_
-* * same name file as the text file, but with '.csv' extension
+* Same name file as the text original file, but with '.csv' extension
   - Local dir: `"."` or in one of the respective subfolders: `./AUTO/csv_files`, `./MANUAL/csv_files`, `./BACTERIAL_RESP/csv_files`, or `S./DA/csv_files` (see details)
   - The file is distilled to the primary columns: computer recorded date, time, time in seconds, O2 for each channel, and temperature. 
 

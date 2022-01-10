@@ -1,13 +1,10 @@
 
 <div class="page-header">
   <h2 style="font-size: 30px; text-align:left;">MMR: Maximum metabolic rates</h2>
-  <p>Source: <a href = "#" style = "color:gray;">https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/MMR.Rmd</a></p>
-</div>
-
-
 `MMR`
 <br>
-<br>
+</div>
+
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left">About</h4>
 <ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
@@ -15,14 +12,14 @@
   <li><a href="#Value">Value</a></li>
   <li><a href="#Details">Details</a></li>
   <li><a href="#Example">Example</a></li>
-  <li><a href="#"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>
+  <li><a href="https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/MANUAL"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>
 </ul>
 
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left">Description</h4>
 
 <!-- <h4 style="color:#495057; font-weight: bold;  text-align: left">Before running the SMR function </h4><br> -->
-This function will take files with maximum metabolic rate recordings in up to 4 Channels/animals (8-channel FireSting has 4 oxygen sensor channels and 4 temperature probes). This function finds the highest metabolic rate section for each Channel within a specified measurement cycle; it is using a sliding window method (more in [Little et al 2020](https://doi.org/10.1086/708673)). The steepest regression slope is found for the following time periods: 60, 90, 120, and 180 s. The full length regression is always calculated. All non-MMR cycles are analyzed using full time period without sliding window approach.
+This function will take files with maximum metabolic rate recordings in up to 4 Channels/animals (8-channel FireSting has 4 oxygen sensor channels and 4 temperature probes). This function finds the steepest oxygen decrease over 60, 90, 120, and 180 second timeframes for each Channel within a specified measurement cycle; it is using a sliding window method (more in [Little et al 2020](https://doi.org/10.1086/708673)). The regression slope is estimated for above mentioned time periods and the entire measurement cycle. All non-MMR cycles are analyzed using full time period without the sliding window approach.
 
 <h4><a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a></h4>
 

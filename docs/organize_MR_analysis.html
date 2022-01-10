@@ -313,11 +313,8 @@ $(document).ready(function () {
 <h2 style="font-size: 30px; text-align:left;">
 Setup function: create local directories
 </h2>
-<p>
-Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a>
-</p>
+<p><code>organize_MR_analysis</code> <br></p>
 </div>
-<p><code>organize_MR_analysis</code> <br> <br></p>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">
 About
 </h4>
@@ -334,15 +331,11 @@ About
 <li>
 <a href="#Example">Example</a>
 </li>
-<li>
-<a href="#"><i class="fas fa-download"></i>  See datafiles on GitHub</a>
-</li>
 </ul>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">
 Description
 </h4>
 <p>Used to create folders in the local directory that may be used to keep all input and output files organized during analysis of animal metabolic performances.</p>
-<!-- <h4 style="color:#495057; font-weight: bold;  text-align: left">Before running the SMR function </h4><br> -->
 <h4>
 <a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a>
 </h4>
@@ -361,9 +354,9 @@ Description
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">create</td>
-<td align="left">One or more folders/directories and all respective subfolders will be created in the local directory. No default, one of the following options must be used: <code>"AUTO", "MANUAL", "Full", "BACTERIAL_RESP", "SDA"</code>. When using <code>"Full"</code>, all but SDA folders will be created.</td>
-<td align="left">–</td>
+<td align="right"><strong>create</strong></td>
+<td align="left">One or more folders/directories and all respective subfolders will be created in the local directory. No default, one of the following options must be used: <code>"AUTO/MANUAL/Full/BACTERIAL_RESP/SDA"</code>. When using <code>"Full"</code>, all but SDA folders will be created.</td>
+<td align="left"><code>"Full"</code></td>
 </tr>
 </tbody>
 </table>
@@ -372,12 +365,23 @@ Description
 <a name="Value" style="color:#495057; font-weight: bold;  text-align: left">Value</a>
 </h4>
 <h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;">
-<i class="fas fa-ellipsis-h"></i>  Data outputs
+<i class="fas fa-ellipsis-h"></i>  Outputs
 </h5>
-<ol style="list-style-type: decimal">
-<li>.csv files</li>
-<li>.png files</li>
-</ol>
+<p>Local directortories that will be propogated with files created during data analysis: * ./AUTO - ./AUTO/csv_analyzed - ./AUTO/csv_files - ./AUTO/plots_all_together - ./AUTO/plots_channel_cycle - ./AUTO/plots_channel - ./AUTO/plots_summary_respo</p>
+<ul>
+<li><p>./BACTERIAL_RESP</p>
+<ul>
+<li>./BACTERIAL_RESP</li>
+<li>./BACTERIAL_RESP/csv_analyzed</li>
+<li>./BACTERIAL_RESP/csv_files</li>
+<li>./BACTERIAL_RESP/plots_all_together</li>
+<li>./BACTERIAL_RESP/plots_channel_cycle</li>
+<li>./BACTERIAL_RESP/plots_channel</li>
+<li>./BACTERIAL_RESP/plots_summary_respo</li>
+</ul></li>
+<li><p>./MANUAL - ./MANUAL - ./MANUAL/csv_analyzed - ./MANUAL/csv_files - ./MANUAL/channel_plots - ./MANUAL/channel_plots_MMRanalysis - ./MANUAL/channel_sliding_sets</p></li>
+<li><p>./MMR_SMR_AS_EPOC){ - ./MMR_SMR_AS_EPOC - ./MMR_SMR_AS_EPOC/csv_analyzed_EPOC - ./MMR_SMR_AS_EPOC/csv_analyzed_MMR - ./MMR_SMR_AS_EPOC/csv_analyzed_SMR - ./MMR_SMR_AS_EPOC/csv_analyzed_MR - ./MMR_SMR_AS_EPOC/csv_input_files - ./MMR_SMR_AS_EPOC/plots_ch_EPOC - ./MMR_SMR_AS_EPOC/plots_methods_sum_SMR - ./MMR_SMR_AS_EPOC/plots_min_values_SMR - ./MMR_SMR_AS_EPOC/plots_mlnd_SMR</p></li>
+</ul>
 <br>
 <h4>
 <a name="Details" style="color:#495057; font-weight: bold;  text-align: left">Details</a>
@@ -393,14 +397,7 @@ Description
 <p><br></p>
 <pre class = "sourceCode yaml"> 
 
-
-example
-example
-example
-example
-
-
-
+organize_MR_analysis(create = "Full")
 
 </pre>
 
@@ -412,8 +409,7 @@ example
 <br>
 <br>
 <div>
-    <ul class = "pull-left" style = "color:grey; text-align:left;"> Built using <a href="https://bootswatch.com/3/sandstone/">Bootsrap 3</a>, Powered by Github pages</ul>
-    <!-- <ul class = "pull-right" href="#top" style = "color:rgb(109, 95, 95);"> Back to top</ul> -->
+    <ul class = "pull-left" style = "color:grey; text-align:left;"> Krista Kraskura (kkraskura@ucsb.edu) <a href="https://bootswatch.com/3/sandstone/">Web theme here</a></ul>
 </div>
 
 

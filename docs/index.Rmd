@@ -6,12 +6,12 @@ The maintenance and development of R script is lead by Krista Kraskura, a PhD Ca
 <h6 style="color:#495057; font-weight: bold;  text-align: left"> Not published on CRAN </h6>
 
 <div class="well">
-Trasnparent and open source work is the priority. While this is not packaged working library, this is my first attempt to make it available and citable.
-My next priority is to re-work the organisation of all functions and make the package installable via Github. 
+Trasnparent and open source work is our high priority. While this is not a formally formatted librarys, this is my first attempt to make it available to all and to make it citable.
+My priority remains to re-work and organise the functions, and to make them installable via Github first, and also CRAN after some key progressions. 
 </div>
 
-<p style = "text-align:left;"> Author and maintainer: Krista Kraskura </p>
-<p style = "text-align:left;"> Contributors: Emily Hardison, Terra Dressler, Jacey Van Wert, Sam Csik, Erika Eliason </p>
+<p style = "text-align:left; color: #325d88"> Author and maintainer: Krista Kraskura </p>
+<p style = "text-align:left; color: #325d88"> Contributors: Emily Hardison, Terra Dressler, Jacey Van Wert, Sam Csik, Erika Eliason </p>
 
 ---------------------------------------------------------------------
 

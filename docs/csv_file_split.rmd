@@ -2,12 +2,10 @@
 
 <div class="page-header">
   <h2 style="font-size: 30px; text-align:left;">Splitting data files</h2>
-</div>
-
-
 `csv_file_split`
 <br>
-<br>
+</div>
+
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left">About</h4>
 <ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
@@ -15,13 +13,11 @@
   <li><a href="#Value">Value</a></li>
   <li><a href="#Details">Details</a></li>
   <li><a href="#Example">Example</a></li>
-  <li><a href="#"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>
+  <li><a href="https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/accessory_SplitFiles"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>
 </ul>
 
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left">Description</h4>
-
-<!-- <h4 style="color:#495057; font-weight: bold;  text-align: left">Before running the SMR function </h4><br> -->
 
 Use this function to split your files in 2 parts at a defined time point. Most commonly this is needed when MMR and SMR parts are together in one file. For example, when manually controlled part of the data recording (manually initiated flush:measure cycles; typically MMR) is immediately followed by automatic data recording (auto timer controlled flush:measure cycles; typically SMR/RMR). These two parts are analyzed using different functions and so need to be in different _.csv_ files.
 
