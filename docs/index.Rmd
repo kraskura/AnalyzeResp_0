@@ -30,7 +30,7 @@ Also we encourage checking out these packages and functions in R:
 <br>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">Get started</h4> 
 
-- Fork the repository from GitHub directly.
+- Fork the repository from [GitHub](https://github.com/kraskura/AnalyzeResp_0) directly. Git code source: [https://github.com/kraskura/AnalyzeResp_0.git](https://github.com/kraskura/AnalyzeResp_0.git)
 - Use the demo tutorials to guide the analyses of the data. Use the troubleshooting page for help.
 - We always welcome emails with any questions, feedback, and suggestions to improve this work.
 
@@ -39,7 +39,8 @@ Also we encourage checking out these packages and functions in R:
  <br>
 <h4 style="color:#495057; font-weight: bold;  text-align: left"> What is this for? </h4>
 
-Our script is writtem to analyze data that was measured using [Firesting multichannel](https://www.pyroscience.com/en/263) oxygen sensor boxes from Pyroscience. But it can be easily adapted to be compatible with any other setup (vignette on how to achieve this coming soon!). 
+Anyone using aquatic respirometry in their work.
+Our script is writtem to analyze data that was measured using [Firesting multichannel](https://www.pyroscience.com/en/263) oxygen sensor boxes from Pyroscience. But it can be easily adapted to be compatible with any other setup (demos on how to achieve this coming soon!). 
 
 The raw (.tx) export files from the Firesting complementary software are then directly fed into our function (in a specific sequence) to estimate oxygen consumption rates of our study animals (i.e. a proxy of metabolic rate, MR). Then all compiled metabolic rate measurements are used specifically estimate different ecologically valuable performances, Maximum metabolic rates, Standard (and Resting) metabolic rates, Aerobic scope, Digestions Costs and Time, Recovery performance. And we plan to expand the capability of these functions furter. 
 
@@ -50,14 +51,4 @@ The raw (.tx) export files from the Firesting complementary software are then di
 rMR, ggplot2, gridExtra, chron, lubridate, dplyr, pryr, ggpubr, magrittr, tidyr ,broom, purrr, mclust, data.table, stringr, DescTools
 
 ```
-
-
-
-
-
-
-
-
-
-
 

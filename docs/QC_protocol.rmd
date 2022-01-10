@@ -11,8 +11,8 @@
     - Plot all MO~2~ data using the AnalyzeResp_0 code (`MMR` and `SMR` functions only at this point)
     - Visually inspect all MO~2~ plots (list of key plots to inspect below)
         + [/AUTO/plots_channel](https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/AUTO/plots_channel)
-        + [AUTO/plots_channel_cycle](https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/AUTO/plots_channel_cycle) (when `flush = TRUE`)
-        + [AUTO/plots_channel_temperature_cycle](https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/AUTO/plots_channel_temperature_cycle)
+        + [/AUTO/plots_channel_cycle](https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/AUTO/plots_channel_cycle) (when `flush = TRUE` when running `SMR` function)
+        + [/AUTO/plots_channel_temperature_cycle](https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/AUTO/plots_channel_temperature_cycle)
         + [/MANUAL/channel_plots](https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/MANUAL/channel_plots)
 
 2. **Group and Clean Data** 

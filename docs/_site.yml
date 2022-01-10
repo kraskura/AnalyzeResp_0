@@ -7,7 +7,7 @@ navbar:
       href: index.html
     - text: "Functions"
       href: functions.html
-    - text: "Demos & Vocab"
+    - text: "Demos"
       href: tutorials-main.html
     - text: "Troubleshoting"
       href: troubleshooting.html

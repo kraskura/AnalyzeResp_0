@@ -253,7 +253,7 @@ $(document).ready(function () {
   <a href="functions.html">Functions</a>
 </li>
 <li>
-  <a href="tutorials-main.html">Demos &amp; Vocab</a>
+  <a href="tutorials-main.html">Demos</a>
 </li>
 <li>
   <a href="troubleshooting.html">Troubleshoting</a>
@@ -321,8 +321,17 @@ Source: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/work
 <p>Below are some of the topics that were covered in our discussions. The complete list is extensive!</p>
 <p><br />
 <br />
-#### Respo retreat @ UCSB, Oct 2018</p>
-<p><strong>Hosted mini-sessions</strong> - Why do respirometry? Advantages &amp; Limitations - How to do field respirometry - learning from each other’s mistakes - How do we analyze the data? And how can it be incorporated into models? - Hands on data analysis using an earlier version of AnalyzeResp_0</p>
+</p>
+<div id="respo-retreat-ucsb-oct-2018" class="section level4">
+<h4>Respo retreat @ UCSB, Oct 2018</h4>
+<p><strong>Hosted mini-sessions</strong></p>
+<ul>
+<li>Why do respirometry? Advantages &amp; Limitations</li>
+<li>How to do field respirometry - learning from each other’s mistakes</li>
+<li>How do we analyze the data? And how can it be incorporated into models?</li>
+<li>Hands on data analysis using an earlier version of AnalyzeResp_0</li>
+</ul>
+</div>
 <div id="respo-retreat-ucsb-april-2020" class="section level4">
 <h4>Respo retreat @ UCSB, April 2020</h4>
 <p><strong>SMR</strong></p>
@@ -377,15 +386,17 @@ Source: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/work
 <p><strong>Metabolic Scaling</strong></p>
 <p>Three main option to adjust MR to animals body size:</p>
 <ol style="list-style-type: decimal">
-<li>Just divide MR/size to get per unit mass (e.g. kg) metabolism (this would also be the same to using a scaling exponent of 1 with common mass of 1 kg)</li>
+<li>Just divide whole animal metabolic rate by body mass to get per unit mass metabolism (e.g. mgO<sub>2</sub>min<sup>-1</sup>kg<sup>-1</sup>, this would be the same as using a scaling exponent of 1 and common mass individual 1kg)</li>
 <li>Use some common scaling exponent and divide MR by mass^b; b = scaling exponent</li>
-<li>Estimate scaling from the original data of the study or correct for size otherwise:</li>
-</ol>
+<li>Estimate scaling from the original data of the study or correct for size otherwise:
 <ul>
 <li>use residuals from regression models</li>
 <li>bring all fish to some mean common body size using existing or estimated sacling exponent</li>
 <li>use local scaling exponent (what size range is actually enough large to obtain robust estimates?)</li>
-<li><em>There are NO agreed upon methods to size-correct MR for body size.</em></li>
+</ul></li>
+</ol>
+<ul>
+<li><em>There are no agreed upon methods to size-correct MR for body size.</em></li>
 </ul>
 <p><strong>Cleaning to overcome wonky temperature readings and leaky respos (and other sources of messiness!)</strong></p>
 <ul>

@@ -8,7 +8,7 @@
 
 **To do list:**
 
-0. Make packgdown, and rework it for an actual package in R
+0. Make packgdown, and rework it into an actual package in R. 
 
 1. Improve the naming dependency, take that out. 
 2. Add more flexibility of different oxygen units, for example, % air saturation in the local functions.
@@ -16,7 +16,7 @@
 4. (?) Temperature in the MMR_SMR_AS_EPOC/csv_analyzed_MR/ data output files is just for the MMR section of the data, needs adjustment. 
 5. Add N=xxx in the quantile plots
 6. Add FAS analysis
-7. Fix units when calculating MO2 for either: i) animal (mgO2/min/animal) ii) mass-specific, per kg (mO2/min/kg), iii) stanadardised mass using scaling 
+7. Fix units when calculating MO~2~ for either: i) animal (mgO~2~/min/animal) ii) mass-specific, per kg (mO~2~/min/kg), iii) stanadardised mass using scaling 
 8. script and demo on how to use our code with non Firesting data files
 9. Make one rmd with all files running as entirely reproducible example, consolidate the existing files
 
@@ -28,7 +28,7 @@
 Date| Description | Previous | UPDATE
 :--- |  :-------------  | :--- | :---
 Jan 2022 | MMR function arguments, names changed| `Ch1`, `Ch2`, `Ch3`, `Ch4` | `mmr_Ch1`, `mmr_Ch2`, `mmr_Ch3`, `mmr_Ch4` 
-Jan 2022 | MMR figure (new), analytical for displaying difference for sliding windows, slope and R~2~|  | 
+Jan 2022 | MMR figure (new), analytical for displaying difference for sliding windows, slope and R^2^|  | 
 Jan 2022 | MMR_SMR_AS_EPOC smoothing, fewers trends plotted, new argument for user input| NA  | `spar_levels` & better plot
-Jan 2022 | SMR |  | 
+
 
