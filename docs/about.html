@@ -314,13 +314,9 @@ $(document).ready(function () {
 About Aquatic Respirometry
 </h2>
 <p>
-Source: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/docs/SDA.rmd" style = "color:gray;">AnalyzeResp_0/docs/SDA.rmd</a>
+Source: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/about.rmd" style = "color:gray;">AnalyzeResp_0/docs/about.rmd</a>
 </p>
 </div>
-<h4 style="color:#325d88; font-weight: bold;  text-align: left">
-Abbreviations / Vocabulary
-</h4>
-<p>Automatic measurements to obtain SMR and/or RMR In the figure below is an example O2 ~ time trend resulting from automatic metabolic rate measurements using intermittent flow respirometry. This may be used to enter the parameters in the SMR function correctly too, or to better relate to some data output files. Typically this measurement pattern is running overnight, producing several dozen of these cycles. The oxygen consumption rates a proxy of metabolic rates are recorded in animals that are undisturbed, not stressed, and is at post-absorptive state (common RMR and SMR assumption).</p>
 <h4 style="color:#325d88; font-weight: bold;  text-align: left">
 Abbreviations / Vocabulary
 </h4>
@@ -335,24 +331,23 @@ Abbreviations / Vocabulary
 <li>QC: quality control, manual checking and ensuring data quality, data cleaning to exclude technical or experimental anomolous recordings.</li>
 </ul>
 <p><br></p>
+<hr />
 <h4 style="color:#325d88; font-weight: bold;  text-align: left">
-Relating data analysis to experimental work
+Full picture first
 </h4>
-<h5 style="color:#325d88; font-weight: bold;  text-align: left">
+<p>A time series of all automatic measurements to obtain SMR and/or RMR, and recovery if the first measurement is MMR. This repeat measurement period can differ in length, e.g. some species achieve resting metabolic state much sooner (within few hours) after being placed in the respirometer, in which case overnight measurements are not necessary. In the figure below is an example O2 ~ time trend resulting from automatic metabolic rate measurements using intermittent flow respirometry. This may be used to enter the parameters in the SMR function correctly too, or to better relate to some data output files. Typically this measurement pattern is running overnight, producing several dozen of these cycles. The oxygen consumption rates a proxy of metabolic rates are recorded in animals that are undisturbed, not stressed, and is at post-absorptive state (common RMR and SMR assumption).</p>
+<p><img src="Images/Full_trend_concept.png" alt="" style="max-width: 1000px; height: auto; display: block;
+  margin-left: auto; margin-right: auto;"> <br></p>
+<h4 style="color:#325d88; font-weight: bold;  text-align: left">
 Measuring maximum metabolic rates in 4 individuals
-</h5>
-<p>In this figure below…</p>
+</h4>
+<p>There are several experimental approaches to measure maximum metabolic rates. The method that we have used is conceptually depicted below.</p>
 <p><img src="Images/MANUAL_conceptual.png" alt="" style="max-width: 1000px; height: auto; display: block;
   margin-left: auto; margin-right: auto;"> <br></p>
 <h5 style="color:#325d88; font-weight: bold;  text-align: left">
-Standard (and routine/resting) metabolic rates using automatic repeat measurement cycles
+Measuring standard (and routine/resting) metabolic rates using automatic repeat measurement cycles
 </h5>
-<p><img src="Images/AUTO_conceptual.png" alt="" style="max-width: 800px; height: auto; display: block;
-  margin-left: auto; margin-right: auto;"> <br></p>
-<h5 style="color:#325d88; font-weight: bold;  text-align: left">
-Standard (and routine/resting) metabolic rates using automatic repeat measurement cycles**Putting it together, metabolic performance using aquatic respiromtery
-</h5>
-<p><img src="Images/Full_trend_concept.png" alt="" style="max-width: 1000px; height: auto; display: block;
+<p>Resting metabolic rate is an estimate measurement calculated from many recorded metabolic rate values in an individual. <img src="Images/AUTO_conceptual.png" alt="" style="max-width: 800px; height: auto; display: block;
   margin-left: auto; margin-right: auto;"> <br></p>
 
 <br>
@@ -363,7 +358,7 @@ Standard (and routine/resting) metabolic rates using automatic repeat measuremen
 <br>
 <br>
 <div>
-    <ul class = "pull-left" style = "color:grey; text-align:left;"> Krista Kraskura (kkraskura@ucsb.edu) <a href="https://bootswatch.com/3/sandstone/">Web theme here</a></ul>
+    <ul class = "pull-left" style = "color:grey; text-align:left;"> Krista Kraskura (kkraskura@ucsb.edu) <a href="https://bootswatch.com/3/sandstone/">Reference to the web theme</a></ul>
 </div>
 
 

@@ -10,7 +10,7 @@
   <li><a href="#step1">Step 1 (setup)</a></li>
   <li><a href="#step2">Step 2 ()</a></li>
   <li><a href="#step3">Step 3</a></li>
-  <li><a href="#step4">Step 4</a></li>
+  <li><a href="#step4">Step 4</a></li>K
   <li><a href="#step-add">Misc Steps</a></li>
 </ul>
 
@@ -124,6 +124,37 @@ MMR(data.MMR = "./jul04_2019_opasize_box4_mmr.csv", # specify the .csv data file
 <br>
 
 
+<p>Download Excel template from GitHub: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/Test/MANUAL_inventory_template.xlsx" style = "color:gray;">AnalyzeResp_0/Test/MANUAL_inventory_template.xlsx</a></p>
+<img src="./images/manInvData.png" alt="An image of excel inventory file for SMR" style="max-width: 500px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+<br>
+
+<div style="background-color: #f8f5f0;  border: 1px solid #484f4f; padding: 10px">
+
+**MMR inventory data: How to?**
+
+Excel file template
+
+Column | Description 
+---:| :----------- 
+date | The date in 3-letter month + 2-number date (e.g. jun04, jan15, oct20, aug01... ). Important but inconvenient: excel tends to default to one of the data farmats. Counteract that by typing the apostrophe before text: 'jun04 
+box	| The numeric of the Firseting box.
+channel	| The number of the channel (1-4)
+start	|  indicate the start time (minutes) of the measurement section to be KEPT, write 0 to discard this cycle.
+end | indicate the end time of the section to be KEPT, write 0 to discard this cycle.
+
+What to expect from each example row as indicated in the inventory file above?
+
+- _rows 1_: The specific timeframes (start --> end) will be used to estimate metabolic rates. (see plotted example below)
+
+*Tips and notes*:
+
+- Be sure that the format of the inventory file is .csv, and that it is saved in the in the folder containing all data .csv files
+- All inputs must be the same as the original csv file, that ensures that ine inventory file can be used for all data cleaning purposes
+- To clean actual MMR cycle, use `MMR` argument `clean_Ch1, clean_Ch1, clean_Ch1, clean_Ch1` as needed.
+
+</div>
+
+
 
 <p>&nbsp;</p>
 
@@ -184,8 +215,40 @@ Everything remains the same if the cycles are correct, and the 10 sec wait time 
 
 The downstream function incorporate cutoffs such as R^2^. We firmly believe that visual inspection of all oxygen decrease slopes is critical step of data analysis. 
 
+<p>Download Excel template from GitHub: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/Test/AUTO_inventory_template.xlsx" style = "color:gray;">AnalyzeResp_0/Test/AUTO_inventory_template.xlsx</a></p>
 <img src="./images/autoInvData.png" alt="An image of excel inventory file for SMR" style="max-width: 500px; height: auto; display: block; margin-left: auto; margin-right: auto;">
 <br>
+
+
+<div style="background-color: #f8f5f0;  border: 1px solid #484f4f; padding: 10px">
+
+**SMR inventory data: How to?**
+
+Excel file template: 
+
+Column | Description 
+---:| :----------- 
+date | The date in 3-letter month + 2-number date (e.g. jun04, jan15, oct20, aug01... ). Important but inconvenient: excel tends to default to one of the data farmats. Counteract that by typing the apostrophe before text: 'jun04 
+box	| The numeric of the Firseting box. s
+channel	| The number of the channel (1-4)
+cycle_file_start	|  To save time, add '0' if both the start and end are provided. Find the exact start time for the wanted cycle in '_analyzed.csv' file 'min_start' column, add that to **exclude the cycle**. 
+sectioned_slope_start	|  indicate the start time (minutes) of the measurement section to be KEPT, write 0 to discard this cycle.
+sectioned_slope_end	| indicate the end time of the section to be KEPT, write 0 to discard this cycle.
+type | for general cleaning leave 'smr'. (part of development for greater user flexibility)
+
+What to expect from each example row as indicated in the inventory file above?
+
+- _rows 1-3_: The specific timeframes (sectioned_slope_start --> sectioned_slope_end) will be used to estimate metabolic rates. (see plotted example below)
+- _row 4_: The measurement cycle starting at 23.16 min will be entirely excluded from the analysis. (see plotted example below)
+
+*Tips and notes*:
+
+- No cleaning necessary for measurement cycle with low R^2^. These measurement cycles will be automatically excluded using `MMR_SMR_AS_EPOC` (setting R^2^ thresholds)
+- Be sure that the format of the inventory file is .csv, and that it is saved in the in the folder containing all data .csv files
+- All inputs must be the same as the original csv file, that ensures that ine inventory file can be used for all data cleaning purposes
+
+</div>
+
 
 <pre class = "sourceCode yaml"> 
 

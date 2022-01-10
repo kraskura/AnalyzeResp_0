@@ -313,96 +313,94 @@ $(document).ready(function () {
 <h2 style="font-size: 30px; text-align:left;">
 Workshops and events
 </h2>
-<p><!-- <p>Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a></p> --></p>
+<p>
+Source: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/workshops.rmd" style = "color:gray;">/AnalyzeResp_0/docs/workshops.rmd</a>
+</p>
 </div>
-<p>Professor Erika Eliason has hosted two respirometry workshops at UCSB (Oct 25-26 2018, and April 3 2020). The goal of these workshops are to bring collaborators, students, researchers, postdocs, and anyones interested together to discuss best practices of aquatic respirometry. Discussed topics include, but are not limited to:</p>
-<p><em>i)</em> What metabolic performances</p>
+<p>Erika Eliason has hosted and lead two respirometry workshops at UCSB (Oct 25-26 2018, and April 3 2020). The goal of these workshops were to bring together collaborators, students, researchers, postdocs, and others using aquatic respirometry to discuss best practices of of this method experimentally and analytically.</p>
+<p>Below are some of the topics that were covered in our discussions. The complete list is extensive!</p>
 <p><br />
 <br />
-</p>
-<div id="notes-from-the-respo-retreat-ucsb-april-3-2020" class="section level4">
-<h4>Notes from the respo retreat @ UCSB, April 3 2020</h4>
+#### Respo retreat @ UCSB, Oct 2018</p>
+<p><strong>Hosted mini-sessions</strong> - Why do respirometry? Advantages &amp; Limitations - How to do field respirometry - learning from each other’s mistakes - How do we analyze the data? And how can it be incorporated into models? - Hands on data analysis using an earlier version of AnalyzeResp_0</p>
+<div id="respo-retreat-ucsb-april-2020" class="section level4">
+<h4>Respo retreat @ UCSB, April 2020</h4>
 <p><strong>SMR</strong></p>
 <ul>
-<li>why is it beneficial to have low SMR?
+<li>Why is it beneficial to have low SMR?
 <ul>
 <li>low energy requirements, eat less</li>
 </ul></li>
-<li>why have high SMR?
+<li>Why have high SMR?
 <ul>
-<li>higher MMR?</li>
-<li>boldness? growth rates</li>
+<li>can be positively correlated with higher MMR, boldness, growth rates</li>
 <li>but these relationships are not super consistent</li>
 </ul></li>
 </ul>
 <p><strong>RMR? - what is it?</strong></p>
 <ul>
-<li>resting vs routine. routine is the average of some period of time, resting is commonly a point measurement</li>
+<li>Resting <em>vs</em> Routine. Routine is often measured as the average of some period of time. Resting is commonly (not always) a point measurement</li>
 </ul>
 <p><strong>MMR</strong></p>
 <ul>
-<li>typically exercise.</li>
-<li>what can limit MMR?</li>
-<li>why is it beneficial to have low MMR?
+<li>MMR is typically exercise elicited (e.g. swim flumes, chasing by hand with or withour air exposure)</li>
+<li>Can be achieved during digestion</li>
+<li>What can limit MMR?</li>
+<li>Why is it beneficial to have high MMR?
 <ul>
 <li>higher performance, e.g. swimming</li>
 </ul></li>
-<li>but can be beneficial to have low MMR
+<li>But it can be beneficial to have low MMR:
 <ul>
-<li>don’t need to maintain</li>
+<li>don’t need to maintain it high</li>
 </ul></li>
 </ul>
-<p><strong>AS = MMR-SMR</strong></p>
+<p><strong>AS = MMR - SMR</strong></p>
 <ul>
-<li>what is needed? when to have a large or low AS?</li>
-<li>ecological relevance, for what performance</li>
-<li>life stages</li>
+<li>What performances and activities are needed? When to have a large or low AS?</li>
+<li>Highly ecologically relevant metric</li>
+<li>Can change across life stages, what drives the changes?</li>
 </ul>
-<p><strong>FAS = MMR/SMR</strong></p>
+<p><strong>FAS = MMR/SMR</strong> - FAS thresholds as vulnerability indicators</p>
 <p><strong>EPOC!, and more about recovery</strong></p>
 <ul>
-<li>recovery from anaerobic exercise, any type anaerobic. Very ecologically relevant!</li>
-<li>The big question is: how much time and resources are needed to recover ENOUGH to keep going
+<li>Recovery from anaerobic exercise, any type anaerobic. Very ecologically relevant!</li>
+<li>The big question is: how much time and resources are needed to recover ENOUGH to return to normal activity, to keep going?
 <ul>
-<li>animals don’t need to recover back to SMR level (and realistically - they never do!)</li>
-<li>we know that fish can fully repeat max swim performance (Ucrit, Umax) with only 45 min recovery (Jain’s work, Erika’s repeat swim)</li>
-<li>lactate ~ 10 mmol, MMR50% or MMR75%</li>
-<li>the plus! don’t need an actual SMR, focus on the time to 50% MMR</li>
+<li>Animals likely don’t need to recover back to SMR level (and realistically - they likely never do!)</li>
+<li>We know that fish can fully repeat max swim performance (Ucrit, Umax) with only 45 min recovery</li>
+<li>Some important thresholds in ecological physiology: Lactate ~ 10 mmol, MMR50% or MMR75%</li>
+<li>The plus! don’t need an actual SMR measurement</li>
 <li>MMR50% may show the first indications of impaired recovery</li>
 </ul></li>
 </ul>
-<p><strong>SDA</strong></p>
-<ul>
-<li>peak SDA</li>
-<li>SDA - the integral</li>
-<li>SDA coefficient (what was this?)</li>
-</ul>
-<p><strong>Scaling from Chris Jerde :</strong></p>
+<p><strong>Metabolic Scaling</strong></p>
 <p>Three main option to adjust MR to animals body size:</p>
 <ol style="list-style-type: decimal">
-<li>Just divide MR/size to get per unit mass metabolism (this would also be the same as scaling exponent of 1)</li>
-<li>Use some common scaling exponent and divide MR by mass^b; b= scaling exponent</li>
-<li>Estimate scaling from the original data of the study (not universal) or correct for size otherwise:</li>
+<li>Just divide MR/size to get per unit mass (e.g. kg) metabolism (this would also be the same to using a scaling exponent of 1 with common mass of 1 kg)</li>
+<li>Use some common scaling exponent and divide MR by mass^b; b = scaling exponent</li>
+<li>Estimate scaling from the original data of the study or correct for size otherwise:</li>
 </ol>
 <ul>
-<li><p>use residuals to run stats</p></li>
-<li><p>bring all fish to some mean same size</p></li>
-<li><p>use local scaling exponent (what size range is actually enough large to trust this?)</p></li>
-<li><p>There are NO agreed upon methods to size-correct MR for body size.</p></li>
+<li>use residuals from regression models</li>
+<li>bring all fish to some mean common body size using existing or estimated sacling exponent</li>
+<li>use local scaling exponent (what size range is actually enough large to obtain robust estimates?)</li>
+<li><em>There are NO agreed upon methods to size-correct MR for body size.</em></li>
 </ul>
-<p>Emily Hardiosn: cleaning to overcome wonky temperature readings and leaky respos (and other sources of messiness!)</p>
+<p><strong>Cleaning to overcome wonky temperature readings and leaky respos (and other sources of messiness!)</strong></p>
 <ul>
-<li>Measure background and estimate the error from different potential sources:
+<li>Measure background
+<ul>
+<li>ideally before and after each respirometry trial</li>
+</ul></li>
+<li>Estimate the error from different potential sources:
 <ul>
 <li>leaky respos</li>
-<li>bad temp readings</li>
-<li>old probes</li>
-<li>weird technical errors</li>
-<li>pump not flushing right or having some issues</li>
-</ul></li>
-<li>Random walk model (correlated random walk)
-<ul>
-<li>with the autocorrelation - the correlation is changing over time. correlation constant = no leak (hypothetically), correlation is changing = leak</li>
+<li>bad temperature readings</li>
+<li>old oxygen probes</li>
+<li>technical errors</li>
+<li>experimental disturbance</li>
+<li>pumps not flushing right or having some issues</li>
 </ul></li>
 </ul>
 </div>
@@ -415,7 +413,7 @@ Workshops and events
 <br>
 <br>
 <div>
-    <ul class = "pull-left" style = "color:grey; text-align:left;"> Krista Kraskura (kkraskura@ucsb.edu) <a href="https://bootswatch.com/3/sandstone/">Web theme here</a></ul>
+    <ul class = "pull-left" style = "color:grey; text-align:left;"> Krista Kraskura (kkraskura@ucsb.edu) <a href="https://bootswatch.com/3/sandstone/">Reference to the web theme</a></ul>
 </div>
 
 

@@ -11,7 +11,7 @@
 
 
 
-<title>QC_protocol</title>
+<title>QC_protocol.knit</title>
 
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
@@ -32,6 +32,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -309,64 +311,88 @@ $(document).ready(function () {
 
 <div class="page-header">
 <h2 style="font-size: 30px; text-align:left;">
-Quality Control - our perspective
+Quality Control and Finalising data: a possible approach
 </h2>
 <p>
-Source: <a href = "#" style = "color:gray;">https://github.com/kraskura/AnalyzeResp_0/blob/ccf6f96e629939be6b5f33f88e435a7b973e6fff/docs/QC_protocol.md</a>
+Source: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/QC_protocol.md" style = "color:gray;">AnalyzeResp_0/blob/main/docs/QC_protocol.md</a>
 </p>
 </div>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">
 Data Analysis Pipeline
 </h4>
 <ol style="list-style-type: decimal">
-<li>Visualize Data
+<li><strong>Visualize Data:</strong>
 <ul>
-<li>Plot all MO2 data using AnalyzeResp code</li>
-<li>Visually inspect all MO2 plots (all files - background, MMR, SMR)</li>
+<li>Plot all MO<sub>2</sub> data using the AnalyzeResp_0 code (<code>MMR</code> and <code>SMR</code> functions only at this point)</li>
+<li>Visually inspect all MO<sub>2</sub> plots (list of key plots to inspect below)
+<ul>
+<li><a href="https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/AUTO/plots_channel">/AUTO/plots_channel</a></li>
+<li><a href="https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/AUTO/plots_channel_cycle">AUTO/plots_channel_cycle</a> (when <code>flush = TRUE</code>)</li>
+<li><a href="https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/AUTO/plots_channel_temperature_cycle">AUTO/plots_channel_temperature_cycle</a></li>
+<li><a href="https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/MANUAL/channel_plots">/MANUAL/channel_plots</a></li>
 </ul></li>
-<li>Clean Data
-<ul>
-<li>Identify all clean MO<sub>2</sub> data with linear decline - keep</li>
-<li>Identify any plots with minor issues - correct</li>
-<li>Identify erroneous MO<sub>2</sub> plots - remove</li>
 </ul></li>
-<li>Background
+<li><strong>Group and Clean Data</strong>
 <ul>
-<li>Assess if background is present</li>
-<li>If background is present, correct all MO<sub>2</sub> slopes for background respiration (see Rosewarne et al 2016 for guidance)</li>
-<li>We generally assume a linear increase between the “before” and “after” background and apply that to the slopes.</li>
+<li>Identify all clean MO<sub>2</sub> data with linear decline - <span style="color: #93c54b; font-weight: bold;">keep</span></li>
+<li>Identify any plots with minor issues - <span style="color: #f47c3c; font-weight: bold;">correct</span></li>
+<li>Identify erroneous MO<sub>2</sub> plots - <span style="color: #d9534f; font-weight: bold;">remove</span></li>
 </ul></li>
-<li>Plot the data and calculate MR values
+<li><strong>Background</strong>
 <ul>
-<li>ALWAYS plot MO<sub>2</sub> vs time and temperature vs time. ESSENTIAL for every fish.</li>
+<li>Assess if background is present (<code>SMR</code> function run for background respiration)</li>
+<li>If background is present, correct all MO<sub>2</sub> slopes for background respiration
+<ul>
+<li>See Rosewarne et al 2016 for guidance</li>
+<li>To customize the analysis use <code>MMR_SMR_AS_EPOC</code> function arguments: <code>background_prior = NA, background_post = NA, background_slope = NULL, background.V = NULL, background_linear_gr = FALSE, match_background_Ch = FALSE, mmr_background = "SAME_slope"</code></li>
+</ul></li>
+<li>We generally assume a linear increase between the “before” and “after” background and apply that to the slopes.
+<ul>
+<li>Use <code>background_linear_gr = TRUE</code></li>
+</ul></li>
+</ul></li>
+<li><strong>Plot the data and calculate MR values</strong>
+<ul>
+<li>Plot the (clean) data. Plot MO<sub>2</sub> vs time and temperature vs time. ESSENTIAL for every fish.</li>
 <li>Calculate SMR, RMR, MMR, EPOC, time to 50% MMR (Time[MMR50]) or 75% MMR (Time[MMR75])</li>
-<li>Many ways to do this – talk to collogues and peers (i.e. which sliding measurement window; which SMR value; which EPOC threshold)</li>
+<li>Many ways to do this - talk to collogues and peers (i.e. which sliding measurement window for MMR; which SMR value; which EPOC threshold)</li>
 </ul></li>
-<li>Assess metabolic scaling
+<li><strong>Assess metabolic scaling</strong>
 <ul>
-<li>Plot the data – SMR vs body mass; MMR vs body mass (log-log plots and raw data plots)</li>
-<li>Adjust for scaling if needed (see above).</li>
+<li>Plot the data - SMR vs body mass; MMR vs body mass (use log-log plots and raw data plots)</li>
+<li>Adjust for scaling if needed (see above).
+<ul>
+<li>To customize the analysis use <code>MMR_SMR_AS_EPOC</code> function arguments: <code>scaling_exponent_mmr=1, scaling_exponent_smr=1, common_mass=1</code></li>
+</ul></li>
 </ul></li>
 </ol>
+<br>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">
 Additional notes and suggestions from the Eliason Lab
 </h4>
 <ol style="list-style-type: decimal">
-<li>Check for leaks
+<li><strong>Check for leaks</strong>
 <ul>
-<li>Plot flush plot ON</li>
-<li>Are L shapes consistent across files? If yes, you might have a leak.</li>
+<li>Plot the full measurement cycle at least once for a few respirometry trial runs:
+<ul>
+<li><code>SMR( ..., flush_plot = "ON"</code>)</li>
 </ul></li>
-<li><em>Notes and suggestions:</em>
+<li>Are ‘L’ shapes for measurement cycles (measure phase) consistent across files? If yes, there might be a leak.</li>
+</ul></li>
+<li><strong>Notes and suggestions:</strong>
 <ul>
 <li>Do not cut the recovery or resting metabolic rate measurement down to below the “sliding window” length selected for MMR.</li>
-<li>For cleaning: R<sup>2</sup> below 0.7 are immediately rejected– no cleaning</li>
+<li>For cleaning: measurement cycles with R<sup>2</sup> below 0.7 are immediately rejected: <span style="color: #d9534f; font-weight: bold;">remove / no cleaning</span></li>
 <li>Experimental notes: If there are any measurements with a complementary note that anyone was messing with the respirometry chamber (relieving a bubble, etc) or where data is missing from the measurement (low signal in probe can cause this), it is aadvised to exclude the measurement.</li>
 </ul></li>
 </ol>
+<br>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">
 A sequence of our identified occasianal anomolies and our suggested solutions
 </h4>
+<p>
+Source: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/files/resources/qc_Eliason_lab.pdf" style = "color:gray;">PDF file</a>
+</p>
 <div style="background-color: #f8f5f0;  border: 2px solid #484f4f; padding: 10px">
 <p><img src= "files/resources/qc_Eliason_lab/Slide5.png" alt="scatter"></img> <img src= "files/resources/qc_Eliason_lab/Slide6.png" alt="scatter"></img> <img src= "files/resources/qc_Eliason_lab/Slide7.png" alt="scatter"></img> <img src= "files/resources/qc_Eliason_lab/Slide8.png" alt="scatter"></img> <img src= "files/resources/qc_Eliason_lab/Slide9.png" alt="scatter"></img> <img src= "files/resources/qc_Eliason_lab/Slide10.png" alt="scatter"></img> <img src= "files/resources/qc_Eliason_lab/Slide11.png" alt="scatter"></img> <img src= "files/resources/qc_Eliason_lab/Slide12.png" alt="scatter"></img> <img src= "files/resources/qc_Eliason_lab/Slide13.png" alt="scatter"></img> <img src= "files/resources/qc_Eliason_lab/Slide14.png" alt="scatter"></img> <img src= "files/resources/qc_Eliason_lab/Slide15.png" alt="scatter"></img></p>
 </div>
@@ -379,7 +405,7 @@ A sequence of our identified occasianal anomolies and our suggested solutions
 <br>
 <br>
 <div>
-    <ul class = "pull-left" style = "color:grey; text-align:left;"> Krista Kraskura (kkraskura@ucsb.edu) <a href="https://bootswatch.com/3/sandstone/">Web theme here</a></ul>
+    <ul class = "pull-left" style = "color:grey; text-align:left;"> Krista Kraskura (kkraskura@ucsb.edu) <a href="https://bootswatch.com/3/sandstone/">Reference to the web theme</a></ul>
 </div>
 
 

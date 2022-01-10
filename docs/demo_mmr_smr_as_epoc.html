@@ -333,6 +333,7 @@ Navigate
 <li>
 <a href="#step4">Step 4</a>
 </li>
+K
 <li>
 <a href="#step-add">Misc Steps</a>
 </li>
@@ -427,6 +428,58 @@ on GitHub: <a href = "https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/M
 </p>
 <p><img src="files/outputs/jul04_2019_opasize_box4_mmr_Ch1.png" alt="MMR output file" style="max-width: 800px; height: auto; display: block; margin-left: auto; margin-right: auto;"> <br></p>
 <p>
+Download Excel template from GitHub: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/Test/MANUAL_inventory_template.xlsx" style = "color:gray;">AnalyzeResp_0/Test/MANUAL_inventory_template.xlsx</a>
+</p>
+<p><img src="Images/manInvData.png" alt="An image of excel inventory file for SMR" style="max-width: 500px; height: auto; display: block; margin-left: auto; margin-right: auto;"> <br></p>
+<div style="background-color: #f8f5f0;  border: 1px solid #484f4f; padding: 10px">
+<p><strong>MMR inventory data: How to?</strong></p>
+<p>Excel file template</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Column</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">date</td>
+<td align="left">The date in 3-letter month + 2-number date (e.g. jun04, jan15, oct20, aug01… ). Important but inconvenient: excel tends to default to one of the data farmats. Counteract that by typing the apostrophe before text: ’jun04</td>
+</tr>
+<tr class="even">
+<td align="right">box</td>
+<td align="left">The numeric of the Firseting box.</td>
+</tr>
+<tr class="odd">
+<td align="right">channel</td>
+<td align="left">The number of the channel (1-4)</td>
+</tr>
+<tr class="even">
+<td align="right">start</td>
+<td align="left">indicate the start time (minutes) of the measurement section to be KEPT, write 0 to discard this cycle.</td>
+</tr>
+<tr class="odd">
+<td align="right">end</td>
+<td align="left">indicate the end time of the section to be KEPT, write 0 to discard this cycle.</td>
+</tr>
+</tbody>
+</table>
+<p>What to expect from each example row as indicated in the inventory file above?</p>
+<ul>
+<li><em>rows 1</em>: The specific timeframes (start –&gt; end) will be used to estimate metabolic rates. (see plotted example below)</li>
+</ul>
+<p><em>Tips and notes</em>:</p>
+<ul>
+<li>Be sure that the format of the inventory file is .csv, and that it is saved in the in the folder containing all data .csv files</li>
+<li>All inputs must be the same as the original csv file, that ensures that ine inventory file can be used for all data cleaning purposes</li>
+<li>To clean actual MMR cycle, use <code>MMR</code> argument <code>clean_Ch1, clean_Ch1, clean_Ch1, clean_Ch1</code> as needed.</li>
+</ul>
+</div>
+<p>
  
 </p>
 <h5 style="font-weight: bold">
@@ -473,7 +526,67 @@ SMR(data="jul04_2019_opasize_box4_smr.csv",
 <p><strong>2. Second pass: applying QC as necessary</strong></p>
 <p>Everything remains the same if the cycles are correct, and the 10 sec wait time was confirmed appropriate; the only addition is the inventory data file (in .csv format). The inventory file must be in the csv_files folder.</p>
 <p>The downstream function incorporate cutoffs such as R<sup>2</sup>. We firmly believe that visual inspection of all oxygen decrease slopes is critical step of data analysis.</p>
+<p>
+Download Excel template from GitHub: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/Test/AUTO_inventory_template.xlsx" style = "color:gray;">AnalyzeResp_0/Test/AUTO_inventory_template.xlsx</a>
+</p>
 <p><img src="Images/autoInvData.png" alt="An image of excel inventory file for SMR" style="max-width: 500px; height: auto; display: block; margin-left: auto; margin-right: auto;"> <br></p>
+<div style="background-color: #f8f5f0;  border: 1px solid #484f4f; padding: 10px">
+<p><strong>SMR inventory data: How to?</strong></p>
+<p>Excel file template:</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Column</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">date</td>
+<td align="left">The date in 3-letter month + 2-number date (e.g. jun04, jan15, oct20, aug01… ). Important but inconvenient: excel tends to default to one of the data farmats. Counteract that by typing the apostrophe before text: ’jun04</td>
+</tr>
+<tr class="even">
+<td align="right">box</td>
+<td align="left">The numeric of the Firseting box. s</td>
+</tr>
+<tr class="odd">
+<td align="right">channel</td>
+<td align="left">The number of the channel (1-4)</td>
+</tr>
+<tr class="even">
+<td align="right">cycle_file_start</td>
+<td align="left">To save time, add ‘0’ if both the start and end are provided. Find the exact start time for the wanted cycle in ’_analyzed.csv’ file ‘min_start’ column, add that to <strong>exclude the cycle</strong>.</td>
+</tr>
+<tr class="odd">
+<td align="right">sectioned_slope_start</td>
+<td align="left">indicate the start time (minutes) of the measurement section to be KEPT, write 0 to discard this cycle.</td>
+</tr>
+<tr class="even">
+<td align="right">sectioned_slope_end</td>
+<td align="left">indicate the end time of the section to be KEPT, write 0 to discard this cycle.</td>
+</tr>
+<tr class="odd">
+<td align="right">type</td>
+<td align="left">for general cleaning leave ‘smr’. (part of development for greater user flexibility)</td>
+</tr>
+</tbody>
+</table>
+<p>What to expect from each example row as indicated in the inventory file above?</p>
+<ul>
+<li><em>rows 1-3</em>: The specific timeframes (sectioned_slope_start –&gt; sectioned_slope_end) will be used to estimate metabolic rates. (see plotted example below)</li>
+<li><em>row 4</em>: The measurement cycle starting at 23.16 min will be entirely excluded from the analysis. (see plotted example below)</li>
+</ul>
+<p><em>Tips and notes</em>:</p>
+<ul>
+<li>No cleaning necessary for measurement cycle with low R<sup>2</sup>. These measurement cycles will be automatically excluded using <code>MMR_SMR_AS_EPOC</code> (setting R<sup>2</sup> thresholds)</li>
+<li>Be sure that the format of the inventory file is .csv, and that it is saved in the in the folder containing all data .csv files</li>
+<li>All inputs must be the same as the original csv file, that ensures that ine inventory file can be used for all data cleaning purposes</li>
+</ul>
+</div>
 <pre class = "sourceCode yaml"> 
 
 SMR(data="jul04_2019_opasize_box4_smr.csv",
@@ -670,7 +783,7 @@ for (i in 1:n.mmr.files){
 <br>
 <br>
 <div>
-    <ul class = "pull-left" style = "color:grey; text-align:left;"> Krista Kraskura (kkraskura@ucsb.edu) <a href="https://bootswatch.com/3/sandstone/">Web theme here</a></ul>
+    <ul class = "pull-left" style = "color:grey; text-align:left;"> Krista Kraskura (kkraskura@ucsb.edu) <a href="https://bootswatch.com/3/sandstone/">Reference to the web theme</a></ul>
 </div>
 
 

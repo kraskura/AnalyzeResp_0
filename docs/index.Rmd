@@ -6,12 +6,12 @@ The maintenance and development of R script is lead by Krista Kraskura, a PhD Ca
 <h6 style="color:#495057; font-weight: bold;  text-align: left"> Not published on CRAN </h6>
 
 <div class="well">
-Trasnparent and open source work is our high priority. While this is not a formally formatted librarys, this is my first attempt to make it available to all and to make it citable.
-My priority remains to re-work and organise the functions, and to make them installable via Github first, and also CRAN after some key progressions. 
+Trasnparent and open source work is our high priority. While this is not a formally formatted library, this is my first attempt to make it available to everyone.
+My priority remains to re-work and organise the functions, and to make them installable via Github as a package. 
 </div>
 
-<p style = "text-align:left; color: #325d88"> Author and maintainer: Krista Kraskura </p>
-<p style = "text-align:left; color: #325d88"> Contributors: Emily Hardison, Terra Dressler, Jacey Van Wert, Sam Csik, Erika Eliason </p>
+<p style = "text-align:left; font-weight: bold; color: #325d88"> Author and maintainer: Krista Kraskura </p>
+<p style = "text-align:left; color: #325d88"> Thank you for valuable advice and feedback for improvement from: Emily Hardison, Terra Dressler, Jacey Van Wert, Samantha Csik, Erika Eliason </p>
 
 ---------------------------------------------------------------------
 
@@ -45,7 +45,7 @@ The raw (.tx) export files from the Firesting complementary software are then di
 
 **Strengths?** Very fine ability to visualize all data, perform user specific quality control, track progress, make work reproducible using R script. All input and output files can be saved locally (default, but can be optional). 
 
-**Library dependencies:** 
+**Imported libraries:** 
 ```
 rMR, ggplot2, gridExtra, chron, lubridate, dplyr, pryr, ggpubr, magrittr, tidyr ,broom, purrr, mclust, data.table, stringr, DescTools
 

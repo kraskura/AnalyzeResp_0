@@ -6,7 +6,7 @@
 </div>
 
 <div class="well">
-Some functionality has been updates along the way, the current version as posted has not been used in all these works. The core functinality to calculate metabolic rate performances has remained. 
+Functions have been updated since 2017. The core functionality with imbedded approaches to estimate metabolic rate performances has remained through time.
 </div>
 
 <br>
