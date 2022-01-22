@@ -266,14 +266,17 @@ organize_MR_analysis <- function (create =  "Full") {
 }
 
 
-txt_csv_convert<-function(txt_file, N_Ch=4, path = "."){
+txt_csv_convert<-function(txt_file, N_Ch=4, path = ".", exclude_first_measurement_s = FALSE){
 	
   if(N_Ch == 4 | N_Ch==2){
   	new_csv<-as.data.frame(matrix(nrow=0, ncol=8))
   	colnames(new_csv)<-c("date", "time", "time_sec", "Ch1_O2", "Ch1_temp", "Ch2_O2", "Ch3_O2", "Ch4_O2")
   	
-  	d<-read.delim(txt_file, skip=19)
-  	
+  	if(!exclude_first_measurement_s){
+  	    d<-read.delim(txt_file, skip=19)
+  	  }else{
+  	    d<-read.delim(txt_file, skip=19+1)
+  	}
   	
   	# don't think need this anymore
   	if (!colnames(d[1])=="Date"){
@@ -302,7 +305,11 @@ txt_csv_convert<-function(txt_file, N_Ch=4, path = "."){
     new_csv<-as.data.frame(matrix(nrow=0, ncol=11))
   	colnames(new_csv)<-c("date", "time", "time_sec", "Ch1_O2", "Ch1_temp", "Ch2_O2", "Ch3_O2", "Ch4_O2", "Ch2_temp", "Ch3_temp", "Ch4_temp")
   	
-  	d<-read.delim(txt_file, skip=26)
+  	if(!exclude_first_measurement_s){
+  	  d<-read.delim(txt_file, skip=26)
+  	}else{
+  	  d<-read.delim(txt_file, skip=26+1)
+  	}
   	
   	nr<-nrow(d)
   	nc<-ncol(d)
@@ -3536,7 +3543,7 @@ MMR_SMR_AS_EPOC<-function(data.MMR,
                           match_background_Ch = FALSE, 
                           mmr_background = "SAME_slope",
                           path = ".",
-                          test = NULL, 
+                          test = "development_NA", 
                           spars_levels = c(0.1, 0.2, 0.3)){
 	graphics.off()	
   
@@ -5213,28 +5220,28 @@ MMR_SMR_AS_EPOC<-function(data.MMR,
 		  filename.MR<-paste("../csv_analyzed_MR/", gsub('.{12}$', '', data.MMR), "MR_analyzed.csv", sep='')
     }
     
-		d_MMR$bw<-NA
-		d_MMR$mo2<-NA
-		d_MMR$ID<-NA
-		d_MMR$resp.V<-NA
-		
-		for(i in 1:4){
-			if(any(grepl(as.character(i),as.character(d_MMR$Ch)))){
-				nameCh<-paste("Ch",i,sep="")
-				bw.val<-BW.animal[i]
-				ID<-AnimalID[i]
-				resp.Vol<-resp.V[i]
-				n.row<-which(d_MMR$Ch==nameCh)
-				d_MMR$bw[n.row]<-bw.val	
-				d_MMR$ID[n.row]<-ID
-		    d_MMR$resp.V[n.row]<-resp.Vol
-			}
-		}
-		
-	### CORERCT FOR background!!! 	
-		for (i in 1:nrow(d_MMR)){
-			d_MMR$mo2[i]<-d_MMR$m[i]*(d_MMR$resp.V[i]-d_MMR$bw[i])/(d_MMR$bw[i])#^scaling_exponent_mmr) # units mgO2 kg-1 min-1
-		}
+		# d_MMR$bw<-NA
+		# d_MMR$mo2<-NA
+		# d_MMR$ID<-NA
+		# d_MMR$resp.V<-NA
+		# 
+		# for(i in 1:4){
+		# 	if(any(grepl(as.character(i),as.character(d_MMR$Ch)))){
+		# 		nameCh<-paste("Ch",i,sep="")
+		# 		bw.val<-BW.animal[i]
+		# 		ID<-AnimalID[i]
+		# 		resp.Vol<-resp.V[i]
+		# 		n.row<-which(d_MMR$Ch==nameCh)
+		# 		d_MMR$bw[n.row]<-bw.val	
+		# 		d_MMR$ID[n.row]<-ID
+		#     d_MMR$resp.V[n.row]<-resp.Vol
+		# 	}
+		# }
+		# 
+	# ### CORERCT FOR background!!! 	
+	# 	for (i in 1:nrow(d_MMR)){
+	# 		d_MMR$mo2[i]<-d_MMR$m[i]*(d_MMR$resp.V[i]-d_MMR$bw[i])/(d_MMR$bw[i])#^scaling_exponent_mmr) # units mgO2 kg-1 min-1
+	# 	}
 				
 		d_MMR<-d_MMR[as.character(d_MMR$ID)!="blank",]
 	  d_MMR<-d_MMR[d_MMR$ID!="NA",]
@@ -5244,7 +5251,8 @@ MMR_SMR_AS_EPOC<-function(data.MMR,
 		  d_MMR2<- d_MMR[d_MMR$cycle_type=="MMR",]# data frame without the cycles (e.g., the cycles only
 		  
 		  # temp min and max for MMR only 
-			values<-as.data.frame(t(c(gsub('.{12}$', '', data.MMR),  d_MMR2$ID[i], d_MMR2$Ch[i], d_MMR2$bw[i], d_MMR2$t_min[i], d_MMR2$t_max[i], d_MMR2$t_mean[i], NA,
+			values<-as.data.frame(t(c(gsub('.{12}$', '', data.MMR),  d_MMR2$ID[i], d_MMR2$Ch[i],
+			                          d_MMR2$bw[i], d_MMR2$t_min[i], d_MMR2$t_max[i], d_MMR2$t_mean[i], NA,
 			NA,NA,NA,
 			NA,NA,NA,
 			NA,NA,NA,
@@ -5252,9 +5260,10 @@ MMR_SMR_AS_EPOC<-function(data.MMR,
 			NA,NA,NA,
 			NA,NA,NA,
 			NA,NA, d_MMR2$cycle_mmr[i], 
-			scaling_exponent_mmr, NA)))
+			scaling_exponent_mmr, NA, d_MMR2$common_mass[i])))
 			
-			colnames(values)<-c("filename", "ID", "Ch", "BW","t_min","t_max", "t_mean", "N_mo2",
+			colnames(values)<-c("filename", "ID", "Ch",
+			                    "BW","t_min","t_max", "t_mean", "N_mo2",
 			"smr_mean10minVal","smr_SD10minVal", "smr_CV10minVal",
 			"SMR_low10quant","SMR_low15quant",  "SMR_low20quant",
 			"smr_mlnd", "smr_CVmlnd", "smr_Nmlnd", 
