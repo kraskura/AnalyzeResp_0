@@ -19,6 +19,8 @@ calc_hMO2<-function(data, wd = "./", export.wd = "./"){
     group_by(Ch, ID, resp.V, bw, hour) %>%
     summarize(mo2_mean = mean(mo2, na.rm=TRUE), mo2_sd = sd(mo2, na.rm=TRUE), mo2_min = min(mo2, na.rm=TRUE), t_mean=mean(t_mean), n=length (mo2), mo2_max = max(mo2, na.rm=TRUE)))
   
+  data.H.sum$hour<-as.numeric(as.character(data.H.sum$hour))
+  
   hr_plot<-ggplot(data=data.H.sum, aes(y=mo2_mean, x=hour))+
 	  geom_point(size=2, pch=21, fill="grey", alpha=0.9, colour="black")+
 	  geom_point(data=data.H.sum, aes(y=mo2_min, x=hour), pch=21, size=3, fill="black", alpha=0.7)+
@@ -35,4 +37,4 @@ calc_hMO2<-function(data, wd = "./", export.wd = "./"){
     ggsave(filename = filename.plot, hr_plot)
 }
 
-calc_hMO2(data="jul04_2019_opasize_box4_smr_SMR_analyzed.csv")
+# calc_hMO2(data="jul04_2019_opasize_box4_smr_SMR_analyzed.csv")

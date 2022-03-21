@@ -45,13 +45,7 @@ if (!require("DescTools")) install.packages("DescTools")
 # make sliding window an independent function? 
 # make EPOC.spar an independent function?
 
-###### garbage ##############
-# THE FUNCTIONS and DATA ANALYSIS
 
-# some experimental design checks  - this plots the entire cycle of flush + MR measure. With veritcal line whetre the flush should start.
-# this is great to see if the cycles stay on track and you are getting the slope/ section that you actually need/want
-
- 
 ###### Organizational functions ####################### 
 
 
@@ -71,7 +65,7 @@ convert.o2.Firesting <- function(csv.data, units_from = "pct", units_to = "mg/L"
     temp_ch2 <- data.convert$Ch1_temp
   }
   if(n_ch==8){
-    temp_ch1 <- data.convert$Ch2_temp
+    temp_ch1 <- data.convert$Ch1_temp
     temp_ch2 <- data.convert$Ch2_temp
     temp_ch3 <- data.convert$Ch3_temp
     temp_ch4 <- data.convert$Ch4_temp
@@ -266,23 +260,22 @@ organize_MR_analysis <- function (create =  "Full") {
 }
 
 
-txt_csv_convert<-function(txt_file, N_Ch=4, path = ".", exclude_first_measurement_s = FALSE){
+txt_csv_convert<-function(txt_file, N_Ch=4, path = ".", exclude_first_measurement_s = 0){
 	
   if(N_Ch == 4 | N_Ch==2){
   	new_csv<-as.data.frame(matrix(nrow=0, ncol=8))
   	colnames(new_csv)<-c("date", "time", "time_sec", "Ch1_O2", "Ch1_temp", "Ch2_O2", "Ch3_O2", "Ch4_O2")
   	
-  	if(!exclude_first_measurement_s){
-  	    d<-read.delim(txt_file, skip=19)
-  	  }else{
-  	    d<-read.delim(txt_file, skip=19+1)
-  	}
+  	d<-read.delim(txt_file, skip=19+exclude_first_measurement_s)
   	
   	# don't think need this anymore
-  	if (!colnames(d[1])=="Date"){
-  		d<-read.delim(txt_file, skip=26)
-  	}
+  	# if (!colnames(d[1])=="Date"){
+  	# 	d<-read.delim(txt_file, skip=26+exclude_first_measurement_s)
+  	# 	#true
+  	# }
   	
+  	d<-d[,1:15]
+  
   	nr<-nrow(d)
   	nc<-ncol(d)
   	
@@ -301,16 +294,14 @@ txt_csv_convert<-function(txt_file, N_Ch=4, path = ".", exclude_first_measuremen
   } # end od N_Ch == 2
   
   
-  if (N_Ch==8){
+  if(N_Ch==8){
     new_csv<-as.data.frame(matrix(nrow=0, ncol=11))
   	colnames(new_csv)<-c("date", "time", "time_sec", "Ch1_O2", "Ch1_temp", "Ch2_O2", "Ch3_O2", "Ch4_O2", "Ch2_temp", "Ch3_temp", "Ch4_temp")
   	
-  	if(!exclude_first_measurement_s){
-  	  d<-read.delim(txt_file, skip=26)
-  	}else{
-  	  d<-read.delim(txt_file, skip=26+1)
-  	}
-  	
+  	d<-read.delim(txt_file, skip=26+exclude_first_measurement_s)
+  	# exclude rows with wrong data, no data, no time formats for the two columns
+  	d<-d[c(which(grepl( "/", d[,1]) & grepl( ":", d[,2]))),]
+  	d<-d[,1:12]
   	nr<-nrow(d)
   	nc<-ncol(d)
   	
@@ -1526,8 +1517,15 @@ Channel<-function(Ch, temp, seq_st, seq_end, plotname, data1, chop_start, chop_e
 					cycle_use<-"use full cycle"
 				}else{
 
+				  # print(n2)
 					# replace zeros in the inventory data to real values; in inv. data clean - this is where in invenotory file I added 0 when it just starts from the "start" of teh cycle and ends at the "end" of the cycle
-					if(inv.data.clean[n2,4]==0){
+				  if(inv.data.clean[n2,5] == 0 & inv.data.clean[n2,6] == 0){
+				    cycle_use<-"skip cycle"
+				  }else{
+				    cycle_use<-"use cleaned cycle"
+				  }
+				  
+				  if(inv.data.clean[n2,4]==0){
 						inv.data.clean[n2,4]<-start
 					} 
 					if(inv.data.clean[n2,5]==0){
@@ -1536,11 +1534,10 @@ Channel<-function(Ch, temp, seq_st, seq_end, plotname, data1, chop_start, chop_e
 					if(inv.data.clean[n2,6]==0){
 						inv.data.clean[n2,6]<-end
 					}
-					if(start==inv.data.clean[n2,5] & end==inv.data.clean[n2,6]){
-						cycle_use<-"skip cycle"
-					}else{
-						cycle_use<-"use cleaned cycle"
-					}
+					
+				  # if(start==inv.data.clean[n2,5] & end==inv.data.clean[n2,6]){
+				  
+
 					
 					d_clean<-data1[c(which(data1$time_min>inv.data.clean[n2,5] & data1$time_min<inv.data.clean[n2,6])),]
 
@@ -1887,7 +1884,7 @@ SMR<-function(data, cycle_start, cycle_end, chop_start, chop_end, N_Ch = 4, inve
   	
   	filename<-paste(gsub('.{4}$', '', data), "_analyzed.csv", sep='') # save file in the current SMR wd
 	  filename2<-paste(gsub('.{4}$', '', data), "_analyzed.csv", sep='') # save in the EPOC_AS etc folder for final SMR and fiull EPOC analysis
-f
+
 	}else{ 
 	  plotname1<-paste("../plots_summary_respo/", gsub('.{4}$', '', data), "_all_ChO2.png", sep='')
   
@@ -2081,9 +2078,9 @@ f
 	}
 
 
-	
 		if (!data1$Ch1_O2[1]==0){
-			inv.data<-data2[which(grepl(substr(data, start=1, stop=5), as.character(data2$date)) & as.numeric(data2$channel)==1 &
+			inv.data<-data2[which(!is.na(str_locate(data, as.character(data2$date))) &
+			                        as.numeric(data2$channel)==1 &
 			                        grepl(substr(data, start = (str_locate(data, c("box", "BOX", "Box"))[Box_n_data])+1,
 			                                     stop = (str_locate(data, c("box", "BOX", "Box"))[Box_n_data])+1), as.character(data2$box))),]
 		
@@ -2099,7 +2096,7 @@ f
 		}
 	
 		if (!data1$Ch2_O2[1]==0){
-			inv.data<-data2[which(grepl(substr(data, start=1, stop=5), as.character(data2$date)) & as.numeric(data2$channel)==2 &
+			inv.data<-data2[which(!is.na(str_locate(data, as.character(data2$date))) & as.numeric(data2$channel)==2 &
 			                        grepl(substr(data, start = (str_locate(data, c("box", "BOX", "Box"))[Box_n_data])+1,
 			                                     stop = (str_locate(data, c("box", "BOX", "Box"))[Box_n_data])+1), as.character(data2$box))),]
 			
@@ -2113,7 +2110,7 @@ f
 		}
 	
 		if (!data1$Ch3_O2[1]==0){
-			inv.data<-data2[which(grepl(substr(data, start=1, stop=5), as.character(data2$date)) & as.numeric(data2$channel)==3 &
+			inv.data<-data2[which(!is.na(str_locate(data, as.character(data2$date))) & as.numeric(data2$channel)==3 &
 			                        grepl(substr(data, start = (str_locate(data, c("box", "BOX", "Box"))[Box_n_data])+1,
 			                                     stop = (str_locate(data, c("box", "BOX", "Box"))[Box_n_data])+1), as.character(data2$box))),]
 			
@@ -2126,7 +2123,7 @@ f
 		}
 	
 		if (!data1$Ch4_O2[1]==0){
-			inv.data<-data2[which(grepl(substr(data, start=1, stop=5), as.character(data2$date)) & as.numeric(data2$channel)==4 &
+			inv.data<-data2[which(!is.na(str_locate(data, as.character(data2$date))) & as.numeric(data2$channel)==4 &
 			                       grepl(substr(data, start = (str_locate(data, c("box", "BOX", "Box"))[Box_n_data])+1,
 			                                     stop = (str_locate(data, c("box", "BOX", "Box"))[Box_n_data])+1), as.character(data2$box))),]
 			
@@ -2187,7 +2184,7 @@ MMRslide<-function(d, Ch, data.MMR, r, r_temp, newdata_mmr, path){
 		# for the sliding ones: cycle_end=the min on when the slide ends
 		# for the sliding ones: delay_min=NA
 		# for the sliding ones: cycle_mmr= 60,90,120,180 (indicate the sliding length
-    newdata_set<-matrix(ncol=12,nrow=0)
+    newdata_set<-matrix(ncol=12, nrow=0)
     colnames(newdata_set)<-c("cycle_type", "cycle_start","cycle_end",  "cycle_mmr", "r2" ,"m", "b" , "t_min", "t_max", "t_mean", "Ch", "DateTime_start")
     
     newdata_setMean<-matrix(ncol=14, nrow=0)
@@ -2489,8 +2486,6 @@ Channel_mmr<-function(data.MMR, dataMMR, cycle_start, cycle_end, clean_start_mmr
 			clean_cycle3<-NA
 			clean_cycle4<-NA
 			
-		
-			
 			### is there cleaning? 
   		if(nrow(inv.data.clean)>0){
   		   message(paste("Ch",j, ": INVENTORY data, adjusting non-MMR cycle times", sep=""))
@@ -2617,15 +2612,19 @@ Channel_mmr<-function(data.MMR, dataMMR, cycle_start, cycle_end, clean_start_mmr
 				Ch<-paste("Ch",j, sep="")
 				
 				values_mmr<-as.data.frame(t(c(cycle_type, mmr_start, mmr_end,  cycle_mmr, r2, m, b,
-				                              round(min(d[c(d$time_min>mmr_start & d$time_min<mmr_end) ,r_temp],4)),
-				                              round(max(d[c(d$time_min>mmr_start & d$time_min<mmr_end) ,r_temp],4)),
-				                              round(mean(d[c(d$time_min>mmr_start & d$time_min<mmr_end),r_temp],4)),
+				                              round(min(d[,r_temp]), 4), 
+				                              round(max(d[,r_temp]), 4),
+				                              round(mean(d[,r_temp]), 4),
 				                              Ch ,DateTime_start )))
 				colnames(values_mmr)<-c("cycle_type","cycle_start","cycle_end",  "cycle_mmr", "r2" ,"m", "b" , "t_min", "t_max", "t_mean", "Ch", "DateTime_start")	
 				newdata_mmr<-rbind(newdata_mmr, values_mmr)
 				
+				
+				print(newdata_mmr)
 				newdata_mmr<-MMRslide(d, Ch, data.MMR, r, r_temp, newdata_mmr, path)
-		  
+				print(newdata_mmr)
+				
+
 				newdata_mmr60<-newdata_mmr[which(newdata_mmr$Ch == Ch & newdata_mmr$cycle_mmr == 60),]
 				newdata_mmr90<-newdata_mmr[which(newdata_mmr$Ch == Ch & newdata_mmr$cycle_mmr == 90),]
 				newdata_mmr120<-newdata_mmr[which(newdata_mmr$Ch == Ch & newdata_mmr$cycle_mmr == 120),]
@@ -2636,6 +2635,7 @@ Channel_mmr<-function(data.MMR, dataMMR, cycle_start, cycle_end, clean_start_mmr
 				  plot(d[,r]~time_min, data=d, col="grey", ylab=expression(paste(O2~(mg~L^{-1}))), xlab="Time (min)",main="MMR");		
 				  abline(lm(d[,r]~d$time_min), col="black",lwd=2);
 				  if(nrow(newdata_mmr60)>0){
+				    
 				    ablineclip(lm(d[which(d$time_min > newdata_mmr60$cycle_start &
 				                            d$time_min < newdata_mmr60$cycle_end),r]~
 				                    d[which(d$time_min > newdata_mmr60$cycle_start &
@@ -2672,9 +2672,9 @@ Channel_mmr<-function(data.MMR, dataMMR, cycle_start, cycle_end, clean_start_mmr
 				cycle_type<-"MMR"
 				Ch<-paste("Ch",j, sep="")
 				values_mmr<-as.data.frame(t(c(cycle_type, mmr_start, mmr_end,  cycle_mmr, r2, m, b, 
-				                              round(min(d[c(d$time_min>mmr_start & d$time_min<mmr_end) ,r_temp],4)),
-				                              round(max(d[c(d$time_min>mmr_start & d$time_min<mmr_end) ,r_temp],4)),
-				                              round(mean(d[c(d$time_min>mmr_start & d$time_min<mmr_end),r_temp],4)),
+				                              round(min(d[,r_temp]), 4), 
+				                              round(max(d[,r_temp]), 4),
+				                              round(mean(d[,r_temp]), 4),
 				                              Ch ,DateTime_start )))
 				colnames(values_mmr)<-c("cycle_type","cycle_start","cycle_end", "cycle_mmr", "r2" ,"m", "b" , "t_min", "t_max", "t_mean", "Ch", "DateTime_start")	
 				newdata_mmr<-rbind(newdata_mmr, values_mmr)
@@ -2685,7 +2685,7 @@ Channel_mmr<-function(data.MMR, dataMMR, cycle_start, cycle_end, clean_start_mmr
 				newdata_mmr90<-newdata_mmr[which(newdata_mmr$Ch == Ch & newdata_mmr$cycle_mmr == 90),]
 				newdata_mmr120<-newdata_mmr[which(newdata_mmr$Ch == Ch & newdata_mmr$cycle_mmr == 120),]
 
-				
+
 				p2 %<a-% {
 				  plot(d[,r]~time_min, data=d,  col="grey", ylab=expression(paste(O2~(mg~L^{-1}))),xlab="Time (min)",main="MMR");		
 				  abline(lm(d[,r]~d$time_min), col="black",lwd=2);
@@ -2726,9 +2726,9 @@ Channel_mmr<-function(data.MMR, dataMMR, cycle_start, cycle_end, clean_start_mmr
 				cycle_type<-"MMR"
 				Ch<-paste("Ch",j, sep="")
 				values_mmr<-as.data.frame(t(c(cycle_type, mmr_start, mmr_end,  cycle_mmr, r2, m, b, 
-				                              round(min(d[c(d$time_min>mmr_start & d$time_min<mmr_end) ,r_temp],4)),
-				                              round(max(d[c(d$time_min>mmr_start & d$time_min<mmr_end) ,r_temp],4)),
-				                              round(mean(d[c(d$time_min>mmr_start & d$time_min<mmr_end),r_temp],4)),
+				                              round(min(d[,r_temp]), 4), 
+				                              round(max(d[,r_temp]), 4),
+				                              round(mean(d[,r_temp]), 4),
 				                              Ch ,DateTime_start )))
 				colnames(values_mmr)<-c("cycle_type","cycle_start","cycle_end",  "cycle_mmr", "r2" ,"m", "b" , "t_min", "t_max", "t_mean", "Ch", "DateTime_start")	
 				newdata_mmr<-rbind(newdata_mmr, values_mmr)
@@ -2738,7 +2738,7 @@ Channel_mmr<-function(data.MMR, dataMMR, cycle_start, cycle_end, clean_start_mmr
 				newdata_mmr90<-newdata_mmr[which(newdata_mmr$Ch == Ch & newdata_mmr$cycle_mmr == 90),]
 				newdata_mmr120<-newdata_mmr[which(newdata_mmr$Ch == Ch & newdata_mmr$cycle_mmr == 120),]
 				
-				
+
 				p3 %<a-% {
 				  plot(d[,r]~time_min, data=d, col="grey", ylab=expression(paste(O2~(mg~L^{-1}))),xlab="Time (min)",main="MMR");		
 				  abline(lm(d[,r]~d$time_min), col="black",lwd=2);
@@ -2779,19 +2779,19 @@ Channel_mmr<-function(data.MMR, dataMMR, cycle_start, cycle_end, clean_start_mmr
 				cycle_type<-"MMR"
 				Ch<-paste("Ch",j, sep="")
 				values_mmr<-as.data.frame(t(c(cycle_type, mmr_start, mmr_end, cycle_mmr, r2, m, b, 
-				                              round(min(d[c(d$time_min>mmr_start & d$time_min<mmr_end) ,r_temp],4)),
-				                              round(max(d[c(d$time_min>mmr_start & d$time_min<mmr_end) ,r_temp],4)),
-				                              round(mean(d[c(d$time_min>mmr_start & d$time_min<mmr_end),r_temp],4)),
+				                              round(min(d[,r_temp]), 4), 
+				                              round(max(d[,r_temp]), 4),
+				                              round(mean(d[,r_temp]), 4),
 				                              Ch, DateTime_start)))
 				colnames(values_mmr)<-c("cycle_type","cycle_start","cycle_end",  "cycle_mmr", "r2" ,"m", "b" , "t_min", "t_max", "t_mean", "Ch", "DateTime_start")	
 				newdata_mmr<-rbind(newdata_mmr, values_mmr)
 				
 				newdata_mmr<-MMRslide(d, Ch, data.MMR,r, r_temp, newdata_mmr, path)
-				newdata_mmr<-MMRslide(d, Ch, data.MMR, r, r_temp, newdata_mmr, path)
 				newdata_mmr60<-newdata_mmr[which(newdata_mmr$Ch == Ch & newdata_mmr$cycle_mmr == 60),]
 				newdata_mmr90<-newdata_mmr[which(newdata_mmr$Ch == Ch & newdata_mmr$cycle_mmr == 90),]
 				newdata_mmr120<-newdata_mmr[which(newdata_mmr$Ch == Ch & newdata_mmr$cycle_mmr == 120),]
 				
+
 				p4 %<a-% {
 				  plot(d[,r]~time_min, data=d, col="grey", ylab=expression(paste(O2~(mg~L^{-1}))),xlab="Time (min)",main="MMR");		
 				  abline(lm(d[,r]~d$time_min), col="black",lwd=2);
@@ -2828,7 +2828,7 @@ Channel_mmr<-function(data.MMR, dataMMR, cycle_start, cycle_end, clean_start_mmr
 					
 			# 
 			## non MMR plots
-			 if ((Ch_list[j]==1 & cycles==2) | (Ch_list[j]==1 & cycles==3) | (Ch_list[j]==1 & cycles>=4)){
+			if ((Ch_list[j]==1 & cycles==2) | (Ch_list[j]==1 & cycles==3) | (Ch_list[j]==1 & cycles>=4)){
 			# if ((Ch_list[j]==1 & cycles>=2)){
  
 				p2 %<a-% {
@@ -3175,7 +3175,6 @@ MMR<-function(data.MMR,cycles,
 	 	rows_temp<-c(5,5,5,5) # the order Ch1, Ch2, Ch3, Ch4
 	}
 	
-	# herehere 
 	if(clean_Ch1[1] == 0 & mmr_Ch1!=0){
     clean_Ch1[1] <- cycle_start[mmr_Ch1]
 	}
@@ -3249,6 +3248,7 @@ MMR<-function(data.MMR,cycles,
       	    
       	    inv.data.clean<-as.data.frame(matrix(nrow=0, ncol=0))
       	  }
+      	  
       		newdata_mmr<-Channel_mmr(data.MMR, dataMMR, cycle_start, cycle_end, clean_start_mmr, clean_end_mmr, Ch_list, cycles, j, rows, rows_temp, newdata_mmr, path, inv.data.clean)
       	}
       
@@ -3543,7 +3543,7 @@ MMR_SMR_AS_EPOC<-function(data.MMR,
                           match_background_Ch = FALSE, 
                           mmr_background = "SAME_slope",
                           path = ".",
-                          test = "development_NA", 
+                          # test = "development_NA", 
                           spars_levels = c(0.1, 0.2, 0.3)){
 	graphics.off()	
   
@@ -4908,13 +4908,20 @@ MMR_SMR_AS_EPOC<-function(data.MMR,
 		# mclust: R package for model-based clustering, classification, and density estimation based on finite normal mixture modelling. It provides functions for parameter estimation via the EM algorithm for normal mixture models with a variety of covariance structures, and functions for simulation from these models.
 			
 		# read about EM http://www.statisticshowto.com/em-algorithm-expectation-maximization/
-		
-		
+  		mmr_overall<-max(mo2)
+  		AS_smr_mean10minVal_overall <- mmr_overall - min10_mean$mean_mo2[i]
+  		AS_SMR_low10quant_overall <- mmr_overall - quantile_smr[i,2]
+  		AS_SMR_low15quant_overall <- mmr_overall - quantile_smr[i,3]
+  		AS_SMR_low20quant_overall <- mmr_overall - quantile_smr[i,4]
+  		AS_smr_mlnd_overall <- mmr_overall - mlnd
+  		
     	values_smr<-as.data.frame(t(c(filename.SMR, ID, Y.Ch, BW, t_min, t_max, t_mean, N_mo2,
-  		min10_mean$mean_mo2[i], min10_mean$sd_mo2[i], min10_mean$cv_mo2[i],
-  		quantile_smr[i,2],  quantile_smr[i,3], quantile_smr[i,4],   
+  		min10_mean$mean_mo2[i], min10_mean$sd_mo2[i], min10_mean$cv_mo2[i], quantile_smr[i,2],  quantile_smr[i,3], quantile_smr[i,4],   
   		mlnd, CVmlnd, Nmlnd,
-  		NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, scaling_exponent_mmr, scaling_exponent_smr, common_mass)))#13
+  		NA, mmr_overall,
+  		NA, NA, NA, NA, NA,
+  		AS_smr_mean10minVal_overall, AS_SMR_low10quant_overall, AS_SMR_low15quant_overall, AS_SMR_low20quant_overall, AS_smr_mlnd_overall, #5
+  		NA, scaling_exponent_mmr, scaling_exponent_smr, common_mass)))#13
   		
   		colnames(values_smr)<-c("filename", "ID", "Ch", "BW","t_min","t_max", "t_mean", "N_mo2", #8
     	"smr_mean10minVal","smr_SD10minVal", "smr_CV10minVal", "SMR_low10quant","SMR_low15quant","SMR_low20quant", #6
@@ -4977,15 +4984,15 @@ MMR_SMR_AS_EPOC<-function(data.MMR,
 	  if (path == "."){
 		  	EPOCdata_name<-paste( filename.MMR, "_EPOC_DATA.csv", sep='')
 		  	# EPOCplot_name<-	paste( filename.MMR, "_", d$Ch[1], "_EPOC_PLOT.png", sep='')
-		  	filename.smr<-paste( gsub('.{12}$', '', data.SMR), "SMR_analyzed.csv", sep='')
-  	  	filename.mmr<-paste( gsub('.{12}$', '', data.MMR), "MMR_analyzed.csv", sep='')
-	    	filename.MR<-paste( gsub('.{12}$', '', data.MMR), "MR_analyzed.csv", sep='')
+		  	filename.smr<-paste( gsub('.{4}$', '', data.SMR), "SMR_analyzed.csv", sep='')
+  	  	filename.mmr<-paste( gsub('.{4}$', '', data.MMR), "MMR_analyzed.csv", sep='')
+	    	filename.MR<-paste( gsub('.{4}$', '', data.MMR), "MR_analyzed.csv", sep='')
 		}else{
 		  	EPOCdata_name<-paste("../csv_analyzed_EPOC/", filename.MMR, "_EPOC_DATA.csv", sep='')
 		  	# EPOCplot_name<-	paste("../plots_ch_EPOC/", filename.MMR, "_", d$Ch[1], "_EPOC_PLOT.png", sep='')
-		  	filename.smr<-paste("../csv_analyzed_SMR/",gsub('.{12}$', '', data.SMR), "SMR_analyzed.csv", sep='')
-  	  	filename.mmr<-paste("../csv_analyzed_MMR/",gsub('.{12}$', '', data.MMR), "MMR_analyzed.csv", sep='')
-	    	filename.MR<-paste("../csv_analyzed_MR/", gsub('.{12}$', '', data.MMR), "MR_analyzed.csv", sep='')
+		  	filename.smr<-paste("../csv_analyzed_SMR/",gsub('.{4}$', '', data.SMR), "SMR_analyzed.csv", sep='')
+  	  	filename.mmr<-paste("../csv_analyzed_MMR/",gsub('.{4}$', '', data.MMR), "MMR_analyzed.csv", sep='')
+	    	filename.MR<-paste("../csv_analyzed_MR/", gsub('.{4}$', '', data.MMR), "MR_analyzed.csv", sep='')
 	    	
 		}
 
@@ -5016,14 +5023,15 @@ MMR_SMR_AS_EPOC<-function(data.MMR,
 				newdata.smr$mmr_length_cycle[which(newdata.smr$Ch==nameCh)]<-mmr_length_cycle0
 				newdata.smr$mmr_overall[which(newdata.smr$Ch==nameCh)]<-max(c(d_MMR$mo2[which(d_MMR$Ch==nameCh)], d_SMR$mo2[which(d_SMR$Ch==nameCh)]))
 				
+				# print(c(mmr_Ch0, 
+				#         as.numeric(newdata.smr$mmr_overall[which(newdata.smr$Ch==nameCh)]),
+				#         round(max(d_SMR$mo2[which(d_SMR$Ch==nameCh)]),2),round(max(d_MMR$mo2[which(d_MMR$Ch==nameCh)]),2)),
+				#       newdata.smr$mmr_overall)
+				
 ##				print(max(d_SMR$mo2[which(d_SMR$Ch==nameCh)]))
 				if(mmr_Ch0 < as.numeric(newdata.smr$mmr_overall[which(newdata.smr$Ch==nameCh)])){
-				  
-				  # print(c(as.numeric(newdata.smr$mmr_overall[which(newdata.smr$Ch==nameCh)]),
-				  #         round(max(d_SMR$mo2[which(d_SMR$Ch==nameCh)]),2), 
-				  #         mmr_Ch0))
-				  # print(	newdata.smr)
-				  message(c("MMR 1st: ", round(mmr_Ch0, 2), " < MMR overall ", round(max(d_SMR$mo2[which(d_SMR$Ch==nameCh)]),2)))
+				
+				  message(c("MMR 1st: ", round(mmr_Ch0, 2), " < MMR overall ", round(max(c(d_MMR$mo2[which(d_MMR$Ch==nameCh)], d_SMR$mo2[which(d_SMR$Ch==nameCh)])), 3)))
 				}
 			
 			}
@@ -5170,7 +5178,7 @@ MMR_SMR_AS_EPOC<-function(data.MMR,
 		write.csv(file=filename.MR, newdata.smr, row.names=FALSE)
 		
 	# 	if(test=="preSDA"){
-	#     	  filename.MR<-paste("../csv_input_files/", gsub('.{12}$', '', data.MMR), "MR_analyzed.csv", sep='')
+	#     	  filename.MR<-paste("../csv_input_files/", gsub('.{4}$', '', data.MMR), "MR_analyzed.csv", sep='')
 	#     	  write.csv(file=filename.MR, newdata.smr, row.names=FALSE)
 	#    }
 
@@ -5184,11 +5192,11 @@ MMR_SMR_AS_EPOC<-function(data.MMR,
   if(data.SMR!="none" & data.MMR=="none"){
 	  
 	 if (path == "." ){
-	    filename.smr<-paste(gsub('.{12}$', '', data.SMR), "SMR_analyzed.csv", sep='')
-		  filename.MR<-paste(gsub('.{12}$', '', data.SMR), "MR_analyzed.csv", sep='')
+	    filename.smr<-paste(gsub('.{4}$', '', data.SMR), "SMR_analyzed.csv", sep='')
+		  filename.MR<-paste(gsub('.{4}$', '', data.SMR), "MR_analyzed.csv", sep='')
    }else{
-	    filename.smr<-paste("../csv_analyzed_SMR/",gsub('.{12}$', '', data.SMR), "SMR_analyzed.csv", sep='')
-		  filename.MR<-paste("../csv_analyzed_MR/", gsub('.{12}$', '', data.SMR), "MR_analyzed.csv", sep='')
+	    filename.smr<-paste("../csv_analyzed_SMR/",gsub('.{4}$', '', data.SMR), "SMR_analyzed.csv", sep='')
+		  filename.MR<-paste("../csv_analyzed_MR/", gsub('.{4}$', '', data.SMR), "MR_analyzed.csv", sep='')
 	 }
 
     lst <- lapply(newdata.smr, unlist)
@@ -5198,10 +5206,10 @@ MMR_SMR_AS_EPOC<-function(data.MMR,
 		write.csv(file=filename.smr, d_SMR, row.names=FALSE)
 		write.csv(file=filename.MR, newdata.smr, row.names=FALSE)
 		
-	   if(test=="preSDA"){
-	    	  filename.MR<-paste("../csv_input_files/", gsub('.{12}$', '', data.SMR), "MR_analyzed.csv", sep='')
-	    	  write.csv(file=filename.MR, newdata.smr, row.names=FALSE)
-	   }
+	   # if(test=="preSDA"){
+	   #  	  filename.MR<-paste("../csv_input_files/", gsub('.{4}$', '', data.SMR), "MR_analyzed.csv", sep='')
+	   #  	  write.csv(file=filename.MR, newdata.smr, row.names=FALSE)
+	   # }
 		message("Save SMR and MR files")
 
   }  # end of argument of 
@@ -5212,12 +5220,12 @@ MMR_SMR_AS_EPOC<-function(data.MMR,
 	
 		# filename.MMR<-paste(gsub('.{3}$', '',data.MMR), "_MMR_", sep="")
 	  if (path == "."){ 
-	    filename.mmr<-paste( gsub('.{12}$', '', data.MMR), "MMR_analyzed.csv", sep='')
-		  filename.MR<-paste( gsub('.{12}$', '', data.MMR), "MR_analyzed.csv", sep='')
+	    filename.mmr<-paste( gsub('.{4}$', '', data.MMR), "MMR_analyzed.csv", sep='')
+		  filename.MR<-paste( gsub('.{4}$', '', data.MMR), "MR_analyzed.csv", sep='')
 	  
 	   }else{
-	    filename.mmr<-paste("../csv_analyzed_MMR/",gsub('.{12}$', '', data.MMR), "MMR_analyzed.csv", sep='')
-		  filename.MR<-paste("../csv_analyzed_MR/", gsub('.{12}$', '', data.MMR), "MR_analyzed.csv", sep='')
+	    filename.mmr<-paste("../csv_analyzed_MMR/",gsub('.{4}$', '', data.MMR), "MMR_analyzed.csv", sep='')
+		  filename.MR<-paste("../csv_analyzed_MR/", gsub('.{4}$', '', data.MMR), "MR_analyzed.csv", sep='')
     }
     
 		# d_MMR$bw<-NA
@@ -5251,7 +5259,7 @@ MMR_SMR_AS_EPOC<-function(data.MMR,
 		  d_MMR2<- d_MMR[d_MMR$cycle_type=="MMR",]# data frame without the cycles (e.g., the cycles only
 		  
 		  # temp min and max for MMR only 
-			values<-as.data.frame(t(c(gsub('.{12}$', '', data.MMR),  d_MMR2$ID[i], d_MMR2$Ch[i],
+			values<-as.data.frame(t(c(gsub('.{4}$', '', data.MMR),  d_MMR2$ID[i], d_MMR2$Ch[i],
 			                          d_MMR2$bw[i], d_MMR2$t_min[i], d_MMR2$t_max[i], d_MMR2$t_mean[i], NA,
 			NA,NA,NA,
 			NA,NA,NA,
@@ -5287,10 +5295,10 @@ MMR_SMR_AS_EPOC<-function(data.MMR,
     newdata.smr <- (data.frame(lapply(lst, `length<-`, max(lengths(lst)))))
     
 		write.csv(file=filename.MR, newdata.smr, row.names=FALSE)
-		if(test=="preSDA"){
-	    	  filename.MR<-paste("../csv_input_files/", gsub('.{12}$', '', data.MMR), "MR_analyzed.csv", sep='')
-	    	  write.csv(file=filename.MR, newdata.smr, row.names=FALSE)
-	  }
+	# 	if(test=="preSDA"){
+	#     	  filename.MR<-paste("../csv_input_files/", gsub('.{4}$', '', data.MMR), "MR_analyzed.csv", sep='')
+	#     	  write.csv(file=filename.MR, newdata.smr, row.names=FALSE)
+	#   }
 		message("Saving MMR, and MR files")
   }
 	
