@@ -27,8 +27,8 @@
 
 Date| Description | Previous | UPDATE
 :--- |  :-------------  | :--- | :---
+Feb-Mar 2022 | Update output file ((...analyzed_MR.csv)), previously all AS and MMR_overall were ignored when running the function with argument: `smrfile = "none"` when running the 
 Jan 2022 | MMR function arguments, names changed| `Ch1`, `Ch2`, `Ch3`, `Ch4` | `mmr_Ch1`, `mmr_Ch2`, `mmr_Ch3`, `mmr_Ch4` 
 Jan 2022 | MMR figure (new), analytical for displaying difference for sliding windows, slope and R^2^|  | 
 Jan 2022 | MMR_SMR_AS_EPOC smoothing, fewers trends plotted, new argument for user input| NA  | `spar_levels` & better plot
-
 

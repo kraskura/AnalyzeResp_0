@@ -21,7 +21,7 @@
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left">Description</h4>
 
-This function is taking in an uninterrupted oxygen recording file and extracting each oxygen consumption rate slope. It requires that the measurement cycles are constant through the entire respirometry trial and it assumes that the automatic measurement trial starts with a flush. The regression slopes can be visually assessed and cleaned using this function as well.
+This function handles uninterrupted file with recorded oxygen content and temperature data. The function sections each metabolic rate measurement cycle and calculates regression parameters for each measurement cycle. It is assumed that the duration of each measurement cycle (and flush) is consistent through the entire respirometry trial. It also assumes that the automatic measurement trial starts with a flush. The regression slopes can be visually assessed and cleaned using this function. 
 
 
 <h4><a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a></h4>
@@ -30,14 +30,14 @@ This function is taking in an uninterrupted oxygen recording file and extracting
 
   Argument       | Description | Default
 ---: | :------------- | :---
-**data**             | The name of the raw input file _.csv_, a character. | --
+**data**             | The name of the raw input file _.csv_, as character. | --
 **cycle_start**      | The stat time (min) of auto cycle. This indicates the start of the measurement (relative to min 0). | --
 **cycle_start**      | The time (min) of auto cycle; end of the measurement (relative to min 0) | --
 **chop_start**       | The time (min) to be chopped off at the start of each measurement cycle. | --
 **chop_end**         | The time (min) to be chopped off at the end of each measurement cycle. | --
-**N_Ch**             | The number of channels of the FireSting. Must be either 4 or 8. 8 Channel Firesting has 4 temperature measurements and 4 oxygen content measurements | `4`
-**inventory_data**   | The inventory file (.csv file; must be in the same working directory). | --
-**flush_plot**       | Two opetions, plot additional figures where full cycle is visualized (measure:flush). To plot this specify it with character string:`"ON"` at this argument| `"OFF"`
+**N_Ch**             | The number of channels of the FireSting. Must be either 4 or 8. 8-Channel Firesting has 4 temperature measurements and 4 oxygen content measurements | `4`
+**inventory_data**   | The inventory file (_.csv_ file; must be in the same working directory as the indicated data file). | --
+**flush_plot**       | Plotting of additional figures where full cycle (measure:flush) is presented. To create these figures, indicate: `"ON"` | `"OFF"`
 **path**             | The directory where all output files will be saved. There are two options, either all files will be saved in the current working directory, the other option requires the folders created by `organize_MR_analysis` |  `"."` (local directory)  
 **date_format**      | The date format used in the original FireSting files. Must specify one of the following: `c("m/d/y","d/m/y","y-m-d")` | `"m/d/y"`
 **plot_temp**   | Logical  indicating whether or not temperature trends for each cycle will be plotted | `TRUE`

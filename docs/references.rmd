@@ -12,6 +12,8 @@ Functions have been updated since 2017. The core functionality and methods to es
 <br>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">Published, complete analyses</h4>
 
+5) Anlauf-Dunn, K., Kraskura, K., Eliason, E.J., Intraspecific variability in thermal tolerance: Linking physiological performance and climate adaptation. Conservation Physiology. *In Press*  
+
 4) Hardison, E.A., Kraskura, K., Van Wert, J., Nguyen, T., Eliason, E.J., 2021. Diet mediates thermal performance traits: implications for marine ectotherms. Journal of Experimental Biology 224, jeb242846. [link](https://doi.org/10.1242/jeb.242846)
 
 3) Little, A.G., Dressler, T., Kraskura, K., Hardison, E., Hendriks, B., Prystay, T., Farrell, A.P., Cooke, S.J., Patterson, D.A., Hinch, S.G., Eliason, E.J., 2020. Maxed Out: Optimizing Accuracy, Precision, and Power for Field Measures of Maximum Metabolic Rate in Fishes. Physiological and Biochemical Zoology 93, 243–254. [link](https://doi.org/10.1086/708673)
@@ -25,33 +27,33 @@ Functions have been updated since 2017. The core functionality and methods to es
 
 ** **Completed analyses.** 
 
-9) Daniella LoScerbo, David Ptterson, Kendra Robinson and collegues 2021. Hypoxia tolerance in Pygmy sculpin.
+9) Birnie-Gauvin et al. 2022. Metabolism and recovery of male and female kokanee salmon across temperatures.
 
-8) ** Anlauf-Dunn, K., Kraskura, K., Eliason, E.J., Intraspecific variability in thermal tolerance: Linking physiological performance and climate adaptation. Conservation Physiology. *In Review*
+8) Daniella LoScerbo, David Ptterson, Kendra Robinson and collegues 2021. Hypoxia tolerance in Pygmy sculpin.
 
-7) Kraskura et al 2021. Scaling and climate change: temperature modulated physiological performance in Barred surfperch. In progress. 
+7) Kraskura et al 2021. Scaling and climate change: temperature modulated physiological performance in Barred surfperch. In progress.
 
 6) ** DiFiore P. Bartholomew et al. California spiny lobster ecology and physiology study. 
 
-5) Noa Mayer et al. 2021. Project on Kokanee salmon.
+5) Noa Mayer et al. 2021. Metabolism and recovery of kokanee salmon across temperatures and lifestages.
 
-4) Jacey Van Wert et al 2020. Project comparing thermal tolerance of Chinook salmon from different populations. 
+4) Jacey Van Wert et al 2020. Population specific thermal tolerance of adult Chinook salmon. 
 
-3) Jacey Van Wert et al 2021. Project examining cardiovascular performance in Pacific salmon.
+3) Jacey Van Wert et al 2021. Cardiovascular performance in Pacific salmon across temperatures.
 
-2) ** Dressler et al 2019-current. Population specific thermal tolerance of California Coastal trout.
+2) ** Dressler et al 2019-current. Population specific thermal tolerance of California coastal trout.
 
-1) Malakhoff K. et al 2019-current. Digestion in purple sea urchins. 
+1) Malakhoff K. et al 2019-current. Digestion in purple sea urchins.
 
 
-<br><h4 style="color:#495057; font-weight: bold;  text-align: left">Literature that has inspired us, the list is long</h4>
+<br><h4 style="color:#495057; font-weight: bold;  text-align: left">Literature that has inspired us. The list is long</h4>
 
 1. Special Issue 88 in Journal of Fish Biology 2016: [Metabolic Rate in Fishes. Definitions, Methods and Significance for Conservation Physiology](https://onlinelibrary.wiley.com/toc/10958649/2016/88/1)
 Open access.
   - Methods: [Svendsen et al 2016](http://doi.wiley.com/10.1111/jfb.12797)
   - Methods: [Svendsen et al 2016](http://doi.wiley.com/10.1111/jfb.12851)
   - Methods: [Rodgers et al 2016](http://doi.wiley.com/10.1111/jfb.12848)
-  - Relevance: [Norin and Clark 2016](https://onlinelibrary.wiley.com/doi/full/10.1111/jfb.12796)
+  - On relevance: [Norin and Clark 2016](https://onlinelibrary.wiley.com/doi/full/10.1111/jfb.12796)
   - Methods: [Rosewarne et al 2016](https://onlinelibrary.wiley.com/doi/10.1111/jfb.12795)
 
 2. Methods related literature in aquatic respirometry
@@ -61,14 +63,15 @@ Open access.
   * Methods: [Zhang et al 2019](https://jeb.biologists.org/content/222/12/jeb196568.long)
   * MMR: [Little et al 2020](https://doi.org/10.1086/708673)
 
-3. The importance of metabolic scaling:
-  * Standard metabolic rate in fishes [Jerde et al 2020](https://onlinelibrary.wiley.com/doi/abs/10.1111/jfb.14218)
-  * Metabolic rate in fishes depending on lifestyle and temperature [Killen et al 2010](http://doi.wiley.com/10.1111/j.1461-0248.2009.01415.x)
-  * Metabolic rate and temperature in teleost fishes [Clarke and Johnson 1999](https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1046/j.1365-2656.1999.00337.x)
+3. The importance of metabolic scaling in respirometry studies:
+  * On SMR in fishes [Jerde et al 2020](https://onlinelibrary.wiley.com/doi/abs/10.1111/jfb.14218)
+  * Metabolic rate in fishes depends on lifestyle and temperature [Killen et al 2010](http://doi.wiley.com/10.1111/j.1461-0248.2009.01415.x)
+  * Metabolic rate in fishes depend on temperature [Clarke and Johnson 1999](https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1046/j.1365-2656.1999.00337.x)
+  * Different metabolic scaling relationships and their thermal sensitivities in MMR and SMR [Rubalcaba et al 2020](www.pnas.org/cgi/doi/10.1073/pnas.2003292117)
   * Metabolic Theory of Ecology [Brown et al 2004](http://doi.wiley.com/10.1890/03-9000)
 
-4. Reporting methods of respiromtery experiments:
-  * Killen et al 2021 [https://journals.biologists.com/jeb/article/224/18/jeb242522/272132/Guidelines-for-reporting-methods-to-estimate]
-    - This publication has an incredible table that serves as a checklist of criteria that should be reported with cited examples (53 entries) 
+4. Reporting methods for respirometry experiments:
+  * [Killen et al 2021](https://journals.biologists.com/jeb/article/224/18/jeb242522/272132/Guidelines-for-reporting-methods-to-estimate)
+    - This publication has an incredible table that serves as a checklist of criteria that should be reported in studies using aquatic respirometry. with cited examples (53 entries) 
     - Includes a fantastic, well illustrated figure showing the setup for intermittent respiromtery
 

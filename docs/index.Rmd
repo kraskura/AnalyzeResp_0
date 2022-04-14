@@ -1,25 +1,27 @@
 
 
->This is AnalyzeResp, a developing set of function (one day hoping to call it a package in R). This is a project that started as one file with few functions in R customise to analyse collected experimental data. It then began to grow into a more comprehensive package, and it continues to grow to this day. We continue to use it and while using it, new tools, capabilities are added to the function. 
-The maintenance and development of R script is lead by Krista Kraskura, a PhD Candidate at UCSB, but this would not be possible without the valuable feedback and support from the [Erika Eliason's Lab](www.erikaeliason.com) and collaborators. 
+>This is a site for developing set of R function, which we called "AnalyzeResp" (one day we are hoping to call AnalyzeResp a formally published package in R). This is a project that started as a signle R file containing a few custom written functions to analyse experimentally collected oxygen consumption data in fish, or any aquatic animals. This is an active project: the outputs are modified and revised to improve clarity and their visual presentation, while the inputs to each function are streamlined to improve user experience. We are very encouraged that the community using these functions is growing and strive to provide a positive experience to everyone. 
 
-<h6 style="color:#495057; font-weight: bold;  text-align: left"> Not published on CRAN </h6>
+The maintenance and development of all R scripts is lead by Krista Kraskura, a PhD Candidate at UCSB. However, this would not be possible without the valuable advice and support from the [Erika Eliason's Lab](www.erikaeliason.com) and many of her collaborators. Special thanks to Emily Hardison, Terra Dressler, Jacey Van Wert, Samantha Csik, and Dr. Erika Eliason.
+
+<h6 style="color:#495057; font-weight: bold;  text-align: left"> This is NOT published on CRAN </h6>
+<h6 style="color:#495057; font-weight: bold;  text-align: left"> License: MIT </h6>
 
 <div class="well">
-Trasnparent and open source work is our high priority. While this is not a formally formatted library, this is my first attempt to make it available to everyone.
-My priority remains to re-work and organise the functions, and to make them installable via Github as a package. 
+Trasnparent and open source work is our priority. Although, this is not a formally formatted R package, nor is publish by CRAN, here we share all functions (R script) for everyone's use. We provide documentation for functions, troubleshooting page, and supplementary background information to facility the use of these functions. 
+
+As a maintainer and developer, my priorities for this project include: 1) improving the functions, specifically focusing on streamlinig the inputs and outputs, and 2) to make the set of functions installable directly via Github, and submit this work to be published on CRAN.
 </div>
 
 <p style = "text-align:left; font-weight: bold; color: #325d88"> Author and maintainer: Krista Kraskura </p>
-<p style = "text-align:left; color: #325d88"> Thank you for valuable advice and feedback for improvement from: Emily Hardison, Terra Dressler, Jacey Van Wert, Samantha Csik, Erika Eliason </p>
 
 ---------------------------------------------------------------------
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left"> The Community</h4>
 
-We thank and recognise the work by Chabot, D., Steffensen, J. F. and Farrell, A. P. (2016) The determination of the standard metabolic rate in fishes. Journal of Fish Biology 88, 81-121. We have incorporated the mean of the lowest normal distribution (MLND) approach as one of the users options to robustly estimate of standard metabolic rates in aquatic animals (SMR).
+Our analysis incorporates approaches described by Chabot, D., Steffensen, J. F. and Farrell, A. P. (2016) The determination of the standard metabolic rate in fishes. Journal of Fish Biology 88, 81-121.
 
-Also we encourage checking out these packages and functions in R:
+We are inspired by the work by many package developers in this field of study and encourage checking out these packages and functions in R:
 
 - **RespR** by Januar Harianto & Nicholas Carey [Web](https://januarharianto.github.io/respR/index.html)
 - **respirometry** by Matthew A. Birk [CRAN](https://cran.r-project.org/web/packages/respirometry/index.html)
@@ -30,25 +32,31 @@ Also we encourage checking out these packages and functions in R:
 <br>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">Get started</h4> 
 
-- Fork the repository from [GitHub](https://github.com/kraskura/AnalyzeResp_0) directly. Git code source: [https://github.com/kraskura/AnalyzeResp_0.git](https://github.com/kraskura/AnalyzeResp_0.git)
-- Use the demo tutorials to guide the analyses of the data. Use the troubleshooting page for help.
-- We always welcome emails with any questions, feedback, and suggestions to improve this work.
+- Fork the repository from [GitHub](https://github.com/kraskura/AnalyzeResp_0) directly. Or download an R script with all functions: [https://github.com/kraskura/AnalyzeResp_0.git](https://github.com/kraskura/AnalyzeResp_0.git)
+- Use the demo tutorials to guide data analyses. An annotated R script with example sequence of analysis is available in the Git repository.
+- Use the troubleshooting page for help.
+- Emails, or posts directly on GitHub repository page are welcome and encouraged when getting stuck at any steps.
+- Similarly, I will greatly appreciate any feedback, and suggestions to improve this work.
 
-- Please cite the GitHub Repo when used to analyze data. We will appreciate if you reach out when using our functions, and your work will be added to the <a href="./references.html" >reference list</a>
+- Please cite the GitHub Repository when using any of the functions.
+- We also suggest citing two methods papers that we used to guide the work:
+    - Chabot, D., Steffensen, J. F. and Farrell, A. P. (2016) The determination of the standard metabolic rate in fishes. Journal of Fish Biology 88, 81-121. 
+    - Little, A.G., Dressler, T., Kraskura, K., Hardison, E., Hendriks, B., Prystay, T., Farrell, A.P., Cooke, S.J., Patterson, D.A., Hinch, S.G., Eliason, E.J., 2020. Maxed Out: Optimizing Accuracy, Precision, and Power for Field Measures of Maximum Metabolic Rate in Fishes. Physiological and Biochemical Zoology 93, 243–254. [link](https://doi.org/10.1086/708673)
+
+- Lasty, we will appreciate if you reach out when using our functions, and your work will be added to the <a href="./references.html" >reference list</a> Thank you! 
 
  <br>
-<h4 style="color:#495057; font-weight: bold;  text-align: left"> What is this for? </h4>
+<h4 style="color:#495057; font-weight: bold;  text-align: left"> For who and for what is AnalyzeResp for? </h4>
 
-Anyone using aquatic respirometry in their work.
-Our script is writtem to analyze data that was measured using [Firesting multichannel](https://www.pyroscience.com/en/263) oxygen sensor boxes from Pyroscience. But it can be easily adapted to be compatible with any other setup (demos on how to achieve this coming soon!). 
+For who: The functions are for anyone using aquatic respirometry in their work.
+Our script is writtem to analyze data that was measured using [Firesting multichannel](https://www.pyroscience.com/en/263) oxygen sensors from Pyroscience. The script can be easily adapted to be compatible with any other setup (demos on how to achieve this coming soon!).
 
-The raw (.tx) export files from the Firesting complementary software are then directly fed into our function (in a specific sequence) to estimate oxygen consumption rates of our study animals (i.e. a proxy of metabolic rate, MR). Then all compiled metabolic rate measurements are used specifically estimate different ecologically valuable performances, Maximum metabolic rates, Standard (and Resting) metabolic rates, Aerobic scope, Digestions Costs and Time, Recovery performance. And we plan to expand the capability of these functions furter. 
+A quick overview of AnalyzeResp: Once the oxygen consumption rates are recorded in any aquatic animal using respiromatery, it's time to use these finctions. The raw (.txt) export files from the Firesting complementary software can be directly provided to our first function, which will strip it down to a few essential components required to obtain metabolic rates in an animal. Then several functions (in a specific sequence) can be used to estimate oxygen consumption rates, or metabolic performances (oxygen consumption is a proxy of metabolic rate). Then all compiled metabolic rate measurements are used to specifically estimate different ecologically valuable performances: Maximum metabolic rates, Standard (and Resting) metabolic rates, Routine Metabolic rates, Absolute Aerobic scope, Recovery performance, and Digestions Costs and Time. 
 
-**Strengths?** Very fine ability to visualize all data, perform user specific quality control, track progress, make work reproducible using R script. All input and output files can be saved locally (default, but can be optional). 
+**Strengths?** i) Ability to visualize all data in detail and at all analysis steps. ii) perform user specific quality control, track progress, make work reproducible using R script. iii) all input and output files can be saved locally in a user-specified directory (default, optional).
 
 **Imported libraries:** 
 ```
 rMR, ggplot2, gridExtra, chron, lubridate, dplyr, pryr, ggpubr, magrittr, tidyr ,broom, purrr, mclust, data.table, stringr, DescTools
 
 ```
-

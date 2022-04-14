@@ -4,16 +4,24 @@
 </div>
 
 <ul>
-  <li><a href="./demo_mmr_smr_as_epoc.html" style = "color:#29abe0; font-weight:bold;">Full analysis example for MMR, SMR, Absolute AS, and EPOC or recovery</a>
-  <li><a href="./demo_sda.html" style = "color:#29abe0; font-weight:bold;">Analysis for SDA (prelim)</a>
-  <li><a href="https://github.com/kraskura/AnalyzeResp_0/blob/main/R/Test_AnalyzeResp_0_clean.R" style = "color:grey;">Example Test R script: AnalyzeResp_0/R/Test_AnalyzeResp_0_clean.R</a>
+  <li><a href="./demo_mmr_smr_as_epoc.html" style = "color:#29abe0; font-weight:bold;">A step-by-step example guide to carry out analysis of MMR, SMR, Absolute AS, and EPOC or recovery</a>
+  <li><a href="./demo_sda.html" style = "color:#29abe0; font-weight:bold;">Analysis for SDA (preliminary, not developed yet)</a>
+  <li><a href="https://github.com/kraskura/AnalyzeResp_0/blob/main/R/Test_AnalyzeResp_0_clean.R" style = "color:grey;"> R script with example code: AnalyzeResp_0/R/Test_AnalyzeResp_0_clean.R</a>
 </ul>
 ____________________________________________________________________________________________________________________________
 <br>
 
 <p style="color:darkred; font-weight: bold;  text-align: left"> Before exploring the demos, please note this ineficiency: </h5>
-There are steps in the analysis that depend on unique identifyers for each input files. Because of that the name of the file matters in order for the function to recognise it and process it. Be cautious of this starting the analysis. 
-The "box#" must be a part of the name of this folder, but it can be anywhere in the file after the initial "date_year" part of the name.
+There are steps in the analysis that only work if specific phrases can be located in the file name (unique to each experimental run). Therefore, the name of the file matters. A specific and consitent naming of the files is best implemented at the time of experimental data collection. A few important notes:
+
+- The "box" correspond to a Firesting oxygen meter box, in this context
+- It is assumed, that these boxes are numbered
+- It is assumed that the following parts are present in the filename: 
+  * box# : where the # is numeric, e.g. box1, box3 (case-insesitive)
+  * date : date in the following format; '3-letter month + 2 number-date", e.g. jun10, may01
+  * year is included
+
+  A full example: 
 
 <img src="./Images/naming.png" alt="jul04_2019_box1_fishfile1_smr" style="max-width: 400px; height: auto; display: block;
   margin-left: auto; margin-right: auto;">

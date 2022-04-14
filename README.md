@@ -1,3 +1,7 @@
+
+
+## !!! this is not used for the web-front face ---
+
 # AnalyzeResp_0
 
 This is AnalyzeResp, a developing set of function (one day hoping to call it a package in R). This is a project that started as one file with few functions in R customise to analyse collected experimental data. It then began to grow into a more comprehensive package, and it continues to grow to this day. We continue to use it and while using it, new tools, capabilities are added to the function. 

@@ -8,13 +8,13 @@
 <h4 style="color:#325d88; font-weight: bold;  text-align: left"> Abbreviations / Vocabulary </h4>
 
 - MR: Metabolic rate
-- MO~2~: oxygen consumption rate
-- SMR: Standard metabolic rate, the minimim MR required to sustain life
-- MMR: Maximum metabolic rate, the maximim MR that an animal can elicit
-- EPOC: excess post exercise oxygen consumption, long term / full recovery 
-- Time[MMR50]: the time it takes to recover MO~2~ to 50% of the MMR
-- SDA: specific dynamic action, digestion costs 
-- QC: quality control, manual checking and ensuring data quality, data cleaning to exclude technical or experimental anomolous recordings.
+- MO~2~: oxygen consumption rate (a proxy for metabolic rates)
+- SMR: Standard Metabolic Rate, the minimim MR required to sustain life at the given set of conditions
+- MMR: Maximum Metabolic Rate, the maximim (measured) MR that an animal can elicit
+- EPOC: Excess Post-Exercise oxygen Consumption, or metabolic recovery (contains time and metabolic cost metrics)
+- Time[MMR50]: the time it takes to recover MO~2~ to 50% of the measured MMR.
+- SDA: Specific Dynamic Action, or metabolism associated with digestion (contains time and metabolic cost metrics)
+- QC: quality control that includes checking and ensuring the quality of data, and if neccessary data cleaning to exclude technical or experimental anomolous recordings.
 
 <br>
 
