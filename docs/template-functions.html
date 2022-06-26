@@ -13,8 +13,8 @@
 
 <title>template-functions</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="site_libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -60,6 +60,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -80,6 +81,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -232,7 +236,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -263,7 +267,7 @@ $(document).ready(function () {
   <a href="progressNotes.html">Updates</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Resources
      
     <span class="caret"></span>
@@ -383,7 +387,8 @@ Description
 </h4>
 <p><br></p>
 <h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;">
-<i class="fas fa-ellipsis-h"></i>  If enabling automatic output file distribution in local directories
+<i class="fas fa-ellipsis-h"></i>  If enabling automatic output file
+distribution in local directories
 </h4>
 <h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;">
 <i class="fas fa-ellipsis-h"></i>  Data outputs
@@ -422,10 +427,15 @@ example
 
 
 </pre>
-<div id="convert-raw-firesting-data-files-to-a-usable-format" class="section level4">
+<div id="convert-raw-firesting-data-files-to-a-usable-format"
+class="section level4">
 <h4>2. Convert raw FireSting data files to a usable format</h4>
 <p><strong>Function</strong>: <code>txt_csv_convert</code></p>
-<p>The original FireSting datafiles are in <em>.txt</em> format and cannot be used with this analysis package. Use this function to convert <em>.txt</em> files into a <em>.csv</em> format that can be used in the next steps. Note, this function only takes a portion of data available in the original file.</p>
+<p>The original FireSting datafiles are in <em>.txt</em> format and
+cannot be used with this analysis package. Use this function to convert
+<em>.txt</em> files into a <em>.csv</em> format that can be used in the
+next steps. Note, this function only takes a portion of data available
+in the original file.</p>
 <table>
 <colgroup>
 <col width="50%" />
@@ -444,11 +454,16 @@ example
 </tr>
 <tr class="even">
 <td>N_Ch</td>
-<td>The number of FireSting channels. Options include 2, 4, 8. Note, if either a 2- or 4-Channel FireSting was used, this argument can be ignored. Default = <code>4</code></td>
+<td>The number of FireSting channels. Options include 2, 4, 8. Note, if
+either a 2- or 4-Channel FireSting was used, this argument can be
+ignored. Default = <code>4</code></td>
 </tr>
 <tr class="odd">
 <td>path</td>
-<td>Specify the folder where all converted <em>.csv</em> files will be saved. It can be either <code>AUTO</code>, <code>MANUAL</code>, <code>BACTERIAL_RESP</code>, or <code>SDA</code>. The default is a local directory (<code>"."</code>)</td>
+<td>Specify the folder where all converted <em>.csv</em> files will be
+saved. It can be either <code>AUTO</code>, <code>MANUAL</code>,
+<code>BACTERIAL_RESP</code>, or <code>SDA</code>. The default is a local
+directory (<code>"."</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -456,7 +471,14 @@ example
 <div id="need-splitting-data-files" class="section level4">
 <h4>3. Need splitting data files?</h4>
 <p><strong>Function</strong>: <code>csv_file_split</code></p>
-<p>Use this function to split your files in 2 parts at a defined time point. Most commonly this is needed when MMR and SMR parts are together in one file. For example, when manually controlled part of the data recording (manually initiated flush:measure cycles; typically MMR) is immediately followed by automatic data recording (auto timer controlled flush:measure cycles; typically SMR/RMR). These two parts are analyzed using different functions and so need to be in different <em>.csv</em> files.</p>
+<p>Use this function to split your files in 2 parts at a defined time
+point. Most commonly this is needed when MMR and SMR parts are together
+in one file. For example, when manually controlled part of the data
+recording (manually initiated flush:measure cycles; typically MMR) is
+immediately followed by automatic data recording (auto timer controlled
+flush:measure cycles; typically SMR/RMR). These two parts are analyzed
+using different functions and so need to be in different <em>.csv</em>
+files.</p>
 <table>
 <colgroup>
 <col width="50%" />
@@ -471,39 +493,51 @@ example
 <tbody>
 <tr class="odd">
 <td>data</td>
-<td>Data <em>.csv</em> to be split in two (manual/MMR and auto/SMR <em>.csv</em> files). Input must be a character. No default</td>
+<td>Data <em>.csv</em> to be split in two (manual/MMR and auto/SMR
+<em>.csv</em> files). Input must be a character. No default</td>
 </tr>
 <tr class="even">
 <td>split_data_name</td>
-<td>The name that will be used to save all output files. Input must be a character. No default</td>
+<td>The name that will be used to save all output files. Input must be a
+character. No default</td>
 </tr>
 <tr class="odd">
 <td>cycle_full_min</td>
-<td>cycle length (min) that the auto file was run on, this includes both flush + measure; no default. No default</td>
+<td>cycle length (min) that the auto file was run on, this includes both
+flush + measure; no default. No default</td>
 </tr>
 <tr class="even">
 <td>timeSplit</td>
-<td>The time at which the file will be split in two (the split time (min)). This time will be shown in output plots. No default</td>
+<td>The time at which the file will be split in two (the split time
+(min)). This time will be shown in output plots. No default</td>
 </tr>
 <tr class="odd">
 <td>date_format</td>
-<td>The date format. It must be provided, and can be either: <code>"m/d/y"</code>, <code>"d/m/y"</code>, <code>"y-m-d"</code>. The Default = <code>NULL</code></td>
+<td>The date format. It must be provided, and can be either:
+<code>"m/d/y"</code>, <code>"d/m/y"</code>, <code>"y-m-d"</code>. The
+Default = <code>NULL</code></td>
 </tr>
 <tr class="even">
 <td>split</td>
-<td>Logical argument. When <code>TRUE</code> the original file will be cut and 2 <em>.csv</em> saved in the local directory. Default=FALSE</td>
+<td>Logical argument. When <code>TRUE</code> the original file will be
+cut and 2 <em>.csv</em> saved in the local directory. Default=FALSE</td>
 </tr>
 <tr class="odd">
 <td>N_Ch</td>
-<td>The number of FireSting channels. Options include 2, 4, 8. Note, if either a 2- or 4-Channel FireSting was used, this argument can be ignored. Default = <code>4</code></td>
+<td>The number of FireSting channels. Options include 2, 4, 8. Note, if
+either a 2- or 4-Channel FireSting was used, this argument can be
+ignored. Default = <code>4</code></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="combining-multiple-smr-or-auto-data-files" class="section level4">
+<div id="combining-multiple-smr-or-auto-data-files"
+class="section level4">
 <h4>4. Combining multiple SMR or AUTO data files</h4>
 <p><strong>Function</strong>: <code>combine_smr</code></p>
-<p>There may be more than one AUTO file recorded for one respirometry trial. Use this function to combine them all together to then calculate SMR/RMR using all measurement cycle values, and to measure recovery.</p>
+<p>There may be more than one AUTO file recorded for one respirometry
+trial. Use this function to combine them all together to then calculate
+SMR/RMR using all measurement cycle values, and to measure recovery.</p>
 <table>
 <colgroup>
 <col width="50%" />
@@ -518,24 +552,41 @@ example
 <tbody>
 <tr class="odd">
 <td>smr_files</td>
-<td>A character vector of _…<em>analyzed.csv</em> . These are output files from <code>SMR</code> function. 2 or more files must be specified. No default</td>
+<td>A character vector of _…<em>analyzed.csv</em> . These are output
+files from <code>SMR</code> function. 2 or more files must be specified.
+No default</td>
 </tr>
 <tr class="even">
 <td>date_format</td>
-<td>The date format used in the original FireSting files. Must specify one of the following: <code>c("m/d/y","d/m/y","y-m-d")</code></td>
+<td>The date format used in the original FireSting files. Must specify
+one of the following: <code>c("m/d/y","d/m/y","y-m-d")</code></td>
 </tr>
 <tr class="odd">
 <td>path</td>
-<td>Specify working directory for all output files. This argument has two options, i) files can be automatically organized in newly created folders, any character may be used, ii) the default is a local directory (<code>"."</code>).</td>
+<td>Specify working directory for all output files. This argument has
+two options, i) files can be automatically organized in newly created
+folders, any character may be used, ii) the default is a local directory
+(<code>"."</code>).</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="understanding-system-wide-background-respiration-rates" class="section level4">
+<div id="understanding-system-wide-background-respiration-rates"
+class="section level4">
 <h4>5. Understanding system-wide background respiration rates</h4>
 <p><strong>Function</strong>: <code>sum_backgr</code></p>
-<p>This function summarises many background files. It is useful when trying to better understand system-wide respiration rate. For example, it may be used to explore the variability of background respiration rates between different respirometry chambers, or to explore overtime trends. This is shorthand way to get background MO2 <a style="color:grey">mgO2/L/h<a> through <code>MMR_SMR_AS_EPOC</code> function. <em>Note: this is a developing function</em></p>
+<p>This function summarises many background files. It is useful when
+trying to better understand system-wide respiration rate. For example,
+it may be used to explore the variability of background respiration
+rates between different respirometry chambers, or to explore overtime
+trends. This is shorthand way to get background MO2
+<a style="color:grey">mgO2/L/h<a> through <code>MMR_SMR_AS_EPOC</code>
+function. <em>Note: this is a developing function</em></p>
 <table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>Argument</th>
@@ -602,7 +653,8 @@ Maximum metabolic rate, MMR
 </tr>
 <tr class="odd">
 <td>sda_threshold</td>
-<td>= c(“SMR_mean10minVal”,“SMR_low10quant”, “SMR_low15quant”, “SMR_low20quant”, “smr_mlnd”, “SMR_vals”),</td>
+<td>= c(“SMR_mean10minVal”,“SMR_low10quant”, “SMR_low15quant”,
+“SMR_low20quant”, “smr_mlnd”, “SMR_vals”),</td>
 </tr>
 <tr class="even">
 <td>AnimalID</td>
@@ -670,13 +722,16 @@ Maximum metabolic rate, MMR
 </tr>
 </tbody>
 </table>
-<p>Supplementary to SDA function: - <code>SDA.spar</code> Arguments: spar,d, SDAdata, b, peak_SDA_all, time_peak_SDA_all, sda_threshold</p>
+<p>Supplementary to SDA function: - <code>SDA.spar</code> Arguments:
+spar,d, SDAdata, b, peak_SDA_all, time_peak_SDA_all, sda_threshold</p>
 <h3 style="color:white; background-color: #4682B4; font-weight: bold;  text-align: center">
 Miscellaneous functions, old work
 </h3>
 <ol start="9" style="list-style-type: decimal">
 <li><p>MMRslide_tunnel&lt;-function(file)</p></li>
-<li><p>calcSMR = function(Y, q=c(0.1,0.15,0.2,0.25,0.3), G=1:4) sourced from <a href="https://doi.org/10.1111/jfb.12845">Chabot et al 2016</a></p></li>
+<li><p>calcSMR = function(Y, q=c(0.1,0.15,0.2,0.25,0.3), G=1:4) sourced
+from <a href="https://doi.org/10.1111/jfb.12845">Chabot et al
+2016</a></p></li>
 </ol>
 </div>
 

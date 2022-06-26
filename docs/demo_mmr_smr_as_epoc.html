@@ -13,8 +13,8 @@
 
 <title>demo_mmr_smr_as_epoc.knit</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="site_libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -62,6 +62,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -82,6 +83,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -234,7 +238,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -265,7 +269,7 @@ $(document).ready(function () {
   <a href="progressNotes.html">Updates</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Resources
      
     <span class="caret"></span>
@@ -314,7 +318,8 @@ $(document).ready(function () {
 Step-by-step example to perform full analysis
 </h2>
 <p>
-Source: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/demo_mmr_smr_as_epoc.rmd" style = "color:gray;">AnalyzeResp_0/docs/demo_mmr_smr_as_epoc.rmd</a>
+Source:
+<a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/demo_mmr_smr_as_epoc.rmd" style = "color:gray;">AnalyzeResp_0/docs/demo_mmr_smr_as_epoc.rmd</a>
 </p>
 </div>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">
@@ -344,9 +349,11 @@ K
  font-weight: bold;
  border: 3px solid grey;
  border-radius: 5px;
- padding: 3px;"> STEP 1:  </a>   Set up, working directories, and formatting data files
+ padding: 3px;"> STEP 1:  </a>   Set up, working directories, and
+formatting data files
 </h5>
-<p>First need to source the functions so they are available for use at the current R session, in the global environment:</p>
+<p>First need to source the functions so they are available for use at
+the current R session, in the global environment:</p>
 <pre class = "sourceCode yaml"> 
 source("./AnalyzeResp_0.R")
 # any directory where the script with all used functions lives. Like a forked GitHub repo.
@@ -354,17 +361,36 @@ source("./AnalyzeResp_0.R")
 setwd() # set any working directory dedicated for metabolic performance analysis.
 </pre>
 <p><strong>1. Set up a local working directory:</strong></p>
-<p>There are many evaluation and analysis csv and image (.png) export files. These are automatically saved on the local directory. Each funciton has two general options for how these files are saved: i) all in one folder (local directory as specified by the user: “./”), ii) in local directories (data folders), all files are automatically placed buy functions (suggested for organisation).</p>
+<p>There are many evaluation and analysis csv and image (.png) export
+files. These are automatically saved on the local directory. Each
+funciton has two general options for how these files are saved: i) all
+in one folder (local directory as specified by the user: “./”), ii) in
+local directories (data folders), all files are automatically placed buy
+functions (suggested for organisation).</p>
 <p>To create the automatic organisation, run the following:</p>
 <pre class = "sourceCode yaml"> 
 organize_MR_analysis(create = "Full") # will create a full suite of folders and subfolders within in prep to analyze SMR, MMR, AAS
 organize_MR_analysis(create = "SDA") # similar setup but selected folders for SDA analysis
 
 </pre>
-<p><em>documentation:</em> <a href="#./organize_MR_analysis.html" style = "color:#8e8c84; font-weight:bold;"><code>organize_MR_analysis</code></a>) <em>Note! - sorry about the strange, not always intuitive names of folders. Please share any suggestions with preffered names of the files, directories and sub-directories</em></p>
-<p><img src="Images/folderexample.png" alt="File organisation, screenshot example" style="max-width: 500px; height: auto; display: block; margin-left: auto; margin-right: auto;"> <br></p>
-<p><strong>2. Converting and formatting files to .csv format</strong> In their original format, the files in .txt format (from Pyroscience, Firesting), but the data analysis functions require .csv files. Therefore, a part of the setup is the file conversion from text files to csv files. This can be done with one of the functions.</p>
-<p>To convert raw firesting data files into compatable .csv file format <strong>first</strong> open the chosen working directory for this analysis and copy-in replicate .txt files to work with (always suggest working using copies of the original files). This part applied whether using a general repo, or directories created after running <code>organize_MR_analysis.html</code>.</p>
+<p><em>documentation:</em>
+<a href="#./organize_MR_analysis.html" style = "color:#8e8c84; font-weight:bold;"><code>organize_MR_analysis</code></a>)
+<em>Note! - sorry about the strange, not always intuitive names of
+folders. Please share any suggestions with preffered names of the files,
+directories and sub-directories</em></p>
+<p><img src="Images/folderexample.png" alt="File organisation, screenshot example" style="max-width: 500px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+<br></p>
+<p><strong>2. Converting and formatting files to .csv format</strong> In
+their original format, the files in .txt format (from Pyroscience,
+Firesting), but the data analysis functions require .csv files.
+Therefore, a part of the setup is the file conversion from text files to
+csv files. This can be done with one of the functions.</p>
+<p>To convert raw firesting data files into compatable .csv file format
+<strong>first</strong> open the chosen working directory for this
+analysis and copy-in replicate .txt files to work with (always suggest
+working using copies of the original files). This part applied whether
+using a general repo, or directories created after running
+<code>organize_MR_analysis.html</code>.</p>
 <pre class = "sourceCode yaml"> 
 
 # for MMR files:
@@ -379,8 +405,13 @@ txt_csv_convert(txt_file = "./jul04-2019-opasize-box4-smr.txt",  path = "AUTO" ,
 txt_csv_convert(txt_file = "./jun01_2021_box1_back-allRespos.txt",  path = "BACTERIAL_RESP" , N_Ch = 4)
 
 </pre>
-<p><em>documentation:</em> <a href="#./txt_csv_convert.html" style = "color:#8e8c84; font-weight:bold;"><code>txt_csv_convert</code></a></p>
-<p><strong>Outcome:</strong> A new <em>.csv</em> file will be created either locally (with <code>path = "."</code>) or in the <em>csv_files</em> subfolder (<code>path = "AUTO"</code> or <code>path = "MANUAL"</code>), the original .txt file will remain in the current working directory.</p>
+<p><em>documentation:</em>
+<a href="#./txt_csv_convert.html" style = "color:#8e8c84; font-weight:bold;"><code>txt_csv_convert</code></a></p>
+<p><strong>Outcome:</strong> A new <em>.csv</em> file will be created
+either locally (with <code>path = "."</code>) or in the
+<em>csv_files</em> subfolder (<code>path = "AUTO"</code> or
+<code>path = "MANUAL"</code>), the original .txt file will remain in the
+current working directory.</p>
 <p>
  
 </p>
@@ -389,10 +420,16 @@ txt_csv_convert(txt_file = "./jun01_2021_box1_back-allRespos.txt",  path = "BACT
  font-weight: bold;
  border: 3px solid grey;
  border-radius: 5px;
- padding: 3px; "> STEP 2:  </a>   Analysis of MMR, finding the steepest slope
+ padding: 3px; "> STEP 2:  </a>   Analysis of MMR, finding the steepest
+slope
 </h5>
-<p>The following script is to obtain oxygen decrease rates over time during a specific measurement cycle. This is originally written to analyze MMR of up to 4 individuals, each associated with a seperate channel in Firesting oxygen meter boxes.</p>
-<p>To use the ‘MMR’ function, first, the working directory needs to be set where the file is located. Then can execute the function with many parameters</p>
+<p>The following script is to obtain oxygen decrease rates over time
+during a specific measurement cycle. This is originally written to
+analyze MMR of up to 4 individuals, each associated with a seperate
+channel in Firesting oxygen meter boxes.</p>
+<p>To use the ‘MMR’ function, first, the working directory needs to be
+set where the file is located. Then can execute the function with many
+parameters</p>
 <pre class = "sourceCode yaml"> 
 
 # setting working directory 
@@ -417,21 +454,32 @@ MMR(data.MMR = "./jul04_2019_opasize_box4_mmr.csv", # specify the .csv data file
     inv.data = NA) # no inventory data to perform more finedetail user-define measurement adjustments. 
 
 </pre>
-<p><em>documentation:</em> <a href="./MMR.html" style = "color:#8e8c84; font-weight:bold;"><code>MMR</code></a></p>
+<p><em>documentation:</em>
+<a href="./MMR.html" style = "color:#8e8c84; font-weight:bold;"><code>MMR</code></a></p>
 <ul>
-<li>If the MMR file is shorter than 3 min, the sliding window analysis for MMR measurement is not performed. But, it always calculates the regression parameters for the full slope. The time frame to be used for the representative MMR estimates is later selected in <code>MMR_SMR_AS_EPOC</code> function.</li>
-<li>The <code>path</code> argument can be anything, it could be “HappyFishInFolders”, “yayData”, “myfolder”…</li>
+<li>If the MMR file is shorter than 3 min, the sliding window analysis
+for MMR measurement is not performed. But, it always calculates the
+regression parameters for the full slope. The time frame to be used for
+the representative MMR estimates is later selected in
+<code>MMR_SMR_AS_EPOC</code> function.</li>
+<li>The <code>path</code> argument can be anything, it could be
+“HappyFishInFolders”, “yayData”, “myfolder”…</li>
 </ul>
 <p><strong>Key outcome files:</strong></p>
 <p>
-on GitHub: <a href = "https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/MANUAL/channel_plots" style = "color:gray;">AnalyzeResp_0/Test/MANUAL/channel_plots/</a>
+on GitHub:
+<a href = "https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/MANUAL/channel_plots" style = "color:gray;">AnalyzeResp_0/Test/MANUAL/channel_plots/</a>
 </p>
-<p><img src="files/outputs/jul04_2019_opasize_box4_mmr_Ch1.png" alt="MMR output file" style="max-width: 800px; height: auto; display: block; margin-left: auto; margin-right: auto;"> <br></p>
+<p><img src="files/outputs/jul04_2019_opasize_box4_mmr_Ch1.png" alt="MMR output file" style="max-width: 800px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+<br></p>
 <p>
-Download Excel template from GitHub: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/Test/MANUAL_inventory_template.xlsx" style = "color:gray;">AnalyzeResp_0/Test/MANUAL_inventory_template.xlsx</a>
+Download Excel template from GitHub:
+<a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/Test/MANUAL_inventory_template.xlsx" style = "color:gray;">AnalyzeResp_0/Test/MANUAL_inventory_template.xlsx</a>
 </p>
-<p><img src="Images/manInvData.png" alt="An image of excel inventory file for SMR" style="max-width: 500px; height: auto; display: block; margin-left: auto; margin-right: auto;"> <br></p>
-<div style="background-color: #f8f5f0;  border: 1px solid #484f4f; padding: 10px">
+<p><img src="Images/manInvData.png" alt="An image of excel inventory file for SMR" style="max-width: 500px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+<br></p>
+<div
+style="background-color: #f8f5f0;  border: 1px solid #484f4f; padding: 10px">
 <p><strong>MMR inventory data: How to?</strong></p>
 <p>Excel file template</p>
 <table>
@@ -448,7 +496,10 @@ Download Excel template from GitHub: <a href = "https://github.com/kraskura/Anal
 <tbody>
 <tr class="odd">
 <td align="right">date</td>
-<td align="left">The date in 3-letter month + 2-number date (e.g. jun04, jan15, oct20, aug01… ). Important but inconvenient: excel tends to default to one of the data farmats. Counteract that by typing the apostrophe before text: ’jun04</td>
+<td align="left">The date in 3-letter month + 2-number date (e.g. jun04,
+jan15, oct20, aug01… ). Important but inconvenient: excel tends to
+default to one of the data farmats. Counteract that by typing the
+apostrophe before text: ’jun04</td>
 </tr>
 <tr class="even">
 <td align="right">box</td>
@@ -460,23 +511,30 @@ Download Excel template from GitHub: <a href = "https://github.com/kraskura/Anal
 </tr>
 <tr class="even">
 <td align="right">start</td>
-<td align="left">indicate the start time (minutes) of the measurement section to be KEPT, write 0 to discard this cycle.</td>
+<td align="left">indicate the start time (minutes) of the measurement
+section to be KEPT, write 0 to discard this cycle.</td>
 </tr>
 <tr class="odd">
 <td align="right">end</td>
-<td align="left">indicate the end time of the section to be KEPT, write 0 to discard this cycle.</td>
+<td align="left">indicate the end time of the section to be KEPT, write
+0 to discard this cycle.</td>
 </tr>
 </tbody>
 </table>
-<p>What to expect from each example row as indicated in the inventory file above?</p>
+<p>What to expect from each example row as indicated in the inventory
+file above?</p>
 <ul>
-<li><em>rows 1</em>: The specific timeframes (start –&gt; end) will be used to estimate metabolic rates. (see plotted example below)</li>
+<li><em>rows 1</em>: The specific timeframes (start –&gt; end) will be
+used to estimate metabolic rates. (see plotted example below)</li>
 </ul>
 <p><em>Tips and notes</em>:</p>
 <ul>
-<li>Be sure that the format of the inventory file is .csv, and that it is saved in the in the folder containing all data .csv files</li>
-<li>All inputs must be the same as the original csv file, that ensures that ine inventory file can be used for all data cleaning purposes</li>
-<li>To clean actual MMR cycle, use <code>MMR</code> argument <code>clean_Ch1, clean_Ch1, clean_Ch1, clean_Ch1</code> as needed.</li>
+<li>Be sure that the format of the inventory file is .csv, and that it
+is saved in the in the folder containing all data .csv files</li>
+<li>All inputs must be the same as the original csv file, that ensures
+that ine inventory file can be used for all data cleaning purposes</li>
+<li>To clean actual MMR cycle, use <code>MMR</code> argument
+<code>clean_Ch1, clean_Ch1, clean_Ch1, clean_Ch1</code> as needed.</li>
 </ul>
 </div>
 <p>
@@ -487,13 +545,33 @@ Download Excel template from GitHub: <a href = "https://github.com/kraskura/Anal
  font-weight: bold;
  border: 3px solid grey;
  border-radius: 5px;
- padding: 3px;"> STEP 3  </a>   Analysis of SMR slopes recorded on automatic cycles
+ padding: 3px;"> STEP 3  </a>   Analysis of SMR slopes recorded on
+automatic cycles
 </h5>
-<p>There will likely be two seperate runs using <code>SMR</code> function.</p>
-<p><strong>1. First pass: A parametrized run without any QC</strong> As before, be sure to set the correct working directory, if <code>organize_MR_analysis</code> was used for organization, the code below may be used.</p>
-<p>The example below will be for calculating oxygen decrease rates for all measurement cycles; in this example case the cycles are specified to be 15 min long total, with 8:7 flush(open:measurement(closed) phase. None of the measurement cycles will be modified or otherwise cleaned (no inventory data).</p>
-<p>In some setups an additional wait period is used between the flush and measurement (flush:wait:measure). This code still may be used to analyze such files by either i) adding the wait time to the flush time that way it will be automatically excluded from the analysis, ii) adding the wait period to the measurement cycle time and use <code>chop_start</code> argument to exclude it from the analysis. In the example below, the first 10 seconds will be chopped off from each measurement cycle regression as a wait period.</p>
-<p>When something seems to be out of order with the auto cycles, run the code with <code>flush_plot = TRUE</code> and check whether the flush:measure cycle lengths are specified correctly. Otherwise, it may be better to keep <code>flush_plot = FALSE</code> because it takes a more time and computer memory.</p>
+<p>There will likely be two seperate runs using <code>SMR</code>
+function.</p>
+<p><strong>1. First pass: A parametrized run without any QC</strong> As
+before, be sure to set the correct working directory, if
+<code>organize_MR_analysis</code> was used for organization, the code
+below may be used.</p>
+<p>The example below will be for calculating oxygen decrease rates for
+all measurement cycles; in this example case the cycles are specified to
+be 15 min long total, with 8:7 flush(open:measurement(closed) phase.
+None of the measurement cycles will be modified or otherwise cleaned (no
+inventory data).</p>
+<p>In some setups an additional wait period is used between the flush
+and measurement (flush:wait:measure). This code still may be used to
+analyze such files by either i) adding the wait time to the flush time
+that way it will be automatically excluded from the analysis, ii) adding
+the wait period to the measurement cycle time and use
+<code>chop_start</code> argument to exclude it from the analysis. In the
+example below, the first 10 seconds will be chopped off from each
+measurement cycle regression as a wait period.</p>
+<p>When something seems to be out of order with the auto cycles, run the
+code with <code>flush_plot = TRUE</code> and check whether the
+flush:measure cycle lengths are specified correctly. Otherwise, it may
+be better to keep <code>flush_plot = FALSE</code> because it takes a
+more time and computer memory.</p>
 <pre class = "sourceCode yaml"> 
 setwd("../../AUTO/csv_files")
 
@@ -509,28 +587,43 @@ SMR(data="jul04_2019_opasize_box4_smr.csv",
     date_format = "m/d/y")
 </pre>
 </pre>
-<p><em>documentation:</em> <a href="./SMR.html" style = "color:#8e8c84; font-weight:bold;"><code>SMR</code></a></p>
+<p><em>documentation:</em>
+<a href="./SMR.html" style = "color:#8e8c84; font-weight:bold;"><code>SMR</code></a></p>
 <p><strong>Key outcome files:</strong></p>
 <ol style="list-style-type: decimal">
-<li><p>Channel specific files This is just a snapshot of three measurement cycles for a specific channel. There are a total of 88 measurement cycles, all are plotted in one consolidated .png file.</p>
+<li><p>Channel specific files This is just a snapshot of three
+measurement cycles for a specific channel. There are a total of 88
+measurement cycles, all are plotted in one consolidated .png file.</p>
 <p>
-<p>on GitHub: <a href = "https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/AUTO/plots_channel" style = "color:gray;">AnalyzeResp_0/tree/main/Test/AUTO/plots_channel</a></p>
+<p>on GitHub:
+<a href = "https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/AUTO/plots_channel" style = "color:gray;">AnalyzeResp_0/tree/main/Test/AUTO/plots_channel</a></p>
 </p>
-<p><img src="files/outputs/example-Ch_channel_auto_1.png" alt="SMR channel output file" style="max-width: 800px; height: auto; display: block; margin-left: auto; margin-right: auto;"> <br></p></li>
+<p><img src="files/outputs/example-Ch_channel_auto_1.png" alt="SMR channel output file" style="max-width: 800px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+<br></p></li>
 <li><p>All trends together</p>
 <p>
-<p>on GitHub: <a href = "https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/AUTO/plots_summary_respo" style = "color:gray;">AnalyzeResp_0/tree/main/Test/AUTO/plots_summary_respo</a></p>
+<p>on GitHub:
+<a href = "https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/AUTO/plots_summary_respo" style = "color:gray;">AnalyzeResp_0/tree/main/Test/AUTO/plots_summary_respo</a></p>
 </p>
-<p><img src="files/outputs/jul04_2019_opasize_box4_smr_all_ChO2.png" alt="SMR summary output file" style="max-width: 800px; height: auto; display: block; margin-left: auto; margin-right: auto;"> <br></p></li>
+<p><img src="files/outputs/jul04_2019_opasize_box4_smr_all_ChO2.png" alt="SMR summary output file" style="max-width: 800px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+<br></p></li>
 </ol>
 <p><strong>2. Second pass: applying QC as necessary</strong></p>
-<p>Everything remains the same if the cycles are correct, and the 10 sec wait time was confirmed appropriate; the only addition is the inventory data file (in .csv format). The inventory file must be in the csv_files folder.</p>
-<p>The downstream function incorporate cutoffs such as R<sup>2</sup>. We firmly believe that visual inspection of all oxygen decrease slopes is critical step of data analysis.</p>
+<p>Everything remains the same if the cycles are correct, and the 10 sec
+wait time was confirmed appropriate; the only addition is the inventory
+data file (in .csv format). The inventory file must be in the csv_files
+folder.</p>
+<p>The downstream function incorporate cutoffs such as R<sup>2</sup>. We
+firmly believe that visual inspection of all oxygen decrease slopes is
+critical step of data analysis.</p>
 <p>
-Download Excel template from GitHub: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/Test/AUTO_inventory_template.xlsx" style = "color:gray;">AnalyzeResp_0/Test/AUTO_inventory_template.xlsx</a>
+Download Excel template from GitHub:
+<a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/Test/AUTO_inventory_template.xlsx" style = "color:gray;">AnalyzeResp_0/Test/AUTO_inventory_template.xlsx</a>
 </p>
-<p><img src="Images/autoInvData.png" alt="An image of excel inventory file for SMR" style="max-width: 500px; height: auto; display: block; margin-left: auto; margin-right: auto;"> <br></p>
-<div style="background-color: #f8f5f0;  border: 1px solid #484f4f; padding: 10px">
+<p><img src="Images/autoInvData.png" alt="An image of excel inventory file for SMR" style="max-width: 500px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+<br></p>
+<div
+style="background-color: #f8f5f0;  border: 1px solid #484f4f; padding: 10px">
 <p><strong>SMR inventory data: How to?</strong></p>
 <p>Excel file template:</p>
 <table>
@@ -547,7 +640,10 @@ Download Excel template from GitHub: <a href = "https://github.com/kraskura/Anal
 <tbody>
 <tr class="odd">
 <td align="right">date</td>
-<td align="left">The date in 3-letter month + 2-number date (e.g. jun04, jan15, oct20, aug01… ). Important but inconvenient: excel tends to default to one of the data farmats. Counteract that by typing the apostrophe before text: ’jun04</td>
+<td align="left">The date in 3-letter month + 2-number date (e.g. jun04,
+jan15, oct20, aug01… ). Important but inconvenient: excel tends to
+default to one of the data farmats. Counteract that by typing the
+apostrophe before text: ’jun04</td>
 </tr>
 <tr class="even">
 <td align="right">box</td>
@@ -559,32 +655,46 @@ Download Excel template from GitHub: <a href = "https://github.com/kraskura/Anal
 </tr>
 <tr class="even">
 <td align="right">cycle_file_start</td>
-<td align="left">To save time, add ‘0’ if both the start and end are provided. Find the exact start time for the wanted cycle in ’_analyzed.csv’ file ‘min_start’ column, add that to <strong>exclude the cycle</strong>.</td>
+<td align="left">To save time, add ‘0’ if both the start and end are
+provided. Find the exact start time for the wanted cycle in
+’_analyzed.csv’ file ‘min_start’ column, add that to <strong>exclude the
+cycle</strong>.</td>
 </tr>
 <tr class="odd">
 <td align="right">sectioned_slope_start</td>
-<td align="left">indicate the start time (minutes) of the measurement section to be KEPT, write 0 to discard this cycle.</td>
+<td align="left">indicate the start time (minutes) of the measurement
+section to be KEPT, write 0 to discard this cycle.</td>
 </tr>
 <tr class="even">
 <td align="right">sectioned_slope_end</td>
-<td align="left">indicate the end time of the section to be KEPT, write 0 to discard this cycle.</td>
+<td align="left">indicate the end time of the section to be KEPT, write
+0 to discard this cycle.</td>
 </tr>
 <tr class="odd">
 <td align="right">type</td>
-<td align="left">for general cleaning leave ‘smr’. (part of development for greater user flexibility)</td>
+<td align="left">for general cleaning leave ‘smr’. (part of development
+for greater user flexibility)</td>
 </tr>
 </tbody>
 </table>
-<p>What to expect from each example row as indicated in the inventory file above?</p>
+<p>What to expect from each example row as indicated in the inventory
+file above?</p>
 <ul>
-<li><em>rows 1-3</em>: The specific timeframes (sectioned_slope_start –&gt; sectioned_slope_end) will be used to estimate metabolic rates. (see plotted example below)</li>
-<li><em>row 4</em>: The measurement cycle starting at 23.16 min will be entirely excluded from the analysis. (see plotted example below)</li>
+<li><em>rows 1-3</em>: The specific timeframes (sectioned_slope_start
+–&gt; sectioned_slope_end) will be used to estimate metabolic rates.
+(see plotted example below)</li>
+<li><em>row 4</em>: The measurement cycle starting at 23.16 min will be
+entirely excluded from the analysis. (see plotted example below)</li>
 </ul>
 <p><em>Tips and notes</em>:</p>
 <ul>
-<li>No cleaning necessary for measurement cycle with low R<sup>2</sup>. These measurement cycles will be automatically excluded using <code>MMR_SMR_AS_EPOC</code> (setting R<sup>2</sup> thresholds)</li>
-<li>Be sure that the format of the inventory file is .csv, and that it is saved in the in the folder containing all data .csv files</li>
-<li>All inputs must be the same as the original csv file, that ensures that ine inventory file can be used for all data cleaning purposes</li>
+<li>No cleaning necessary for measurement cycle with low R<sup>2</sup>.
+These measurement cycles will be automatically excluded using
+<code>MMR_SMR_AS_EPOC</code> (setting R<sup>2</sup> thresholds)</li>
+<li>Be sure that the format of the inventory file is .csv, and that it
+is saved in the in the folder containing all data .csv files</li>
+<li>All inputs must be the same as the original csv file, that ensures
+that ine inventory file can be used for all data cleaning purposes</li>
 </ul>
 </div>
 <pre class = "sourceCode yaml"> 
@@ -601,9 +711,17 @@ SMR(data="jul04_2019_opasize_box4_smr.csv",
     date_format = "m/d/y")
 
 </pre>
-<p><strong>Key outcome files:</strong> The same plots as before, but any specified section to be <strong>used</strong> for further analysis is indicated in grey shadowed box. The cycles that are excluded from the final dataframe are framed red with text box in the middle:</p>
-<p><img src="files/outputs/example-Ch_channel_auto_2.png" alt="SMR channel output file" style="max-width: 500px; height: auto; display: block; margin-left: auto; margin-right: auto;"> <br></p>
-<p><strong>3. Likely third run using SMR function: to estimate background respiration</strong> This exact same function can be run to analyze background respiration. If background was run on cycles that were not automatic, then best may be splitting the files up, or running the analysis using the <code>MMR</code> function.</p>
+<p><strong>Key outcome files:</strong> The same plots as before, but any
+specified section to be <strong>used</strong> for further analysis is
+indicated in grey shadowed box. The cycles that are excluded from the
+final dataframe are framed red with text box in the middle:</p>
+<p><img src="files/outputs/example-Ch_channel_auto_2.png" alt="SMR channel output file" style="max-width: 500px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+<br></p>
+<p><strong>3. Likely third run using SMR function: to estimate
+background respiration</strong> This exact same function can be run to
+analyze background respiration. If background was run on cycles that
+were not automatic, then best may be splitting the files up, or running
+the analysis using the <code>MMR</code> function.</p>
 <h5 style="font-weight: bold">
 <a name = "step4" style="color:black;
  font-weight: bold;
@@ -611,19 +729,47 @@ SMR(data="jul04_2019_opasize_box4_smr.csv",
  border-radius: 5px;
  padding: 3px;"> STEP 4  </a>   Estimating metabolic performances
 </h5>
-<p><em>Before further analysis considerations</em>: The Need MMR_SMR_EPOC_AS function can be provided with one .csv file that represents SMR measurements and one .csv file that represents MMR measurements. Have more than one SMR file? - several SMR files can be combined and formatted using <code>combine_smr</code> function: see and example of this step under <a href="#step-misc">Misc Steps</a></p>
-<p>Once again, is starts with setting the working directory (example below)</p>
-<p>In this example, both MMR and SMR files were recorded and have been analyzed using <code>MMR</code> and <code>SMR</code> functions, respectively.</p>
+<p><em>Before further analysis considerations</em>: The Need
+MMR_SMR_EPOC_AS function can be provided with one .csv file that
+represents SMR measurements and one .csv file that represents MMR
+measurements. Have more than one SMR file? - several SMR files can be
+combined and formatted using <code>combine_smr</code> function: see and
+example of this step under <a href="#step-misc">Misc Steps</a></p>
+<p>Once again, is starts with setting the working directory (example
+below)</p>
+<p>In this example, both MMR and SMR files were recorded and have been
+analyzed using <code>MMR</code> and <code>SMR</code> functions,
+respectively.</p>
 <p>Some example customization for desired outcomes:</p>
 <ul>
-<li>The regression R<sup>2</sup> cut off is set 0.9 for MMR and 0.85 for SMR. All regression slopes that are below these thresholds will not be used. The MMR value will be calculated from the steepest 120-second slope, but if this length is not sufficient to keep the R<sup>2</sup> at the chosen 0.9 level, it will automatically go to the next longer sliding window option (here would be 180 seconds). The goal is to keep R<sup>2</sup> at the specified level, and have measurement period as specified or as close to it as possible, never shorter.</li>
-<li><code>epoc_threshold = 1.1</code>: The end time of recovery will be estimated as the time it takes for the animal to recover from its MMR level to 110% SMR. (= 1.1 X SMR). All other EPOC parameters will also be dependent on this value.</li>
-<li><code>recovMMR_threshold = 0.5</code>: It will find the time it takes for the animal to recover from its MMR level to 50% MMR (EPOC to 50% MMR and time to 50 % MMR will be calculated)</li>
-<li><code>drop_ch = 1</code>: channel 1 will be entirely excluded from the analysis</li>
-<li><code>scaling_exponent_smr = 0.89</code>, scaling for smr (all data.SMR) values will be corrected to common mass using 0.89 scaling exponent (deafult 1 kg, but can be specified using <code>common_mass</code> arg).</li>
-<li><code>end_EPOC_Ch</code>: the manual selection of when the EPOC end for the animal, can be applied to specific channel. Useful when the smoothing functions are not performing all that well.</li>
+<li>The regression R<sup>2</sup> cut off is set 0.9 for MMR and 0.85 for
+SMR. All regression slopes that are below these thresholds will not be
+used. The MMR value will be calculated from the steepest 120-second
+slope, but if this length is not sufficient to keep the R<sup>2</sup> at
+the chosen 0.9 level, it will automatically go to the next longer
+sliding window option (here would be 180 seconds). The goal is to keep
+R<sup>2</sup> at the specified level, and have measurement period as
+specified or as close to it as possible, never shorter.</li>
+<li><code>epoc_threshold = 1.1</code>: The end time of recovery will be
+estimated as the time it takes for the animal to recover from its MMR
+level to 110% SMR. (= 1.1 X SMR). All other EPOC parameters will also be
+dependent on this value.</li>
+<li><code>recovMMR_threshold = 0.5</code>: It will find the time it
+takes for the animal to recover from its MMR level to 50% MMR (EPOC to
+50% MMR and time to 50 % MMR will be calculated)</li>
+<li><code>drop_ch = 1</code>: channel 1 will be entirely excluded from
+the analysis</li>
+<li><code>scaling_exponent_smr = 0.89</code>, scaling for smr (all
+data.SMR) values will be corrected to common mass using 0.89 scaling
+exponent (deafult 1 kg, but can be specified using
+<code>common_mass</code> arg).</li>
+<li><code>end_EPOC_Ch</code>: the manual selection of when the EPOC end
+for the animal, can be applied to specific channel. Useful when the
+smoothing functions are not performing all that well.</li>
 </ul>
-<p>In this example, background respiration is assumed to be negligible and is not considered when calculating MO2 values (all background arguments are comment out)</p>
+<p>In this example, background respiration is assumed to be negligible
+and is not considered when calculating MO2 values (all background
+arguments are comment out)</p>
 <pre class = "sourceCode yaml"> 
 setwd("/Users/kristakraskura/Github_repositories/Respirometry_Performances/Test/MMR_SMR_AS_EPOC/csv_input_files")
 
@@ -660,8 +806,22 @@ MMR_SMR_AS_EPOC(
         common_mass= 1) # in kg
 
 </pre>
-<p><em>documentation:</em> <a href="./MMR_SMR_AS_EPOC.html" style = "color:#8e8c84; font-weight:bold;"><code>MMR_SMR_AS_EPOC</code></a></p>
-<p>Below is an example <code>MMR_SMR_AS_EPOC</code> function run using the minimum number of required parameters and that will still allow function to run nicely. Although, <strong>I suggest specifying a few arguments every single time</strong> and ignore their default value, those include: * <code>path = "StayOrganizedWithPoorlyNamedFolders"</code>. If <code>organize_MR_analysis</code> was not used, then default is local directory. Two things regardings this option: i) the input files need to located in the set (current “.”) working directory, and ii) a pile of exported files will be all saved in this directory, can feel disorganised while getting used to using this function. * <code>date_format = "m/d/y"</code> (the default) this is the most common date format in Firesting .txt files, but if that is not the case for the files on hand, it will hit back an error. Change accordingly</p>
+<p><em>documentation:</em>
+<a href="./MMR_SMR_AS_EPOC.html" style = "color:#8e8c84; font-weight:bold;"><code>MMR_SMR_AS_EPOC</code></a></p>
+<p>Below is an example <code>MMR_SMR_AS_EPOC</code> function run using
+the minimum number of required parameters and that will still allow
+function to run nicely. Although, <strong>I suggest specifying a few
+arguments every single time</strong> and ignore their default value,
+those include: *
+<code>path = "StayOrganizedWithPoorlyNamedFolders"</code>. If
+<code>organize_MR_analysis</code> was not used, then default is local
+directory. Two things regardings this option: i) the input files need to
+located in the set (current “.”) working directory, and ii) a pile of
+exported files will be all saved in this directory, can feel
+disorganised while getting used to using this function. *
+<code>date_format = "m/d/y"</code> (the default) this is the most common
+date format in Firesting .txt files, but if that is not the case for the
+files on hand, it will hit back an error. Change accordingly</p>
 <pre class = "sourceCode yaml"> 
 
 MMR_SMR_AS_EPOC( data.MMR = "jul04_2019_opasize_box4_mmr_analyzed.csv",
@@ -681,21 +841,27 @@ MMR_SMR_AS_EPOC( data.MMR = "jul04_2019_opasize_box4_mmr_analyzed.csv",
 </ol>
 1.1.
 <p>
-on GitHub: <a href = "https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/MMR_SMR_AS_EPOC/plots_ch_EPOC" style = "color:gray;">AnalyzeResp_0/tree/main/Test/MMR_SMR_AS_EPOC/plots_ch_EPOC</a>
+on GitHub:
+<a href = "https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/MMR_SMR_AS_EPOC/plots_ch_EPOC" style = "color:gray;">AnalyzeResp_0/tree/main/Test/MMR_SMR_AS_EPOC/plots_ch_EPOC</a>
 </p>
-<p><img src="files/outputs/jul04_2019_opasize_box4_mmr_analyzed_MMR__Ch4_EPOC_PLOT.png" alt="MMR_SMR_AS_EPOC recovery plot with seleted smoothing levels" style="max-width: 600px; height: auto; display: block;margin-left: auto; margin-right: auto;"> <br></p>
+<p><img src="files/outputs/jul04_2019_opasize_box4_mmr_analyzed_MMR__Ch4_EPOC_PLOT.png" alt="MMR_SMR_AS_EPOC recovery plot with seleted smoothing levels" style="max-width: 600px; height: auto; display: block;margin-left: auto; margin-right: auto;">
+<br></p>
 1.2.
 <p>
-on GitHub: <a href = "https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/MMR_SMR_AS_EPOC/plots_min_values_SMR" style = "color:gray;">AnalyzeResp_0/tree/main/Test/MMR_SMR_AS_EPOC/plots_min_values_SMR</a>
+on GitHub:
+<a href = "https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/MMR_SMR_AS_EPOC/plots_min_values_SMR" style = "color:gray;">AnalyzeResp_0/tree/main/Test/MMR_SMR_AS_EPOC/plots_min_values_SMR</a>
 </p>
-<p><img src="files/outputs/jul04_2019_opasize_box4_smr_analyzed_SMR_PLOT_SMR_analyses.png" alt="MMR_SMR_AS_EPOC plot that shows all values and the minimal values for SMR estimation are colored" style="max-width: 600px; height: auto; display: block; margin-left: auto; margin-right: auto;"> <br></p>
+<p><img src="files/outputs/jul04_2019_opasize_box4_smr_analyzed_SMR_PLOT_SMR_analyses.png" alt="MMR_SMR_AS_EPOC plot that shows all values and the minimal values for SMR estimation are colored" style="max-width: 600px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+<br></p>
 <ol start="2" style="list-style-type: decimal">
 <li>All channels together</li>
 </ol>
 <p>
-on GitHub: <a href = "https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/MMR_SMR_AS_EPOC/plots_methods_sum_SMR" style = "color:gray;">AnalyzeResp_0/tree/main/Test/MMR_SMR_AS_EPOC/plots_methods_sum_SMR</a>
+on GitHub:
+<a href = "https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/MMR_SMR_AS_EPOC/plots_methods_sum_SMR" style = "color:gray;">AnalyzeResp_0/tree/main/Test/MMR_SMR_AS_EPOC/plots_methods_sum_SMR</a>
 </p>
-<p><img src="files/outputs/jul04_2019_opasize_box4_smr_analyzed_SMR_PLOT_SMR_methodsALL.png" alt="MMR_SMR_AS_EPOC plot estimated SMR values for each channel for comparison of different methods" style="max-width: 600px; height: auto; display: block; margin-left: auto; margin-right: auto;"> <br></p>
+<p><img src="files/outputs/jul04_2019_opasize_box4_smr_analyzed_SMR_PLOT_SMR_methodsALL.png" alt="MMR_SMR_AS_EPOC plot estimated SMR values for each channel for comparison of different methods" style="max-width: 600px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+<br></p>
 <h5 style="font-weight: bold">
 <a name = "step-misc" style="color:black;
  font-weight: bold;
@@ -704,13 +870,26 @@ on GitHub: <a href = "https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/M
  padding: 5px;
  "> STEP-misc:  </a>   Additional steps that may be needed
 </h5>
-<p><strong>1. Splitting files that contain a part of non-regular measurement cycles and part automatic measurement cycles.</strong> Example situation, when MMR and SMR/RMR cycling is all recorded in one continous file. One way to handle this would be to note the time when the <em>split</em> needs to happen and then create two csv files, one for “AUTO” cyclical measurment analysis, and one for analysis of “MANUAL”, manually chosen, measurement cycles (typically MMR). Note each file is assumed to start with relatve time 0 min. There is a function to handle these situations.</p>
-<p><em>Notes:</em> First, be sure to set the working directory where the file is located. All outputs will be saved locally (no automatic folders here)</p>
+<p><strong>1. Splitting files that contain a part of non-regular
+measurement cycles and part automatic measurement cycles.</strong>
+Example situation, when MMR and SMR/RMR cycling is all recorded in one
+continous file. One way to handle this would be to note the time when
+the <em>split</em> needs to happen and then create two csv files, one
+for “AUTO” cyclical measurment analysis, and one for analysis of
+“MANUAL”, manually chosen, measurement cycles (typically MMR). Note each
+file is assumed to start with relatve time 0 min. There is a function to
+handle these situations.</p>
+<p><em>Notes:</em> First, be sure to set the working directory where the
+file is located. All outputs will be saved locally (no automatic folders
+here)</p>
 <ul>
-<li>Handy, when MMR/MANUAL and SMR/AUTO data are recorded in one continuous file.</li>
+<li>Handy, when MMR/MANUAL and SMR/AUTO data are recorded in one
+continuous file.</li>
 <li>Handy, When the SMR/AUTO files does not start with a flush</li>
-<li>Use, <em>after</em> <a href="#step1">step 1</a> when files are formatter to .csv for the analysis</li>
-<li>Tip: seperate all files to be split in entirely different directory and perform all analysis locally</li>
+<li>Use, <em>after</em> <a href="#step1">step 1</a> when files are
+formatter to .csv for the analysis</li>
+<li>Tip: seperate all files to be split in entirely different directory
+and perform all analysis locally</li>
 </ul>
 Example:
 <pre class = "sourceCode yaml"> 
@@ -733,12 +912,18 @@ csv_file_split(data="Sep24_2019_box0_fullfile.csv",
                date_format="d/m/y") # notice the different time/date format
 </pre>
 <p><strong>2. To combine smr files (if needed)</strong></p>
-<p>To use MMR_SMR_AS_EPOC function, only one “auto” or “smr” file can be used. In case when there are multiple files, they need to be first combined.</p>
+<p>To use MMR_SMR_AS_EPOC function, only one “auto” or “smr” file can be
+used. In case when there are multiple files, they need to be first
+combined.</p>
 <ul>
-<li>Handy, when multiple files were started during the automatic measurement phase. Can be the same or different measurement:flushing cycle ratios.</li>
+<li>Handy, when multiple files were started during the automatic
+measurement phase. Can be the same or different measurement:flushing
+cycle ratios.</li>
 <li>Use, before <a href="#step4">step 4</a></li>
 </ul>
-<p>The combined file will get a with the tag “GLUED_nX” (x = n of files), which will be saved in two places: i) the local directory and ii) in the folder “MMR_SMR_AS_EPOC/input_files”.</p>
+<p>The combined file will get a with the tag “GLUED_nX” (x = n of
+files), which will be saved in two places: i) the local directory and
+ii) in the folder “MMR_SMR_AS_EPOC/input_files”.</p>
 <pre class = "sourceCode yaml"> 
 
 setwd("/Users/kristakraskura/Desktop/BOX/UCSB/Research/Perch /data/Respiromtery data- preggo- acute/AUTO/csv_analyzed/")
@@ -765,10 +950,12 @@ for (i in 1:n.mmr.files){
 
 </pre>
 <p><em>documentation:</em></p>
-<div id="these-will-be-saved-in-your-current-working-directory-with-the" class="section level1">
+<div id="these-will-be-saved-in-your-current-working-directory-with-the"
+class="section level1">
 <h1>These will be saved in your current working directory with the</h1>
 </div>
-<div id="i-am-looping-through-all-files-to-get-this-work." class="section level1">
+<div id="i-am-looping-through-all-files-to-get-this-work."
+class="section level1">
 <h1>I am looping through all files to get this work.</h1>
 </div>
 <div id="for-a-single-file-example" class="section level1">
