@@ -322,30 +322,30 @@ Source:
 <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/progressNotes.Rmd" style = "color:gray;">/AnalyzeResp_0/docs/progressNotes.Rmd</a>
 </p>
 </div>
-<p><strong>To do list:</strong></p>
-<ol start="0" style="list-style-type: decimal">
-<li><p>Make packgdown, and rework it into an actual package in
-R.</p></li>
-<li><p>Improve the naming dependency, take that out.</p></li>
-<li><p>Add more flexibility of different oxygen units, for example, %
-air saturation in the local functions.</p></li>
-<li><p>Development of function that estimates hypoxia tolerance, P-crit
-analysis</p></li>
-<li><p>(?) Temperature in the MMR_SMR_AS_EPOC/csv_analyzed_MR/ data
-output files is just for the MMR section of the data, needs
-adjustment.</p></li>
-<li><p>Add N=xxx in the quantile plots</p></li>
-<li><p>Add FAS analysis</p></li>
-<li><p>Fix units when calculating MO<sub>2</sub> for either: i) animal
+<p><strong>To do list (not ordered by priority tasks):</strong></p>
+<ol style="list-style-type: decimal">
+<li>Reformat the functions into a package and create a packgdown.</li>
+<li>Make return variables and save files locally only with
+permission.</li>
+<li>Rename variables using more intuitive, descriptive terms.</li>
+<li>Incorporate more flexibility in the types of input files or data
+that can be used to achieve the same final outcomes.</li>
+<li>Advance the development of SDA function.</li>
+<li>Develop functions that estimate hypoxia tolerance, P[crit].</li>
+<li>Expand the option for user-defined figure metrics (e.g., Add N=xxx
+in the quantile plots when estimating SMR/RMR in the
+<code>MMR_SMR_AS_EPOC</code> function)</li>
+<li>Add analysis of Factorial Aerobic Scope (FAS = MMR / RMR)</li>
+<li>Rename/expand on units when calculating MO<sub>2</sub>; i) animal
 (mgO<sub>2</sub>/min/animal) ii) mass-specific, per kg
-(mO<sub>2</sub>/min/kg), iii) stanadardised mass using scaling</p></li>
-<li><p>script and demo on how to use our code with non Firesting data
-files</p></li>
-<li><p>Make one rmd with all files running as entirely reproducible
-example, consolidate the existing files</p></li>
+(mO<sub>2</sub>/min/kg), iii) standardized mass using scaling.</li>
+<li>Create a user-friendly example to kickstart the analysis. (e.g.,
+fill in the blank type demo)</li>
+<li>Make the function more accessible to those not using the FireSting
+oxygen sensor and those with the newest version files.</li>
 </ol>
-<div id="updates-for-2022-current-version" class="section level4">
-<h4>Updates, for 2022 current version:</h4>
+<p><br></p>
+<p><strong>Updates:</strong></p>
 <table>
 <colgroup>
 <col width="15%" />
@@ -364,9 +364,9 @@ example, consolidate the existing files</p></li>
 <tbody>
 <tr class="odd">
 <td align="left">Feb-Mar 2022</td>
-<td align="left">Update output file ((…analyzed_MR.csv)), previously all
+<td align="left">Update output file (…analyzed_MR.csv), previously all
 AS and MMR_overall were ignored when running the function with argument:
-<code>smrfile = "none"</code> when running the</td>
+<code>smrfile = "none"</code></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
@@ -394,7 +394,6 @@ argument for user input</td>
 </tr>
 </tbody>
 </table>
-</div>
 
 <br>
 <br>

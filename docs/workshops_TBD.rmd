@@ -1,0 +1,70 @@
+
+
+<div class="page-header">
+  <h2 style="font-size: 30px; text-align:left;">Workshops and events</h2>
+</div>
+
+Erika J. Eliason has hosted and led two respirometry workshops at UCSB (Oct 25-26, 2018, and April 3, 2020). The goal of these workshops was to bring together collaborators, students, researchers, postdocs, and others using aquatic respirometry to discuss best practices of this method experimentally and analytically.
+
+Below are some of the topics that were covered in our discussions.
+
+
+\
+\
+
+#### Respo retreat @ UCSB, Oct 2018
+
+**Topics of mini-sessions**
+
+- Why do respirometry? Advantages & Limitations 
+- How to do field respirometry - learning from each other's mistakes 
+- How do we analyze the data? And how can it be incorporated into models?
+- Hands-on data analysis using an earlier version of "AnalyzeResp"
+
+
+#### Respo retreat @ UCSB, April 2020 (virtual)
+
+**Discussions about metabolism and metabolic phenotypes**
+
+- Why is it beneficial to have a low SMR?
+- RMR, what does it mean? Resting _vs._ Routine MR. Routine is often measured as the average of some period of time. Resting is commonly (not always) a point measurement
+- How to elicit MMR in my animal? MMR is often exercise elicited (e.g., swim flumes, chasing by hand with or without air exposure). MMR can be achieved during digestion ([Steell et al 2019](https://journals.biologists.com/jeb/article/222/19/jeb209437/223510/An-appetite-for-invasion-digestive-physiology))
+- What can limit MMR?
+- Why is it beneficial to have a high MMR?
+  * higher performance, e.g. swimming performance
+- But can it be beneficial to have a low MMR?
+  * don't need to (physiologically) maintain high MMR
+- Why and when is it beneficial to have high AAS? What is the relevance of AAS?
+  * Highly ecologically relevant metric
+  * Aerobic capacity can change across life stages, acclimation, acclimatization, etc. 
+- Discussions on recovery: The big question remains, *how much time and resources are needed to recover ENOUGH to return to normal activity?*
+  * Animals likely don't need to recover back to SMR level (and realistically - they likely never do)
+
+**The roles of metabolic scaling**
+
+- When is it necessary to adjust metabolic rate measurements for metabolic scaling effects?
+- When, yes, provided ar  e three options to adjust MR to animals' body size:
+
+1. To divide whole animal metabolic rate by body mass to obtain per unit mass metabolism (e.g., mgO~2~min^-1^kg^-1^, this would be the same as using a scaling exponent of 1 and common mass individual 1kg)
+2. To use a common scaling exponent and divide MR by mass^b; b = scaling exponent
+3. To account for mass effects in alternative ways by:
+    + performing statistical analyses using residuals from regression models
+    + incorporating mass as a covariate in statistical analysis  
+_There are no agreed-upon methods to size-correct MR for body size._ e.g., [Glazier et al 2022](https://journals.biologists.com/jeb/article/225/Suppl_1/jeb243313/274353/Complications-with-body-size-correction-in?searchresult=1)
+
+**Cleaning to overcome wonky temperature readings and leaky respos (and other sources of messiness!)**
+
+- How to best measure background respiration? 
+  * ideally before and after each respirometry trial
+  * 3 or more measurement cycles
+- How to best estimate the error from different potential sources?
+  * leaky respos (visual assessment of regression slopes)
+  * 'bad' temperature reading
+  * old, malfunctioning oxygen probes
+  * technical errors
+  * experimental disturbance
+  * pumps not flushing right or having some issues
+
+<div class="well">
+  <p style="color:green;  text-align: left">More info underway - in the meantime, everyone is welcome to reach out with questions.</p>
+</div>

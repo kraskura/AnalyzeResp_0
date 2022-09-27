@@ -1,8 +1,7 @@
 
 
-
 <div class="page-header">
-  <h2 style="font-size: 30px; text-align:left;">Setup function: create local directories</h2>
+  <h2 style="font-size: 30px; text-align:left;"> Setup function: create local directories </h2>
 `organize_MR_analysis`
 <br>
 </div>
@@ -19,23 +18,28 @@
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left">Description</h4>
  
-Used to create folders in the local directory that may be used to keep all input and output files organized during analysis of animal metabolic performances.
+`organize_Mr_analysis` is run optionally before using any functions required to estimate animal metabolic rates.
+
+This function creates folders locally that are used to automatize the organization of import and (mainly) export files throughout the progression of analyzing metabolic performances.
 
 <h4><a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a></h4>
 
 
   Argument       | Description | Default
 ---: | :------------- | :---
-**create**      | One or more folders/directories and all respective subfolders will be created in the local directory. No default, one of the following options must be used: `"AUTO/MANUAL/Full/BACTERIAL_RESP/SDA"`. When using `"Full"`, all but SDA folders will be created. | `"Full"`
+**create**      | One or more local parent file folders or directories are created in the local directory. Each parent directory contains subfolders. All directories are empty. Different sets of folders can be created; use `"AUTO"` ,  `"MANUAL"` , `"Full"` , `"BACTERIAL_RESP"`, `"SDA"`.  When using `"Full"`, all, except parent folder "SDA" is created. | `"Full"`
 
 
 
 <br><h4><a name="Value" style="color:#495057; font-weight: bold;  text-align: left">Value</a></h4>
 
+This function allows coordinating the imports and exports associated with `MMR`, `SMR`, `MMR_SMR_AS_EPOC` runs. 
+
 <h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Outputs</h5>
 
-Local directortories that will be propogated with files created during data analysis:
-  * ./AUTO
+Local directortories that will be created locally:
+
+  * Parent directoty: **./AUTO**
     - ./AUTO/csv_analyzed
     - ./AUTO/csv_files
     - ./AUTO/plots_all_together
@@ -43,7 +47,7 @@ Local directortories that will be propogated with files created during data anal
     - ./AUTO/plots_channel
     - ./AUTO/plots_summary_respo
 
-  * ./BACTERIAL_RESP
+  * Parent directoty: **./BACTERIAL_RESP**
     - ./BACTERIAL_RESP
     - ./BACTERIAL_RESP/csv_analyzed
     - ./BACTERIAL_RESP/csv_files
@@ -52,7 +56,7 @@ Local directortories that will be propogated with files created during data anal
     - ./BACTERIAL_RESP/plots_channel
     - ./BACTERIAL_RESP/plots_summary_respo
   
-   * ./MANUAL
+  * Parent directoty: **./MANUAL**
     - ./MANUAL
     - ./MANUAL/csv_analyzed
     - ./MANUAL/csv_files
@@ -60,7 +64,7 @@ Local directortories that will be propogated with files created during data anal
     - ./MANUAL/channel_plots_MMRanalysis
     - ./MANUAL/channel_sliding_sets
 
-   * ./MMR_SMR_AS_EPOC){
+  * Parent directoty: **./MMR_SMR_AS_EPOC**
     - ./MMR_SMR_AS_EPOC
     - ./MMR_SMR_AS_EPOC/csv_analyzed_EPOC
     - ./MMR_SMR_AS_EPOC/csv_analyzed_MMR
@@ -74,8 +78,6 @@ Local directortories that will be propogated with files created during data anal
 
 
 <br><h4><a name="Details" style="color:#495057; font-weight: bold;  text-align: left">Details</a></h4> <br>
-
-<h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Support functions</h5>
 
 
 <br><h4><a name="Example" style="color:#495057; font-weight: bold;  text-align: left">Example</a></h4> <br>

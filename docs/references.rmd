@@ -5,62 +5,62 @@
   <p>Source: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/references.rmd" style = "color:gray;">AnalyzeResp_0/docs/references.rmd</a></p>
 </div>
 
-<div class="well">
-Functions have been updated since 2017. The core functionality and methods to estimate metabolic rate performances has remained the same through time.
-</div>
 
 <br>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">Published, complete analyses</h4>
 
-5) Anlauf-Dunn, K., Kraskura, K., Eliason, E.J., Intraspecific variability in thermal tolerance: Linking physiological performance and climate adaptation. Conservation Physiology. *In Press*  
 
-4) Hardison, E.A., Kraskura, K., Van Wert, J., Nguyen, T., Eliason, E.J., 2021. Diet mediates thermal performance traits: implications for marine ectotherms. Journal of Experimental Biology 224, jeb242846. [link](https://doi.org/10.1242/jeb.242846)
+1) Kraskura, K. 2022. University of California Santa Barbara. PhD Thesis.
 
-3) Little, A.G., Dressler, T., Kraskura, K., Hardison, E., Hendriks, B., Prystay, T., Farrell, A.P., Cooke, S.J., Patterson, D.A., Hinch, S.G., Eliason, E.J., 2020. Maxed Out: Optimizing Accuracy, Precision, and Power for Field Measures of Maximum Metabolic Rate in Fishes. Physiological and Biochemical Zoology 93, 243–254. [link](https://doi.org/10.1086/708673)
+2) Anlauf-Dunn, K., Kraskura, K., Eliason, E.J., 2022. Intraspecific variability in thermal tolerance: Linking physiological performance and climate adaptation. Conservation Physiology 10. coac029.[link](https://academic.oup.com/conphys/article/10/1/coac029/6585082)  
 
-2) Kraskura, K., Hardison, E.A., Little, A.G., Dressler, T., Prystay, T.S., Hendriks, B., Farrell, A.P., Cooke, S.J., Patterson, D.A., Hinch, S.G., Eliason, E.J., 2021. Sex-specific differences in swimming, aerobic metabolism and recovery from exercise in adult coho salmon (Oncorhynchus kisutch) across ecologically relevant temperatures. Conservation Physiology 9, coab016. [link](https://doi.org/10.1093/conphys/coab016)
+3) Hardison, E.A., Kraskura, K., Van Wert, J., Nguyen, T., Eliason, E.J., 2021. Diet mediates thermal performance traits: implications for marine ectotherms. Journal of Experimental Biology 224, jeb242846. [link](https://doi.org/10.1242/jeb.242846)
 
-1) Samantha Csik, 2019. University of California Santa Barbara. Master's Thesis.  
+4) Little, A.G., Dressler, T., Kraskura, K., Hardison, E., Hendriks, B., Prystay, T., Farrell, A.P., Cooke, S.J., Patterson, D.A., Hinch, S.G., Eliason, E.J., 2020. Maxed Out: Optimizing Accuracy, Precision, and Power for Field Measures of Maximum Metabolic Rate in Fishes. Physiological and Biochemical Zoology 93, 243–254. [link](https://doi.org/10.1086/708673)
+
+5) Kraskura, K., Hardison, E.A., Little, A.G., Dressler, T., Prystay, T.S., Hendriks, B., Farrell, A.P., Cooke, S.J., Patterson, D.A., Hinch, S.G., Eliason, E.J., 2021. Sex-specific differences in swimming, aerobic metabolism and recovery from exercise in adult coho salmon (Oncorhynchus kisutch) across ecologically relevant temperatures. Conservation Physiology 9, coab016. [link](https://doi.org/10.1093/conphys/coab016)
+
+6) Csik, S. 2019. University of California Santa Barbara. Master's Thesis.  
 
 <br>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">Current projects</h4>
 
 ** **Completed analyses.** 
 
-9) Birnie-Gauvin et al. 2022. Metabolism and recovery of male and female kokanee salmon across temperatures.
+1) Birnie-Gauvin et al. 2022. Metabolism and recovery of male and female kokanee salmon across temperatures.
 
-8) Daniella LoScerbo, David Ptterson, Kendra Robinson and collegues 2021. Hypoxia tolerance in Pygmy sculpin.
+2) ** DiFiore et al. The link between ecology and physiology of California spiny lobster across body size.
 
-7) Kraskura et al 2021. Scaling and climate change: temperature modulated physiological performance in Barred surfperch. In progress.
+3) ** Mayer et al. 2021. Metabolism and recovery of kokanee salmon across temperatures and lifestages.
 
-6) ** DiFiore P. Bartholomew et al. California spiny lobster ecology and physiology study. 
+4) Van Wert et al. 2020. Population specific thermal tolerance of adult Chinook salmon.
 
-5) Noa Mayer et al. 2021. Metabolism and recovery of kokanee salmon across temperatures and lifestages.
+5) Van Wert et al. 2021. Cardiovascular performance in Pacific salmon across temperatures.
 
-4) Jacey Van Wert et al 2020. Population specific thermal tolerance of adult Chinook salmon. 
+6) ** Dressler et al. 2019-current. Population specific thermal tolerance of California coastal trout.
 
-3) Jacey Van Wert et al 2021. Cardiovascular performance in Pacific salmon across temperatures.
+7) Malakhoff et al. 2019-current. Digestion in purple sea urchins.
 
-2) ** Dressler et al 2019-current. Population specific thermal tolerance of California coastal trout.
-
-1) Malakhoff K. et al 2019-current. Digestion in purple sea urchins.
+8) ** Csik et al. 2018. The metabolic underpinnings of temperature-dependent predation in California spiny lobster.
 
 
 <br><h4 style="color:#495057; font-weight: bold;  text-align: left">Literature that has inspired us. The list is long</h4>
 
 1. Special Issue 88 in Journal of Fish Biology 2016: [Metabolic Rate in Fishes. Definitions, Methods and Significance for Conservation Physiology](https://onlinelibrary.wiley.com/toc/10958649/2016/88/1)
-Open access.
-  - Methods: [Svendsen et al 2016](http://doi.wiley.com/10.1111/jfb.12797)
-  - Methods: [Svendsen et al 2016](http://doi.wiley.com/10.1111/jfb.12851)
-  - Methods: [Rodgers et al 2016](http://doi.wiley.com/10.1111/jfb.12848)
-  - On relevance: [Norin and Clark 2016](https://onlinelibrary.wiley.com/doi/full/10.1111/jfb.12796)
-  - Methods: [Rosewarne et al 2016](https://onlinelibrary.wiley.com/doi/10.1111/jfb.12795)
+Open access issue.
+  - Methods (design and setup): [Svendsen et al 2016](http://doi.wiley.com/10.1111/jfb.12797)
+  - Methods (variation in MO~2~, size of respirometers): [Svendsen et al 2016](http://doi.wiley.com/10.1111/jfb.12851)
+  - Methods (water mixing and background respiration, spontanous activity): [Rodgers et al 2016](http://doi.wiley.com/10.1111/jfb.12848)
+  - MMR (measurements and relevance): [Norin and Clark 2016](https://onlinelibrary.wiley.com/doi/full/10.1111/jfb.12796)
+  - SMR Methods: [Rosewarne et al 2016](https://onlinelibrary.wiley.com/doi/10.1111/jfb.12795)
+  - SMR Methods (calculation methods): [Chabot et al 2016](https://onlinelibrary.wiley.com/doi/10.1111/jfb.12845)
 
-2. Methods related literature in aquatic respirometry
+2. Literature on aquatic respirometry methods:
+  * Methods: [Chabot et al 2021](https://onlinelibrary.wiley.com/doi/full/10.1111/jfb.14650)
   * Methods: [Roche et al 2013](https://onlinelibrary.wiley.com/doi/pdf/10.1111/jfb.12795)
-  * FAS and AS: [Halsey et al 2018](https://link.springer.com/article/10.1007/s11160-018-9516-3)
-  * EPOC: [Zhang et al 2018](http://doi.wiley.com/10.1111/jfb.13593)
   * Methods: [Zhang et al 2019](https://jeb.biologists.org/content/222/12/jeb196568.long)
+  * FAS and AAS: [Halsey et al 2018](https://link.springer.com/article/10.1007/s11160-018-9516-3)
+  * EPOC: [Zhang et al 2018](http://doi.wiley.com/10.1111/jfb.13593)
   * MMR: [Little et al 2020](https://doi.org/10.1086/708673)
 
 3. The importance of metabolic scaling in respirometry studies:
@@ -72,6 +72,6 @@ Open access.
 
 4. Reporting methods for respirometry experiments:
   * [Killen et al 2021](https://journals.biologists.com/jeb/article/224/18/jeb242522/272132/Guidelines-for-reporting-methods-to-estimate)
-    - This publication has an incredible table that serves as a checklist of criteria that should be reported in studies using aquatic respirometry. with cited examples (53 entries) 
-    - Includes a fantastic, well illustrated figure showing the setup for intermittent respiromtery
+    - This publication has an incredible table that serves as a checklist of criteria that should be reported in studies using aquatic respirometry. Cites 53 entry examples.
+    - Includes well illustrated figure presenting the setup for intermittent respirometry
 

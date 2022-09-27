@@ -343,16 +343,19 @@ See datafiles on GitHub</a>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">
 Description
 </h4>
-<!-- <h4 style="color:#495057; font-weight: bold;  text-align: left">Before running the SMR function </h4><br> -->
-<p>This function will take files with maximum metabolic rate recordings
-in up to 4 Channels/animals (8-channel FireSting has 4 oxygen sensor
-channels and 4 temperature probes). This function finds the steepest
-oxygen decrease over 60, 90, 120, and 180 second timeframes for each
-Channel within a specified measurement cycle; it is using a sliding
-window method (more in <a href="https://doi.org/10.1086/708673">Little
-et al 2020</a>). The regression slope is estimated for above mentioned
-time periods and the entire measurement cycle. All non-MMR cycles are
-analyzed using full time period without the sliding window approach.</p>
+<p>The maximum metabolic rate, <code>MMR</code> function extracts
+regression parameters to characterize maximum oxygen uptake in
+animals.</p>
+<p>The function handles oxygen level, temperature, and times data for up
+to 4 animals, at different measurement cycles (conceptually presented <a
+href="./about.html">here</a>.</p>
+<p>The <code>MMR</code> function finds the steepest oxygen decrease
+slope over 60, 90, 120, and 180-second timeframes for each Channel
+(animal) within a user-specified measurement cycle. The regressions are
+identified and characterized using a sliding window method (<a
+href="https://doi.org/10.1086/708673">Little et al 2020</a>).</p>
+<p>All non-MMR measurement cycles are analyzed across the entire
+measurement period without the sliding window approach.</p>
 <h4>
 <a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a>
 </h4>
@@ -401,7 +404,7 @@ The same format as cycle_start</td>
 <td align="left">A number indicated in which cycle the animal in
 FireSting Channel 1 is expected to reach its maximum metabolic rate.
 Must specify to analyze metabolic rate, or enter <code>0</code>, which
-will drop the channel from analysis.</td>
+will drop the channel from the analysis.</td>
 <td align="left"><code>0</code></td>
 </tr>
 <tr class="even">
@@ -424,11 +427,11 @@ applies to Channel 4</td>
 </tr>
 <tr class="odd">
 <td align="right"><strong>clean_Ch1</strong></td>
-<td align="left">Specific to MMR cycle for each animal (or cycle). A
-time window (min) that specifies a quality section on metabolic rate
-measurement to be used. This may be used to “clean” the data. Default
-will use full length measurement cycle as set by
-<code>cycle_start</code> and <code>cycle_end</code> arguments.</td>
+<td align="left">Specific to MMR cycle for each animal (or cycle). Use
+to set a time window (min) that specifies a quality section on metabolic
+rate measurement for sliding window analysis. Default will use full
+length measurement cycle as set by <code>cycle_start</code> and
+<code>cycle_end</code> arguments.</td>
 <td align="left"><code>c(0,0)</code></td>
 </tr>
 <tr class="even">
@@ -452,15 +455,15 @@ This applies to Channel 4</td>
 <tr class="odd">
 <td align="right"><strong>N_Ch</strong></td>
 <td align="left">The number of FireSting channels. Options include 2, 4,
-8. Note, if either a 2- or 4-Channel FireSting was used, this argument
-can be ignored.</td>
+and 8. This argument can be ignored if 2-Channel FireSting was
+used.</td>
 <td align="left"><code>4</code></td>
 </tr>
 <tr class="even">
 <td align="right"><strong>path</strong></td>
-<td align="left">Specify working directory for all output files. This
-argument has two options, i) files can be automatically organized in
-newly created local directories. Any character may be used.</td>
+<td align="left">Specify the working directory for all output files.
+This argument has two options, i) files can be automatically organized
+in newly created local directories. Any character may be used.</td>
 <td align="left"><code>"."</code> (local directory)</td>
 </tr>
 <tr class="odd">
@@ -476,20 +479,19 @@ Must specify one of the following:
 <h4>
 <a name="Value" style="color:#495057; font-weight: bold;  text-align: left">Value</a>
 </h4>
-<p>Finding best representation of MMR.</p>
+<p>Finding regression that represents the MMR best.</p>
 <h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;">
 <i class="fas fa-ellipsis-h"></i>  Data outputs
 </h5>
-<ol style="list-style-type: decimal">
-<li><em>.csv files</em></li>
-</ol>
+<p><strong>“.csv files”</strong></p>
 <ul>
 <li>()_SLIDINGsetCh2.csv
 <ul>
 <li>Local dir: channel_sliding_sets</li>
 <li>Primary metrics included: regression parameters (slope = m,
-intercept = b, and R<sub>2</sub>) of each “sliding” slope, length (60 s,
-90 s, 120 s, 180 s) timeframe of each slope, and temperature (ºC).</li>
+intercept = b, and R<sup>2</sup>) of each “sliding” slope, length (60 s,
+90 s, 120 s, 180 s), the timeframe of each slope, and temperature
+(ºC).</li>
 </ul></li>
 <li>()_analyzed.csv
 <ul>
@@ -497,28 +499,25 @@ intercept = b, and R<sub>2</sub>) of each “sliding” slope, length (60 s,
 MANUAL/csv_analyzed, MMR_SMR_AS_EPOC/csv_analyzed)</li>
 <li>Primary metrics included: the steepest slope for each MMR
 timeframe(60 s, 90 s, 120 s, 180 s), respective regression parameters of
-those slopes, temparature; the same parameters are provided for the
+those slopes, and temperature; the same parameters are provided for the
 consecutive measurement cycles.</li>
 </ul></li>
 </ul>
-<ol start="2" style="list-style-type: decimal">
-<li><em>.png files</em></li>
-</ol>
+<p><strong>“.png files”</strong></p>
 <ul>
 <li>()_ChX.png (X = the number of channel)
 <ul>
 <li>Local dir: channel_plots</li>
-<li>Multipanel figure showing the MMR cycle and overlaid colored
-regression slopes with for all sliding windows</li>
+<li>Multi-panel figure showing the MMR cycle and overlaid colored
+regression slopes for all sliding windows</li>
 </ul></li>
 <li>()_SLIDING_MMRanalysisChX.png
 <ul>
 <li>Local dir: channel_plots_MMRanalysis</li>
 <li>Analytical boxplot with all sliding slopes and their R<sub>2</sub>
-plotted. This can be informative to select values best representing MMR
-of the animal. (literature on extended methods: <a
-href="https://doi.org/10.1086/708673">Little et al 2021, Physiological
-and Biochemical Zoology</a>)</li>
+plotted. This can be informative in selecting values best representing
+the MMR of the animal. (extended methods: <a
+href="https://doi.org/10.1086/708673">Little et al 2021</a>)</li>
 </ul></li>
 </ul>
 <br>
@@ -527,42 +526,57 @@ and Biochemical Zoology</a>)</li>
 </h4>
 <p><br></p>
 <p>The timeframes of MMR cycles can be quality controlled to select only
-high quality desired data parts (e.g. exclude any blips, etc, that
+high-quality desired data parts (e.g., exclude any blips, etc., that
 appear due to experimental or technical reasons). See relevant
 suggestions in
 <a href="./QC_protocol.html" style = "color:#8e8c84; font-weight:bold;">QC
 section</a> for more information. There are two types of quality
 control.</p>
 <ol style="list-style-type: decimal">
-<li>MMR cycles: use arg <code>clean_ChX = c(,)</code></li>
+<li>MMR cycles: use arg <code>clean_ChX = c(value1, value2)</code></li>
 <li>The cycles: use arg <code>inv.data = "xyz.csv"</code>; external MMR
-cleaning or inventory datafile (.csv) to document and apply
+cleaning or inventory data file (.csv) to document and apply
 changes.</li>
 </ol>
-<p>We call these inventory files to create traceable and clear selection
-of all manually applied changes. Template can be found <a
-href="herehere">here on GitHub page</a> <strong>Important</strong>: All
-channels are assumed to work on the same open:closed cycle regimen.</p>
+<p>Inventory files are used here to create a traceable and clear
+selection of manually applied changes. The template can be found <a
+href="https://github.com/kraskura/AnalyzeResp_0/blob/main/Test/MANUAL_inventory_template.xlsx">on
+Github</a></p>
 <br>
 <h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;">
 <i class="fas fa-ellipsis-h"></i>  Support functions
 </h5>
-<p><code>MMRslide</code> Arguments: <a style="color:grey"> d, Ch,
-data.MMR, r, r_temp, newdata_set, newdata_mmr </a>
-<code>Channel_mmr</code> Arguments: <a style="color:grey">data.MMR,
-dataMMR, cycle_start, cycle_end, Ch_list, cycles, j, delays, rows,
-rows_temp, newdata_mmr, newdata_set</a></p>
+<ol style="list-style-type: decimal">
+<li><code>MMRslide</code></li>
+</ol>
+<ul>
+<li>Arguments:
+<p style="color:grey">
+d, Ch, data.MMR, r, r_temp, newdata_set, newdata_mmr
+</p></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><code>Channel_mmr</code></li>
+</ol>
+<ul>
+<li>Arguments:
+<p style="color:grey">
+data.MMR, dataMMR, cycle_start, cycle_end, Ch_list, cycles, j, delays,
+rows, rows_temp, newdata_mmr, newdata_set
+</p></li>
+</ul>
+<p>See origianl code for more details.</p>
 <br>
 <h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;">
 <i class="fas fa-ellipsis-h"></i>  Messages in Console
 </h5>
 <ul>
 <li><code>ChX: INVENTORY data, adjusting non-MMR cycle times</code>:
-indicates which that channel (X) will contaon adjusted measurement
+indicates which that channel (X) will contain adjusted measurement
 timeframe for non-MMR cycles</li>
 <li><code>ChX: Several MMR slopes: n = X</code>: Indicates that channel
 (X) has several equally steep slopes for a given sliding timeframe
-(e.g. 60 s)
+(e.g., 60 s)
 <ul>
 <li><code>ChX: Steepest slopes have equivalently good R2, use the first slope recorded</code>:
 Contingent to the having several steepest slope, notes the final
@@ -579,9 +593,8 @@ sliding analysis</li>
 <h4 style="color:#495057; font-weight: bold;  text-align: left;">
 References
 </h4>
-<p><a href="https://doi.org/10.1086/708673">Little et al 2021,
-Physiological and Biochemical Zoology</a> This package was used to
-produce the data in this study.</p>
+<p><a href="https://doi.org/10.1086/708673">Little et al 2021</a> This
+package was used to produce the data in this study.</p>
 <br>
 <h4>
 <a name="Example" style="color:#495057; font-weight: bold;  text-align: left">Example</a>

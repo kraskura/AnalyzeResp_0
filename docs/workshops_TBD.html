@@ -11,7 +11,7 @@
 
 
 
-<title>SDA.knit</title>
+<title>workshops_TBD.knit</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -315,218 +315,120 @@ $(document).ready(function () {
 
 <div class="page-header">
 <h2 style="font-size: 30px; text-align:left;">
-SDA: Estimating digestion performance
+Workshops and events
 </h2>
-<p><code>SDA</code> <br></p>
 </div>
-<h4 style="color:#495057; font-weight: bold;  text-align: left">
-About
-</h4>
-<ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
-<li>
-<a href="#Arguments">Arguments</a>
-</li>
-<li>
-<a href="#Value">Value</a>
-</li>
-<li>
-<a href="#Details">Details</a>
-</li>
-<li>
-<a href="#Example">Example</a>
-</li>
-<!-- <li><a href="#"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>-->
-</ul>
-<h4 style="color:#495057; font-weight: bold;  text-align: left">
-Description
-</h4>
-<p>** Currently under development, but can be used. Please reach out
-with questions and examples.</p>
-<h4>
-<a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a>
-</h4>
-<table>
-<colgroup>
-<col width="18%" />
-<col width="63%" />
-<col width="18%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="right">Argument</th>
-<th align="left">Description</th>
-<th align="left">Default</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">data.SDA</td>
-<td align="left"></td>
-<td align="left"><code>NULL</code></td>
-</tr>
-<tr class="even">
-<td align="right">analyzed_MR</td>
-<td align="left"></td>
-<td align="left"><code>NULL</code></td>
-</tr>
-<tr class="odd">
-<td align="right">SMR_calc</td>
-<td align="left"></td>
-<td align="left"><code>TRUE</code></td>
-</tr>
-<tr class="even">
-<td align="right">SMR_vals</td>
-<td align="left"></td>
-<td align="left"><code>c(NA, NA, NA, NA)</code></td>
-</tr>
-<tr class="odd">
-<td align="right">sda_threshold</td>
-<td align="left">c(“SMR_mean10minVal”,“SMR_low10quant”,
-“SMR_low15quant”, “SMR_low20quant”, “smr_mlnd”, “SMR_vals”),</td>
-<td align="left"><code>"SMR_mean10minVal"</code></td>
-</tr>
-<tr class="even">
-<td align="right">AnimalID</td>
-<td align="left"></td>
-<td align="left">–</td>
-</tr>
-<tr class="odd">
-<td align="right">BW.animal</td>
-<td align="left"></td>
-<td align="left">–</td>
-</tr>
-<tr class="even">
-<td align="right">resp.V</td>
-<td align="left"></td>
-<td align="left">–</td>
-</tr>
-<tr class="odd">
-<td align="right">r2_threshold_smr</td>
-<td align="left"></td>
-<td align="left">–</td>
-</tr>
-<tr class="even">
-<td align="right">date_format</td>
-<td align="left"></td>
-<td align="left"><code>"m/d/y"</code></td>
-</tr>
-<tr class="odd">
-<td align="right">drop_ch</td>
-<td align="left"></td>
-<td align="left"><code>NULL</code></td>
-</tr>
-<tr class="even">
-<td align="right">N_Ch</td>
-<td align="left"></td>
-<td align="left"><code>4</code></td>
-</tr>
-<tr class="odd">
-<td align="right">MLND</td>
-<td align="left"></td>
-<td align="left"><code>TRUE</code></td>
-</tr>
-<tr class="even">
-<td align="right">background_prior</td>
-<td align="left"></td>
-<td align="left"><code>NA</code></td>
-</tr>
-<tr class="odd">
-<td align="right">background_post</td>
-<td align="left"></td>
-<td align="left"><code>NA</code></td>
-</tr>
-<tr class="even">
-<td align="right">background_slope</td>
-<td align="left"></td>
-<td align="left"><code>NULL</code></td>
-</tr>
-<tr class="odd">
-<td align="right">background.V</td>
-<td align="left"></td>
-<td align="left"><code>NULL</code></td>
-</tr>
-<tr class="even">
-<td align="right">background_linear_gr</td>
-<td align="left"></td>
-<td align="left"><code>FALSE</code></td>
-</tr>
-<tr class="odd">
-<td align="right">match_background_Ch</td>
-<td align="left"></td>
-<td align="left"><code>FALSE</code></td>
-</tr>
-<tr class="even">
-<td align="right">path</td>
-<td align="left"></td>
-<td align="left"><code>"."</code> (local directory)</td>
-</tr>
-<tr class="odd">
-<td align="right">feeding_delay</td>
-<td align="left"></td>
-<td align="left"><code>0</code></td>
-</tr>
-</tbody>
-</table>
-<br>
-<h4>
-<a name="Value" style="color:#495057; font-weight: bold;  text-align: left">Value</a>
-</h4>
-<h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;">
-<i class="fas fa-ellipsis-h"></i>  Data outputs
-</h5>
-<ol style="list-style-type: decimal">
-<li><em>.csv files</em></li>
-</ol>
+<p>Erika J. Eliason has hosted and led two respirometry workshops at
+UCSB (Oct 25-26, 2018, and April 3, 2020). The goal of these workshops
+was to bring together collaborators, students, researchers, postdocs,
+and others using aquatic respirometry to discuss best practices of this
+method experimentally and analytically.</p>
+<p>Below are some of the topics that were covered in our
+discussions.</p>
+<p><br />
+<br />
+</p>
+<div id="respo-retreat-ucsb-oct-2018" class="section level4">
+<h4>Respo retreat @ UCSB, Oct 2018</h4>
+<p><strong>Topics of mini-sessions</strong></p>
 <ul>
-<li><ul>
-<li>Local dir:</li>
-<li>Primary metrics included:</li>
+<li>Why do respirometry? Advantages &amp; Limitations</li>
+<li>How to do field respirometry - learning from each other’s
+mistakes</li>
+<li>How do we analyze the data? And how can it be incorporated into
+models?</li>
+<li>Hands-on data analysis using an earlier version of
+“AnalyzeResp”</li>
+</ul>
+</div>
+<div id="respo-retreat-ucsb-april-2020-virtual" class="section level4">
+<h4>Respo retreat @ UCSB, April 2020 (virtual)</h4>
+<p><strong>Discussions about metabolism and metabolic
+phenotypes</strong></p>
+<ul>
+<li>Why is it beneficial to have a low SMR?</li>
+<li>RMR, what does it mean? Resting <em>vs.</em> Routine MR. Routine is
+often measured as the average of some period of time. Resting is
+commonly (not always) a point measurement</li>
+<li>How to elicit MMR in my animal? MMR is often exercise elicited
+(e.g., swim flumes, chasing by hand with or without air exposure). MMR
+can be achieved during digestion (<a
+href="https://journals.biologists.com/jeb/article/222/19/jeb209437/223510/An-appetite-for-invasion-digestive-physiology">Steell
+et al 2019</a>)</li>
+<li>What can limit MMR?</li>
+<li>Why is it beneficial to have a high MMR?
+<ul>
+<li>higher performance, e.g. swimming performance</li>
 </ul></li>
-<li><ul>
-<li>Local dir:</li>
-<li>Primary metrics included:</li>
+<li>But can it be beneficial to have a low MMR?
+<ul>
+<li>don’t need to (physiologically) maintain high MMR</li>
 </ul></li>
-<li><ul>
-<li>Local dir:</li>
-<li>Primary metrics included:</li>
+<li>Why and when is it beneficial to have high AAS? What is the
+relevance of AAS?
+<ul>
+<li>Highly ecologically relevant metric</li>
+<li>Aerobic capacity can change across life stages, acclimation,
+acclimatization, etc.</li>
 </ul></li>
-<li><ul>
-<li>Local dir:</li>
-<li>Primary metrics included:</li>
+<li>Discussions on recovery: The big question remains, <em>how much time
+and resources are needed to recover ENOUGH to return to normal
+activity?</em>
+<ul>
+<li>Animals likely don’t need to recover back to SMR level (and
+realistically - they likely never do)</li>
 </ul></li>
 </ul>
-<ol start="2" style="list-style-type: decimal">
-<li><em>.png files</em></li>
+<p><strong>The roles of metabolic scaling</strong></p>
+<ul>
+<li>When is it necessary to adjust metabolic rate measurements for
+metabolic scaling effects?</li>
+<li>When, yes, provided ar e three options to adjust MR to animals’ body
+size:</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>To divide whole animal metabolic rate by body mass to obtain per
+unit mass metabolism (e.g.,
+mgO<sub>2</sub>min<sup>-1</sup>kg<sup>-1</sup>, this would be the same
+as using a scaling exponent of 1 and common mass individual 1kg)</li>
+<li>To use a common scaling exponent and divide MR by mass^b; b =
+scaling exponent</li>
+<li>To account for mass effects in alternative ways by:
+<ul>
+<li>performing statistical analyses using residuals from regression
+models</li>
+<li>incorporating mass as a covariate in statistical analysis<br />
+<em>There are no agreed-upon methods to size-correct MR for body
+size.</em> e.g., <a
+href="https://journals.biologists.com/jeb/article/225/Suppl_1/jeb243313/274353/Complications-with-body-size-correction-in?searchresult=1">Glazier
+et al 2022</a></li>
+</ul></li>
 </ol>
-<br>
-<h4>
-<a name="Details" style="color:#495057; font-weight: bold;  text-align: left">Details</a>
-</h4>
-<p><br></p>
-<p>This function is actively under development, and currently is a
-seperate script that needs to be sourced (<code>SDA.R</code>).</p>
-<h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;">
-<i class="fas fa-ellipsis-h"></i>  Support functions
-</h5>
-<p><code>SDA.spar</code> Arguments: <a style="color:grey"> spar,d,
-SDAdata, b, peak_SDA_all, time_peak_SDA_all, sda_threshold</a></p>
-<br>
-<h4>
-<a name="Example" style="color:#495057; font-weight: bold;  text-align: left">Example</a>
-</h4>
-<p><br></p>
-<pre class = "sourceCode yaml"> 
-
-
-example
-example
-example
-example
-
-
-
-
-</pre>
+<p><strong>Cleaning to overcome wonky temperature readings and leaky
+respos (and other sources of messiness!)</strong></p>
+<ul>
+<li>How to best measure background respiration?
+<ul>
+<li>ideally before and after each respirometry trial</li>
+<li>3 or more measurement cycles</li>
+</ul></li>
+<li>How to best estimate the error from different potential sources?
+<ul>
+<li>leaky respos (visual assessment of regression slopes)</li>
+<li>‘bad’ temperature reading</li>
+<li>old, malfunctioning oxygen probes</li>
+<li>technical errors</li>
+<li>experimental disturbance</li>
+<li>pumps not flushing right or having some issues</li>
+</ul></li>
+</ul>
+<div class="well">
+<p style="color:green;  text-align: left">
+More info underway - in the meantime, everyone is welcome to reach out
+with questions.
+</p>
+</div>
+</div>
 
 <br>
 <br>

@@ -4,15 +4,14 @@
 </div>
 
 <ul>
-  <li><a href="./demo_mmr_smr_as_epoc.html" style = "color:#29abe0; font-weight:bold;">A step-by-step example guide to carry out analysis of MMR, SMR, Absolute AS, and EPOC or recovery</a>
-  <li><a href="./demo_sda.html" style = "color:#29abe0; font-weight:bold;">Analysis for SDA (preliminary, not developed yet)</a>
+  <li><a href="./demo_mmr_smr_as_epoc.html" style = "color:#244363; font-weight:bold;">A step-by-step example guide to carry out analysis of MMR, SMR, Absolute AS, and EPOC or recovery</a>
   <li><a href="https://github.com/kraskura/AnalyzeResp_0/blob/main/R/Test_AnalyzeResp_0_clean.R" style = "color:grey;"> R script with example code: AnalyzeResp_0/R/Test_AnalyzeResp_0_clean.R</a>
 </ul>
 ____________________________________________________________________________________________________________________________
 <br>
 
-<p style="color:darkred; font-weight: bold;  text-align: left"> Before exploring the demos, please note this ineficiency: </h5>
-There are steps in the analysis that only work if specific phrases can be located in the file name (unique to each experimental run). Therefore, the name of the file matters. A specific and consitent naming of the files is best implemented at the time of experimental data collection. A few important notes:
+<p style="color:darkred; font-weight: bold;  text-align: left"> Please note this inconvenient requirement when using "data cleaning" capabilities: </h5>
+There are steps in the analysis that only work if specific phrases can be located in the file name (unique to each experimental trial). Therefore, the name of the file matters. A specific and consitent naming of the files is best implemented at the time of experimental data collection. Important notes:
 
 - The "box" correspond to a Firesting oxygen meter box, in this context
 - It is assumed, that these boxes are numbered

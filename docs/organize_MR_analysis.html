@@ -339,9 +339,11 @@ About
 <h4 style="color:#495057; font-weight: bold;  text-align: left">
 Description
 </h4>
-<p>Used to create folders in the local directory that may be used to
-keep all input and output files organized during analysis of animal
-metabolic performances.</p>
+<p><code>organize_Mr_analysis</code> is run optionally before using any
+functions required to estimate animal metabolic rates.</p>
+<p>This function creates folders locally that are used to automatize the
+organization of import and (mainly) export files throughout the
+progression of analyzing metabolic performances.</p>
 <h4>
 <a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a>
 </h4>
@@ -361,11 +363,13 @@ metabolic performances.</p>
 <tbody>
 <tr class="odd">
 <td align="right"><strong>create</strong></td>
-<td align="left">One or more folders/directories and all respective
-subfolders will be created in the local directory. No default, one of
-the following options must be used:
-<code>"AUTO/MANUAL/Full/BACTERIAL_RESP/SDA"</code>. When using
-<code>"Full"</code>, all but SDA folders will be created.</td>
+<td align="left">One or more local parent file folders or directories
+are created in the local directory. Each parent directory contains
+subfolders. All directories are empty. Different sets of folders can be
+created; use <code>"AUTO"</code> , <code>"MANUAL"</code> ,
+<code>"Full"</code> , <code>"BACTERIAL_RESP"</code>, <code>"SDA"</code>.
+When using <code>"Full"</code>, all, except parent folder “SDA” is
+created.</td>
 <td align="left"><code>"Full"</code></td>
 </tr>
 </tbody>
@@ -374,15 +378,24 @@ the following options must be used:
 <h4>
 <a name="Value" style="color:#495057; font-weight: bold;  text-align: left">Value</a>
 </h4>
+<p>This function allows coordinating the imports and exports associated
+with <code>MMR</code>, <code>SMR</code>, <code>MMR_SMR_AS_EPOC</code>
+runs.</p>
 <h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;">
 <i class="fas fa-ellipsis-h"></i>  Outputs
 </h5>
-<p>Local directortories that will be propogated with files created
-during data analysis: * ./AUTO - ./AUTO/csv_analyzed - ./AUTO/csv_files
-- ./AUTO/plots_all_together - ./AUTO/plots_channel_cycle -
-./AUTO/plots_channel - ./AUTO/plots_summary_respo</p>
+<p>Local directortories that will be created locally:</p>
 <ul>
-<li><p>./BACTERIAL_RESP</p>
+<li>Parent directoty: <strong>./AUTO</strong>
+<ul>
+<li>./AUTO/csv_analyzed</li>
+<li>./AUTO/csv_files</li>
+<li>./AUTO/plots_all_together</li>
+<li>./AUTO/plots_channel_cycle</li>
+<li>./AUTO/plots_channel</li>
+<li>./AUTO/plots_summary_respo</li>
+</ul></li>
+<li>Parent directoty: <strong>./BACTERIAL_RESP</strong>
 <ul>
 <li>./BACTERIAL_RESP</li>
 <li>./BACTERIAL_RESP/csv_analyzed</li>
@@ -392,25 +405,34 @@ during data analysis: * ./AUTO - ./AUTO/csv_analyzed - ./AUTO/csv_files
 <li>./BACTERIAL_RESP/plots_channel</li>
 <li>./BACTERIAL_RESP/plots_summary_respo</li>
 </ul></li>
-<li><p>./MANUAL - ./MANUAL - ./MANUAL/csv_analyzed - ./MANUAL/csv_files
-- ./MANUAL/channel_plots - ./MANUAL/channel_plots_MMRanalysis -
-./MANUAL/channel_sliding_sets</p></li>
-<li><p>./MMR_SMR_AS_EPOC){ - ./MMR_SMR_AS_EPOC -
-./MMR_SMR_AS_EPOC/csv_analyzed_EPOC - ./MMR_SMR_AS_EPOC/csv_analyzed_MMR
-- ./MMR_SMR_AS_EPOC/csv_analyzed_SMR - ./MMR_SMR_AS_EPOC/csv_analyzed_MR
-- ./MMR_SMR_AS_EPOC/csv_input_files - ./MMR_SMR_AS_EPOC/plots_ch_EPOC -
-./MMR_SMR_AS_EPOC/plots_methods_sum_SMR -
-./MMR_SMR_AS_EPOC/plots_min_values_SMR -
-./MMR_SMR_AS_EPOC/plots_mlnd_SMR</p></li>
+<li>Parent directoty: <strong>./MANUAL</strong>
+<ul>
+<li>./MANUAL</li>
+<li>./MANUAL/csv_analyzed</li>
+<li>./MANUAL/csv_files</li>
+<li>./MANUAL/channel_plots</li>
+<li>./MANUAL/channel_plots_MMRanalysis</li>
+<li>./MANUAL/channel_sliding_sets</li>
+</ul></li>
+<li>Parent directoty: <strong>./MMR_SMR_AS_EPOC</strong>
+<ul>
+<li>./MMR_SMR_AS_EPOC</li>
+<li>./MMR_SMR_AS_EPOC/csv_analyzed_EPOC</li>
+<li>./MMR_SMR_AS_EPOC/csv_analyzed_MMR</li>
+<li>./MMR_SMR_AS_EPOC/csv_analyzed_SMR</li>
+<li>./MMR_SMR_AS_EPOC/csv_analyzed_MR</li>
+<li>./MMR_SMR_AS_EPOC/csv_input_files</li>
+<li>./MMR_SMR_AS_EPOC/plots_ch_EPOC</li>
+<li>./MMR_SMR_AS_EPOC/plots_methods_sum_SMR</li>
+<li>./MMR_SMR_AS_EPOC/plots_min_values_SMR</li>
+<li>./MMR_SMR_AS_EPOC/plots_mlnd_SMR</li>
+</ul></li>
 </ul>
 <br>
 <h4>
 <a name="Details" style="color:#495057; font-weight: bold;  text-align: left">Details</a>
 </h4>
 <p><br></p>
-<h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;">
-<i class="fas fa-ellipsis-h"></i>  Support functions
-</h5>
 <br>
 <h4>
 <a name="Example" style="color:#495057; font-weight: bold;  text-align: left">Example</a>

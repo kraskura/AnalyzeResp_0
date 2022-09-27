@@ -131,11 +131,10 @@ convert.o2.Firesting <- function(csv.data, units_from = "pct", units_to = "mg/L"
   # for any other o2 value conversions please see link:
   # https://www.rdocumentation.org/packages/respirometry/versions/1.0.0/topics/conv_o2
   
-  
-  filename<-paste("./csv_files_mgL/", gsub('.{4}$', '', csv.data), "_mgO2L.csv", sep='')
-  if (!dir.exists("./csv_files_mgL/")){
-    message("Creating new directory to store converted files:  ./csv_files_mgL/ ")
-    dir.create(file.path("./csv_files_mgL/"), recursive = TRUE)
+  filename<-paste("./csv_files_unitConvert/", gsub('.{4}$', '', csv.data), "_mgO2L.csv", sep='')
+  if (!dir.exists("./csv_files_unitConvert/")){
+    message("Creating a new directory to store converted files: ./csv_files_unitConvert/" )
+    dir.create(file.path("./csv_files_unitConvert/"), recursive = TRUE)
   }
   write.csv(file= filename, data.convert , row.names=FALSE)
 

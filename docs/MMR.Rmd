@@ -18,8 +18,14 @@
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left">Description</h4>
 
-<!-- <h4 style="color:#495057; font-weight: bold;  text-align: left">Before running the SMR function </h4><br> -->
-This function will take files with maximum metabolic rate recordings in up to 4 Channels/animals (8-channel FireSting has 4 oxygen sensor channels and 4 temperature probes). This function finds the steepest oxygen decrease over 60, 90, 120, and 180 second timeframes for each Channel within a specified measurement cycle; it is using a sliding window method (more in [Little et al 2020](https://doi.org/10.1086/708673)). The regression slope is estimated for above mentioned time periods and the entire measurement cycle. All non-MMR cycles are analyzed using full time period without the sliding window approach.
+The maximum metabolic rate, `MMR` function extracts regression parameters to characterize maximum oxygen uptake in animals.
+
+The function handles oxygen level, temperature, and times data for up to 4 animals, at different measurement cycles (conceptually presented [here](./about.html). 
+
+The `MMR` function finds the steepest oxygen decrease slope over 60, 90, 120, and 180-second timeframes for each Channel (animal) within a user-specified measurement cycle.  The regressions are identified and characterized using a sliding window method ([Little et al 2020](https://doi.org/10.1086/708673)). 
+
+All non-MMR measurement cycles are analyzed across the entire measurement period without the sliding window approach.
+
 
 <h4><a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a></h4>
 
@@ -31,70 +37,76 @@ This function will take files with maximum metabolic rate recordings in up to 4 
 **cycles**      | The number of measurement cycles recording metabolic rate in an animal (a single number value 1 through 4).| -- 
 **cycle_start**   | A numeric vector of measurement cycle start times (min). The length of this vector has to be equal to the number of `cycles` provided, e.g. if `cycles = 2`, then it may be `cycle_start = c(0,10)`) | --
 **cycle_end**     | A numeric vector of measurement cycle end times (min). The same format as cycle_start | --
-**mmr_Ch1**           | A number indicated in which cycle the animal in FireSting Channel 1 is expected to reach its maximum metabolic rate. Must specify to analyze metabolic rate, or enter `0`, which will drop the channel from analysis. | `0`
+**mmr_Ch1**           | A number indicated in which cycle the animal in FireSting Channel 1 is expected to reach its maximum metabolic rate. Must specify to analyze metabolic rate, or enter `0`, which will drop the channel from the analysis. | `0`
 **mmr_Ch2**           | See `mmr_Ch1` argument for description. This applies to Channel 2 | --
 **mmr_Ch3**           | See `mmr_Ch1` argument for description. This applies to Channel 3 | --
 **mmr_Ch4**           | See `mmr_Ch1` argument for description. This applies to Channel 4 | --
-**clean_Ch1**     | Specific to MMR cycle for each animal (or cycle). A time window (min) that specifies a quality section on metabolic rate measurement to be used. This may be used to "clean" the data. Default will use full length measurement cycle as set by `cycle_start` and `cycle_end` arguments. | `c(0,0)`
+**clean_Ch1**     | Specific to MMR cycle for each animal (or cycle). Use to set a time window (min) that specifies a quality section on metabolic rate measurement for sliding window analysis. Default will use full length measurement cycle as set by `cycle_start` and `cycle_end` arguments. | `c(0,0)`
 **clean_Ch2**     | See `clean_Ch1` argument for description. This applies to Channel 2 | -- 
 **clean_Ch3**     | See `clean_Ch1` argument for description. This applies to Channel 3 | --
 **clean_Ch4**     | See `clean_Ch1` argument for description. This applies to Channel 4 | --
-**N_Ch**          | The number of FireSting channels. Options include 2, 4, 8. Note, if either a 2- or 4-Channel FireSting was used, this argument can be ignored.  | `4`
-**path**          | Specify working directory for all output files. This argument has two options, i) files can be automatically organized in newly created local directories. Any character may be used. | `"."` (local directory)
+**N_Ch**          | The number of FireSting channels. Options include 2, 4, and 8. This argument can be ignored if 2-Channel FireSting was used.  | `4`
+**path**          | Specify the working directory for all output files. This argument has two options, i) files can be automatically organized in newly created local directories. Any character may be used. | `"."` (local directory)
 **date_format**   | The date format used in the original FireSting files. Must specify one of the following: `c("m/d/y","d/m/y","y-m-d")`  | `"m/d/y"`
 
 <br><h4><a name="Value" style="color:#495057; font-weight: bold;  text-align: left">Value</a></h4>
 
-Finding best representation of MMR. 
+Finding regression that represents the MMR best. 
 
 <h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Data outputs</h5>
 
-1. _.csv files_
+**".csv files"**
+
 * ()_SLIDINGsetCh2.csv
   - Local dir: channel_sliding_sets
-  - Primary metrics included: regression parameters (slope = m, intercept = b, and R~2~) of each "sliding" slope, length (60 s, 90 s, 120 s, 180 s) timeframe of each slope, and temperature (ºC). 
+  - Primary metrics included: regression parameters (slope = m, intercept = b, and R^2^) of each "sliding" slope, length (60 s, 90 s, 120 s, 180 s), the timeframe of each slope, and temperature (ºC). 
 * ()_analyzed.csv
   - Local dir(s): csv_analyzed (in two parent directories: MANUAL/csv_analyzed, MMR_SMR_AS_EPOC/csv_analyzed)
-  - Primary metrics included: the steepest slope for each MMR timeframe(60 s, 90 s, 120 s, 180 s), respective regression parameters of those slopes, temparature; the same parameters are provided for the consecutive measurement cycles.
+  - Primary metrics included: the steepest slope for each MMR timeframe(60 s, 90 s, 120 s, 180 s), respective regression parameters of those slopes, and temperature; the same parameters are provided for the consecutive measurement cycles.
 
-2. _.png files_
+**".png files"**
+
 * ()_ChX.png  (X = the number of channel)
   - Local dir: channel_plots
-  - Multipanel figure showing the MMR cycle and overlaid colored regression slopes with for all sliding windows 
+  - Multi-panel figure showing the MMR cycle and overlaid colored regression slopes for all sliding windows 
 * ()_SLIDING_MMRanalysisChX.png
   - Local dir: channel_plots_MMRanalysis
-  - Analytical boxplot with all sliding slopes and their R~2~ plotted. This can be informative to select values best representing MMR of the animal. (literature on extended methods: [Little et al 2021, Physiological and Biochemical Zoology](https://doi.org/10.1086/708673))
+  - Analytical boxplot with all sliding slopes and their R~2~ plotted. This can be informative in selecting values best representing the MMR of the animal. (extended methods: [Little et al 2021](https://doi.org/10.1086/708673))
 
 <br><h4><a name="Details" style="color:#495057; font-weight: bold;  text-align: left">Details</a></h4> <br>
 
-The timeframes of MMR cycles can be quality controlled to select only high quality desired data parts (e.g. exclude any blips, etc, that appear due to experimental or technical reasons). See relevant suggestions in <a href="./QC_protocol.html" style = "color:#8e8c84; font-weight:bold;">QC section</a> for more information. 
+The timeframes of MMR cycles can be quality controlled to select only high-quality desired data parts (e.g., exclude any blips, etc., that appear due to experimental or technical reasons). See relevant suggestions in <a href="./QC_protocol.html" style = "color:#8e8c84; font-weight:bold;">QC section</a> for more information. 
 There are two types of quality control.
 
-1. MMR cycles: use arg `clean_ChX = c(,)`
-2. The cycles: use arg `inv.data = "xyz.csv"`; external MMR cleaning or inventory datafile (.csv) to document and apply changes. 
+1. MMR cycles: use arg `clean_ChX = c(value1, value2)`
+2. The cycles: use arg `inv.data = "xyz.csv"`; external MMR cleaning or inventory data file (.csv) to document and apply changes. 
 
-We call these inventory files to create traceable and clear selection of all manually applied changes. Template can be found [here on GitHub page](herehere) 
-**Important**: All channels are assumed to work on the same open:closed cycle regimen. 
+Inventory files are used here to create a traceable and clear selection of manually applied changes. The template can be found [on Github](https://github.com/kraskura/AnalyzeResp_0/blob/main/Test/MANUAL_inventory_template.xlsx) 
 
 <br><h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Support functions</h5>
 
-`MMRslide` Arguments: <a style="color:grey"> d, Ch, data.MMR, r, r_temp, newdata_set, newdata_mmr </a>
-`Channel_mmr` Arguments: <a style="color:grey">data.MMR, dataMMR, cycle_start, cycle_end, Ch_list, cycles, j, delays, rows, rows_temp, newdata_mmr, newdata_set</a>
+1. `MMRslide` 
+  - Arguments: <p style="color:grey"> d, Ch, data.MMR, r, r_temp, newdata_set, newdata_mmr </p>
+2. `Channel_mmr` 
+  - Arguments: <p style="color:grey">data.MMR, dataMMR, cycle_start, cycle_end, Ch_list, cycles, j, delays, rows, rows_temp, newdata_mmr, newdata_set</p>
+
+See origianl code for more details. 
 
 <br><h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Messages in Console</h5>
 
-- `ChX: INVENTORY data, adjusting non-MMR cycle times`: indicates which that channel (X) will contaon adjusted measurement timeframe for non-MMR cycles
-- `ChX: Several MMR slopes: n = X`: Indicates that channel (X) has several equally steep slopes for a given sliding timeframe (e.g. 60 s)
+- `ChX: INVENTORY data, adjusting non-MMR cycle times`: indicates which that channel (X) will contain adjusted measurement timeframe for non-MMR cycles
+- `ChX: Several MMR slopes: n = X`: Indicates that channel (X) has several equally steep slopes for a given sliding timeframe (e.g., 60 s)
   - `ChX: Steepest slopes have equivalently good R2, use the first slope recorded`: Contingent to the having several steepest slope, notes the final selection
   - `ChX: Steepest slopes with best R2 selected`: Contingent to the having several steepest slope, notes the final selection
 - `NOT ANALYSED/ FILE < 2 min`: File not analyses, requires more data
 - `ChX: file < 3 min: no steepest slope analysis`: No sliding analysis
 
-
 <br><h4 style="color:#495057; font-weight: bold;  text-align: left;"> References</h4>
 
-[Little et al 2021, Physiological and Biochemical Zoology](https://doi.org/10.1086/708673)
+[Little et al 2021](https://doi.org/10.1086/708673)
 This package was used to produce the data in this study. 
+
+
 
 
 <br><h4><a name="Example" style="color:#495057; font-weight: bold;  text-align: left">Example</a></h4> <br>

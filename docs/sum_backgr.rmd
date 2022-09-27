@@ -18,40 +18,52 @@
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left">Description</h4>
 
-This function summarises many background files. It is most useful when in need to summarise background respiration that was measured for longer period of time (many measurement cycles). It becomes useful when trying to better understand system-wide respiration rate, across all channels. For example, it may be used to explore the variability of background respiration rates between different respirometry chambers,or to explore overtime changes in backgrounds respiration. This is shorthand way to get background MO~2~ mgO~2~L^-1^min^-1^ through `MMR_SMR_AS_EPOC` function.
+This function summarizes background respiration files, allowing users to better understand system-wide respiration rates across all channels. 
 
-_Note: this is a developing function_
+For example, it may be used to explore the variability of background respiration rates between different respirometry chambers or to explore overtime changes in background respiration. 
+
+<p style="color:darkred;  text-align: left">Updates in progress</p>
 
 <h4><a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a></h4>
 
   Argument       | Description | Default
 ---: | :------------- | :---
-**data**        | Data file _..._analyzed.csv_ of respiration. | --
-**Ch**          | Specify Channels for analysis. A numeric vector. | --
-**resp.ID**     | A character vector with respiromtery IDs. | --
-**resp.Vol**    | A numeric vector of respirometry volumes. | --
+**data**        | The name of the data file “(…)_analyzed.csv_” containing analyzed regressions of measurement cycles (post `SMR`). A character.  | --
+**Ch**          | Specify channels for analysis. A numeric vector. | --
+**resp.ID**     | A character vector with respirometry IDs. | --
+**resp.Vol**    | A numeric vector of respirometry volumes (L). | --
 
 <br><h4><a name="Value" style="color:#495057; font-weight: bold;  text-align: left">Value</a></h4>
 
+The function is most helpful if summarizing background respiration measured for a extended period (many measurement cycles).
+
 <h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Data outputs</h5>
 
-1. .csv files
-* ()_BACK_SLOPES.csv
-  - Saved in local directory
-  - Metrics included: Channel ID, temperature, R^2^ (min, max, mean), slopes (min, max, mean), the number of measurements, the ID and volume of respirometer, and the datafile name. 
-2. _.png files_
-* ()_ChX_backSlopes_PLOT.png (X = the number of channel)
-  - All files saved in the local directory
-  - Frequency plot of all background respiration slopes for each channel.
+**“.csv files”**
 
+- “(…)_BACK_SLOPES.csv”
+  * saved in a local directory (./)
+  * metrics included: 
+    + Channel ID,
+    + Respirometry chamber ID,
+    + Respirometry chamber volume (L),
+    + temperature,
+    + summary of R^2^ (min, max, mean),
+    + summary of regression slopes (min, max, mean),
+    + the number of measurements,
+    + the datafile name. 
+
+**”.png files”**
+
+- “(…)_ChX_backSlopes_PLOT.png, where (X = the number of channels)
+  * saved in the local directory
+  * a frequency plot of all background respiration slopes for each channel
 
 <br><h4><a name="Details" style="color:#495057; font-weight: bold;  text-align: left">Details</a></h4> <br>
 
-One file is analysed at the time, writing a loop to analyse all files in a given directory will be handy. 
-
+This function allows the analysis of one file at a time. 
 
 <br><h4><a name="Example" style="color:#495057; font-weight: bold;  text-align: left">Example</a></h4> <br>
-
 
 <pre class = "sourceCode yaml"> 
 
@@ -61,6 +73,8 @@ One file is analysed at the time, writing a loop to analyse all files in a given
             resp.Vol = c(1.5, 1.5, 1.5, 1.5))
 
 </pre>
+
+
 
 
 

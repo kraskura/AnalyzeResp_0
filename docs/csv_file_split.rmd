@@ -19,47 +19,52 @@
 
 <h4 style="color:#495057; font-weight: bold;  text-align: left">Description</h4>
 
-Use this function to split your files in 2 parts at a defined time point. Most commonly this is needed when MMR and SMR parts are together in one file. For example, when manually controlled part of the data recording (manually initiated flush:measure cycles; typically MMR) is immediately followed by automatic data recording (auto timer controlled flush:measure cycles; typically SMR/RMR). These two parts are analyzed using different functions and so need to be in different _.csv_ files.
+This function splits .csv raw data files into two separate files, adjusting the relative start time to “0” for each file.
 
 <h4><a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a></h4>
 
 
-
   Argument       | Description | Default
 ---: | :------------- | :---
-**data**            | Data _.csv_ to be split in two (manual/MMR and auto/SMR _.csv_ files). Input must be a character | --
-**split_data_name** | The name that will be used to save all output files. Input must be a character| --
-**cycle_full_min**  | cycle length (min) that the auto file was run on, this includes both flush + measure; no default | --
-**timeSplit**       | The time at which the file will be split in two (the split time (min)). This time will be shown in output plots | --
-**date_format**     | The date format. It must be provided, and can be either: `"m/d/y"`, `"d/m/y"`, `"y-m-d"`. | `NULL`
-**split**           | Logical argument. When `TRUE` the original file will be cut and 2 _.csv_ saved in the local directory | `FALSE`
-**N_Ch**            | The number of FireSting channels. Options include 2, 4, 8. Note, if either a 2- or 4-Channel FireSting was used, this argument can be ignored |`4`       
+**data**            | The name of the “.csv” data file must be split. A character string. | --
+**split_data_name** | The name that is used for split output files. A character string.| --
+**cycle_full_min**  | The duration of a full cycle (flush + measure; minutes) for the second part, presumably the SMR/RMR section. This is only used for visual assessment purposes. | --
+**time split**       | The relative time that defines the split (in minutes). | --
+**date_format**     | The format of the date. Must be either: `"m/d/y"`, `"d/m/y"`, `"y-m-d"`. | `NULL`
+**split**           | Logical argument. When `TRUE`, the original file is cut, and 2 files are exported or saved in the local directory. | `FALSE`
+**N_Ch**            | The number of FireSting channels. Use 4 or 8. If a 2-Channel FireSting was used, this argument could be ignored |4   
 
 <br><h4><a name="Value" style="color:#495057; font-weight: bold;  text-align: left">Value</a></h4>
 
+The function may be useful when one data file contains both i) the manually timed MMR measurements and ii) automatically timed repeat measurement cycles to estimate SMR/RMR. These two parts are analyzed here using different functions, `MMR` and `SMR`, each requiring its own ‘.csv’ datafiles. 
+
+Alternatively, this function can be valuable if one continuous SMR/RMR file contains data collected on two differently timed repeat measurement cycles (e.g., 7:8 minute flush: measure, transitioned into 9:6 minute flush: measure). 
+
+
+
 <h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Data outputs</h5>
 
-1. _.csv files_ (  - Saved locallly only if `split = TRUE`_)
-* "split_data_name"_mmr_split.csv.
-  - The first part is as indicated, so should use the naming system
-  - The MMR part of the file, ready to go in MMR function
-* "split_data_name"_smr_split.csv.
-  - The SMR part of the file, ready to go in SMR function
+**“.csv” files**
 
-2. _.png files_
-* "split_data_name"_respo_cycles.png 
-  - all data displayed with indicator lines for the 'splitting' time and auto file cycle periods.
-* "split_data_name"_respo_confirm.png
-  - a zoomed in version (2 min) of the O2 trend data, plot contains lines and coloration to indicate where the 'split' would occur. 
-* "split_data_name"_respo.png
-  - Saved locallly only if `split = TRUE`
+- Saved in the current local working directory; only if `split = TRUE`
+- Export data file, the first part (MMR part):
+  * has name extension “mmr_split.csv”
+  * ready as an input file for `MMR` function
+- Export data file, the second part (RMR part):
+  * has name extension “smr_split.csv”
+  * ready as an input file for `SMR` function
+
+**“.png” files**
+
+- "split_data_(…)_respo_cycles.png”
+  * all data displayed with vertical lines indicating the: i) split time and ii) the cycle durations for the second part that is assumed to be on auto-cycles. 
+- "split_data_(…)_respo_confirm.png”
+  * a zoomed-in version (2 min) of the O~2~ versus time data, specifically at the section of the split time. The lines indicate where the 'split' occurs when `split = TRUE`. 
   
 
 <br><h4><a name="Details" style="color:#495057; font-weight: bold;  text-align: left">Details</a></h4> <br>
 
-
 <br><h4><a name="Example" style="color:#495057; font-weight: bold;  text-align: left">Example</a></h4> <br>
-
 
 <pre class = "sourceCode yaml"> 
 
@@ -74,20 +79,4 @@ csv_file_split(data="Sep24_2019_box0_fullfile.csv",
 </pre>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 

@@ -1,0 +1,28 @@
+
+
+
+
+<div class="page-header">
+  <h2 style="font-size: 30px; text-align:left;">SDA: Estimating digestion performance</h2>
+`SDA`
+<br>
+</div>
+
+
+<h4 style="color:#495057; font-weight: bold;  text-align: left">About</h4>
+<ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
+  <li><a href="#Arguments">Arguments</a></li>
+  <li><a href="#Value">Value</a></li>
+  <li><a href="#Details">Details</a></li>
+  <li><a href="#Example">Example</a></li>
+  <!-- <li><a href="#"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>-->
+</ul>
+
+<h4 style="color:#495057; font-weight: bold;  text-align: left">Description</h4>
+
+<div class="well">
+  <p style="color:green;  text-align: left">Currently not available</p>
+</div>
+
+
+

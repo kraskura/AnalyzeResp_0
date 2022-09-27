@@ -1,7 +1,11 @@
 
 <div class="page-header">
-<h2 style="font-size: 30px; text-align:left;">Quality Control and Finalising data: a possible approach</h2>
+<h2 style="font-size: 30px; text-align:left;">Visual assessment and modifications of data: example approach</h2>
   <p>Source: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/QC_protocol.md" style = "color:gray;">AnalyzeResp_0/blob/main/docs/QC_protocol.md</a></p>
+</div>
+
+<div class="well">
+  <p style="color:green;  text-align: left"> Everything on this page is group effort, and a product of our <a href = "./workshops_TBD.html">workshops</a></p>
 </div>
 
 
@@ -16,25 +20,25 @@
         + [/MANUAL/channel_plots](https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/MANUAL/channel_plots)
 
 2. **Group and Clean Data** 
-    - Identify all clean MO~2~ data with linear decline - <span style = "color: #93c54b; font-weight: bold;" >keep</span>
-    - Identify any plots with minor issues - <span style = "color: #f47c3c; font-weight: bold;" >correct</span>
-    - Identify erroneous MO~2~ plots - <span style = "color: #d9534f; font-weight: bold;" >remove</span>
+    - Identify linear decline MO~2~ regressions - <span style = "color: #93c54b; font-weight: bold;" >keep</span>
+    - Identify regressions with minor issues - <span style = "color: #f47c3c; font-weight: bold;" >correct</span>
+    - Identify non-linear MO~2~ regression - <span style = "color: #d9534f; font-weight: bold;" >remove</span>
 
 3. **Background**
-    - Assess if background is present (`SMR` function run for background respiration)
-    - If background is present, correct all MO~2~ slopes for background respiration 
+    - Assess if the background is present (`SMR` function run for background respiration)
+    - If the background is present, correct all MO~2~ regressions for background respiration 
         + See Rosewarne et al 2016 for guidance
         + To customize the analysis use `MMR_SMR_AS_EPOC` function arguments: `background_prior = NA, background_post = NA, background_slope = NULL, background.V = NULL, background_linear_gr = FALSE, match_background_Ch = FALSE, mmr_background = "SAME_slope"`
-    - We generally assume a linear increase between the “before” and “after” background and apply that to the slopes.
+    - We generally assume a linear increase between the "before" and "after" background and apply that to correct each MO~2~ value for background respiration.
         + Use `background_linear_gr = TRUE`
 
 4. **Plot the data and calculate MR values**
-    - Plot the (clean) data. Plot MO~2~ vs time and temperature vs time. ESSENTIAL for every fish.
+    - Plot the (cleaned) data. Plot MO~2~ vs. time and temperature vs. time.
     - Calculate SMR, RMR, MMR, EPOC, time to 50% MMR (Time[MMR50]) or 75% MMR (Time[MMR75]) 
-    - Many ways to do this - talk to collogues and peers (i.e. which sliding measurement window for MMR; which SMR value; which EPOC threshold)
+    - Many ways to do this - talk to collogues and peers (i.e., which sliding measurement window for MMR; which SMR value; which EPOC threshold)
 
 5. **Assess metabolic scaling**
-    - Plot the data - SMR vs body mass; MMR vs body mass (use log-log plots and raw data plots)
+    - Plot the data - SMR vs. body mass; MMR vs. body mass (use log-log plots and raw data plots)
     - Adjust for scaling if needed (see above).
         + To customize the analysis use `MMR_SMR_AS_EPOC` function arguments: `scaling_exponent_mmr=1, scaling_exponent_smr=1, common_mass=1`
 
@@ -42,17 +46,18 @@
 <h4 style="color:#495057; font-weight: bold;  text-align: left">Additional notes and suggestions from the Eliason Lab</h4>
 
 1. **Check for leaks**
-    - Plot the full measurement cycle at least once for a few respirometry trial runs: 
+    - Plot the full measurement cycle at least once for a few respirometry trials runs: 
          + `SMR( ..., flush_plot = "ON"`)
     - Are 'L' shapes for measurement cycles (measure phase) consistent across files? If yes, there might be a leak. 
 
 2. **Notes and suggestions:** 
-    - Do not cut the recovery or resting metabolic rate measurement down to below the “sliding window” length selected for MMR.
+    - Do not cut the recovery or resting metabolic rate measurement down below the "sliding window" length selected for MMR.
     - For cleaning: measurement cycles with R^2^ below 0.7 are immediately rejected: <span style = "color: #d9534f; font-weight: bold;" >remove / no cleaning</span>
-    - Experimental notes: If there are any measurements with a complementary note that anyone was messing with the respirometry chamber (relieving a bubble, etc) or where data is missing from the measurement (low signal in probe can cause this), it is aadvised to exclude the measurement. 
+    - Experimental notes: If there are any measurements with a complementary note that anyone was messing with the respirometry chamber (relieving a bubble, etc.) or where data is missing from the measurement (low signal in the probe can cause this), it is advised to exclude the measurement. 
+
 
 <br>
-<h4 style="color:#495057; font-weight: bold;  text-align: left"> A sequence of our identified occasianal anomolies and our suggested solutions</h4>
+<h4 style="color:#495057; font-weight: bold;  text-align: left"> Some identified occasional data anomalies and possible solutions</h4>
 <p>Source: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/files/resources/qc_Eliason_lab.pdf" style = "color:gray;">PDF file</a></p>
 
 <div style="background-color: #f8f5f0;  border: 2px solid #484f4f; padding: 10px">

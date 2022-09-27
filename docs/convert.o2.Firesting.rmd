@@ -1,0 +1,68 @@
+
+<div class="page-header">
+  <h2 style="font-size: 30px; text-align:left;">convert.o2.Firesting</h2>
+  <p>Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a></p>
+</div>
+
+<br>
+`convert.o2.Firesting`
+<br>
+
+<h4 style="color:#495057; font-weight: bold;  text-align: left">About</h4>
+<ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
+  <li><a href="#Arguments">Arguments</a></li>
+  <li><a href="#Value">Value</a></li>
+  <li><a href="#Details">Details</a></li>
+  <li><a href="#Example">Example</a></li>
+  <li><a href="#"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>
+</ul>
+
+
+<h4 style="color:#495057; font-weight: bold;  text-align: left">Description</h4>
+
+
+A function that converts the oxygen level measurements to a different unit as provided. A modified function from: [rMR::DO.unit.convert](https://www.rdocumentation.org/packages/rMR/versions/1.1.0/topics/DO.unit.convert)
+
+<p style="color:darkred;  text-align: left">Updates to increase flexibility in progress</p>
+
+<h4><a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a></h4>
+
+  Argument       | Description | Default
+---: | :------------- | :---
+csv.data | The name of the data file where the units need to be converted. A character. One file must be provided. | -- 
+units_from | The units of the recorded O~2~ levels. pct = percent air saturation, default. | `"pct"`
+units_to  |  The units that the O~2~ levels will be converted to. mg L^-1 is default| `"mg/L"`
+channels | Specifies the channels for which the conversion is necessary  | `c(1,2,3,4)`
+salinity | Salinity of the water, in ppt. | -- 
+atm_pressure | Atmospheric pressure. in Atm; default = 1 | 1
+n_ch | The number of channels of the FireSting. If 2-Channel FireSting was used, this argument could be ignored. | 4
+
+<h4><a name="Value" style="color:#495057; font-weight: bold;  text-align: left">Value</a></h4> <br>
+
+<h4><a name="Details" style="color:#495057; font-weight: bold;  text-align: left">Details</a></h4> <br>
+
+<h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Data outputs</h4>
+
+**".csv files"**
+
+- New files with converted O~2~ units
+- File is saved in locally created directory: "./csv_files_unitConvert/" 
+  - If the directory does not exist, it will be created with a message in the console: `"Creating a new directory to store converted files: ./csv_files_unitConvert/"`
+  - If the directory exists, the new files will automatically be placed in this wd.
+
+<br>
+<h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;"><i class="fas fa-ellipsis-h"></i>&nbsp; Messages on Console</h4>
+
+`"Creating new directory to store converted files: ./csv_files_unitConvert/"`
+
+<br>
+<h4><a name="Example" style="color:#495057; font-weight: bold;  text-align: left">Example</a></h4> <br>
+
+_The online provided example code has a loop that is handy when transforming all files in a given working directory_
+
+<pre class = "sourceCode yaml"> 
+
+# For a single file example: 
+convert.o2.Firesting(csv.data = "FileToCovert.csv", n_ch = 4, sal = 35)
+
+</pre>

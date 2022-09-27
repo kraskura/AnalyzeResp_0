@@ -317,13 +317,20 @@ $(document).ready(function () {
 <h2 style="font-size: 30px; text-align:left;">
 QA for troubleshooting
 </h2>
-<p>
-Source:
-<a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/troubleshooting.rmd" style = "color:gray;">AnalyzeResp_0/docs/troubleshooting.rmd</a>
+</div>
+<div class="well">
+<p>All functions have been updated since they were first used in 2017.
+Please reach out if noticing any bugs. It will be fixed as soon as
+possible. The core functionality and methods to estimate metabolic rate
+performances have remained the same through time.</p>
+</div>
+<div class="well">
+<p style="color:green;  text-align: left">
+Updates in progress
 </p>
 </div>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">
-Question topics
+Topics
 </h4>
 <ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
 <li>
@@ -356,111 +363,119 @@ Question topics
 </ul>
 <br>
 <h5>
-<a name = "setupanddata" style = "color:purple; font-weight:bold;">Setup
+<a name = "setupanddata" style = "color:green; font-weight:bold;">Setup
 and data format</a>
 </h5>
-<p><strong>Are the data in correct format?</strong></p>
-<p><strong>Can this be run on 2-channel Firesting?</strong></p>
+<p><strong>Are my data in the correct format for the
+<code>txt_csv_convert</code> function?</strong></p>
 <ul>
-<li>This code was build using 4-channel FireSting files. For all 4
-variable vectors, it still should work for 2- channel FireSting. Just
-indicate the missing data correctly.</li>
+<li>See an example file here:
+<a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/Test/jul04_2019_opasize_box4_mmr.txt" style = "color:gray;">AnalyzeResp_0/Test/</a></li>
 </ul>
-<p><strong>Cannot find the converted .txt –&gt; .csv files</strong></p>
+<p><strong>Can the code be used with 2-channel Firesting?</strong></p>
+<ul>
+<li>Yes. The functions were written using 4-channel FireSting text
+files. It should work for 2-channel FireSting if the missing data are
+correctly indicated for channels 3 and 4.</li>
+</ul>
+<p><strong>Where are the converted .csv files after using
+txt_csv_convert function?</strong></p>
 <ul>
 <li>If using <code>organize_MR_analysis</code> for organization, be sure
-to have all <em>.txt</em> files in the same directory as the all main
-folders (i.e. <em>AUTO, MANUAL, MMR_SMR_AS_EPOC)</em> , otherwise the
-code will ot be able to find the specific <em>csv_files</em>
-subfolder.</li>
+to have original .txt files in the directory containing folders (i.e.,
+‘AUTO’, ‘MANUAL’, ‘MMR_SMR_AS_EPOC’), otherwise the code will not be
+able to find the specific ‘csv_files’ subfolder.</li>
+<li>Alternatively, do not specify the path and it will default save
+everything locally in an active working direction.</li>
 </ul>
-<p><strong>What R2 threshold to set?</strong></p>
+<p><strong>What should the R^2 threshold be set to?</strong></p>
 <ul>
-<li>If it is too high, all measurement cycle data may be discarded
-leaving you with no data.</li>
+<li>If it is high, all measurement cycle data may be discarded.</li>
+<li>If it is low, the measurement cycle data may not meet the quality
+metrics as desired</li>
 </ul>
-<p><strong>Are you in correct working directory?</strong></p>
-<p><strong>Leaky respirometry chambers?</strong></p>
-<p><strong>Is water hypoxic? how to identify this?</strong></p>
+<p><strong>Cannot locate files or working directory</strong></p>
 <ul>
-<li>use sodium sulfite or N2 gas to deoxygenate water and then run that
-in closed phase to see if the O2 gets in</li>
+<li>Set working directory appropriate to each set of analysis (e.g., for
+SMR, locate to the ./AUTO/csv_files). See the example script for further
+guidance.</li>
 </ul>
 <br>
 <h5>
-<a name = "MMR" style = "color:purple; font-weight:bold;">MMR related
-</a>
+<a name = "MMR" style = "color:green; font-weight:bold;">MMR </a>
 </h5>
 <p><strong>How to choose what length measurement to use?</strong></p>
-<p><strong>What if my animals reach MMR during any other cycle, and not
-at the beginning, e.g. from chasing.</strong></p>
-<p><strong>Warning message about reading files</strong></p>
+<p><strong>What if my animals reach MMR during any other cycle and not
+at the beginning, e.g., from chasing?</strong></p>
 <ul>
-<li>This is most likely related to inventory csv file. It likely reads
-in the file and applied the directed ‘cleaning’ with no problem (it is
-always a responsibility of our own to check!).
+<li>The output code from <code>MMR_SMR_AS_EPOC</code> will provide
+“mmr_overall”, which is the highest MO<sub>2</sub> measurement recorded
+during</li>
+</ul>
+<p><strong>Warning messages about reading files</strong></p>
+<ul>
+<li>This is most likely related to an inventory .csv file. It likely
+reads in the file and applied the directed ‘cleaning’ instructions with
+no problem (however, it is always a responsibility of our own to check
+the result of cleaning data).
 <code>Warning message: In read.table(file = file, header = header, sep = sep, quote = quote,  : incomplete final line found by readTableHeader on 'MMR_template_TESTJan2022.csv'</code></li>
 </ul>
 <br>
 <h5>
-<a name = "SMR" style = "color:purple; font-weight:bold;"> SMR
-related</a>
-</h5>
-<p><strong>Warning message about reading files</strong></p>
-<ul>
-<li>This is most likely related to inventory csv file. It likely reads
-in the file and applied the directed ‘cleaning’ with no problem (it is
-always a responsibility of our own to check!).
-<code>Warning message: In read.table(file = file, header = header, sep = sep, quote = quote,  : incomplete final line found by readTableHeader on 'MMR_template_TESTJan2022.csv'</code></li>
-</ul>
-<br>
-<h5>
-<a name = "AS" style = "color:purple; font-weight:bold;"> AS, EPOC
-related</a>
+<a name = "SMR" style = "color:green; font-weight:bold;"> SMR</a>
 </h5>
 <br>
 <h5>
-<a name = "Recovery" style = "color:purple; font-weight:bold;">
+<a name = "AS" style = "color:green; font-weight:bold;"> Aerobic
+scopes</a>
+</h5>
+<br>
+<h5>
+<a name = "Recovery" style = "color:green; font-weight:bold;">
 Recovery</a>
 </h5>
-<p><strong>Smoothing leads to big dip at the beginning.</strong></p>
 <br>
 <h5>
-<a name = "SDA" style = "color:purple; font-weight:bold;"> Digestion,
+<a name = "SDA" style = "color:green; font-weight:bold;"> Digestion,
 SDA</a>
 </h5>
 <br>
 <h5>
-<a name = "Back" style = "color:purple; font-weight:bold;"> Background
+<a name = "Back" style = "color:green; font-weight:bold;"> Background
 respiration</a>
 </h5>
-<p><strong>Have a blank respirometer running aside with different volume
-(L) than the one with an animal. How to account for it?</strong></p>
+<p><strong>How to account for background respiration if using one empty
+respirometer that has different volume than the one with an
+animal?</strong></p>
 <ul>
 <li>In function <code>MMR_SMR_AS_EPOC</code>:
 <code>background_slope</code> and <code>background.V</code> must be
-provided together. The function will fail having only one without the
+provided together. The function will fail to have only one without the
 other</li>
 </ul>
-<p><strong>Have one background measurement for each trail, how to add it
-to the function?</strong></p>
-<p><strong>I have a background respiration estimates already, can I use
-it without giving a raw csv file?</strong></p>
+<p><strong>How to apply a priori known background respiration
+estimates?</strong></p>
 <ul>
-<li>Absolutley, In function <code>MMR_SMR_AS_EPOC</code>: if using
-<code>background_linear_gr = TRUE</code>, both
+<li>In function <code>MMR_SMR_AS_EPOC</code>: use
+<code>background_linear_gr = TRUE</code>, and both
 <code>background_prior</code> and <code>background_post</code> must be
 provided</li>
 </ul>
 <br>
 <h5>
-<a name = "Temp" style = "color:purple; font-weight:bold;">
+<a name = "Temp" style = "color:green; font-weight:bold;">
 Temperature</a>
 </h5>
 <br>
 <h5>
-<a name = "QC" style = "color:purple; font-weight:bold;"> QC</a>
+<a name = "Warnings" style = "color:green; font-weight:bold;"> Warning
+messages</a>
 </h5>
+<p><strong>Warning message about reading files</strong></p>
+<p><code>Warning message: In read.table(file = file, header = header, sep = sep, quote = quote,  : incomplete final line found by readTableHeader on 'MMR_template_TESTJan2022.csv'</code></p>
+<p>This is most likely related to an inventory csv file. It likely reads
+in the file and applied the directed ‘cleaning’ with no problem (it is
+always a responsibility of our own to check!).</p>
 
 <br>
 <br>

@@ -11,7 +11,7 @@
 
 
 
-<title>demo_sda.knit</title>
+<title>SDA_TBD.knit</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -315,93 +315,35 @@ $(document).ready(function () {
 
 <div class="page-header">
 <h2 style="font-size: 30px; text-align:left;">
-SDA - short developing tutorial
+SDA: Estimating digestion performance
 </h2>
-<p>
-Source:
-<a href = "https://github.com/kraskura/AnalyzeResp_0/blob/ccf6f96e629939be6b5f33f88e435a7b973e6fff/docs/SDA.rmd" style = "color:gray;">AnalyzeResp_0/docs/SDA.rmd</a>
+<p><code>SDA</code> <br></p>
+</div>
+<h4 style="color:#495057; font-weight: bold;  text-align: left">
+About
+</h4>
+<ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
+<li>
+<a href="#Arguments">Arguments</a>
+</li>
+<li>
+<a href="#Value">Value</a>
+</li>
+<li>
+<a href="#Details">Details</a>
+</li>
+<li>
+<a href="#Example">Example</a>
+</li>
+<!-- <li><a href="#"><i class="fas fa-download"></i>&nbsp; See datafiles on GitHub</a></li>-->
+</ul>
+<h4 style="color:#495057; font-weight: bold;  text-align: left">
+Description
+</h4>
+<div class="well">
+<p style="color:green;  text-align: left">
+Currently not available
 </p>
-</div>
-<div
-id="set-working-directory-with-raw-.txt-firesting-data-files.-this-is-the-location-where-all-analysis-files-will-be-organized"
-class="section level5">
-<h5>1. set working directory with raw (.txt) Firesting data files. This
-is the location where all analysis files will be organized</h5>
-<pre class = "sourceCode yaml"> 
-setwd("./Test/")
-</pre>
-</div>
-<div id="create-all-working-directories" class="section level5">
-<h5>2. create all working directories</h5>
-<pre class = "sourceCode yaml"> 
-organize_MR_analysis(create = "SDA")
-</pre>
-</div>
-<div id="convert-the-files" class="section level5">
-<h5>3. convert the files</h5>
-<pre class = "sourceCode yaml">
-<p>txt_csv_convert(txt_file = “Aug7_2019_PAAR17-20_box1_sda.txt”, path =
-“SDA”, N_Ch = 4) <yaml></p>
-</div>
-<div id="run-the-smr-file-on-this" class="section level5">
-<h5>4. run the SMR file on this</h5>
-<p>change WD first</p>
-<pre class = "sourceCode yaml">
-<p>setwd(“./SDA/csv_files/”)
-SMR(data=“Aug7_2019_PAAR17-20_box1_sda.csv”, inventory_data=NA,
-cycle_start=7, cycle_end=15, chop_start=10/60, chop_end=0,
-flush_plot=“OFF”, N_Ch=4, path=“LocalSDAFolders”, date_format = “m/d/y”)
-</yaml></p>
-</div>
-<div id="run-the-mmr_smr_as_epoc-function-to-get-smr-values-and-epoc"
-class="section level5">
-<h5>6. Run the MMR_SMR_AS_EPOC function to get SMR values, and EPOC</h5>
-<pre class = "sourceCode yaml"> 
-MMR_SMR_AS_EPOC(data.SMR ="Aug7_2019_PAAR17-20_box1_sda_analyzed_GLUED_n3.csv",
-                data.MMR ="none",
-                AnimalID = c("hawk1","hawk2", "hawk3","hawky4"),
-                BW.animal = c(0.005, 0.006, 0.01, 0.01),
-                resp.V = c(0.300, 0.300, 0.300,0.300),
-                r2_threshold_smr = 0.9,
-                date_format = "m/d/y",
-                drop_ch = NULL,
-                N_Ch = 4,
-                min_length_mmr = 60,
-                MLND = FALSE,
-                epoc_threshold = "SMR",## must have
-                end_EPOC_Ch = c(NA, NA, NA, 1), # in minutes?
-                recovMMR_threshold = 0.5,
-                background_prior = "Aug7_2019_PAAR17-20_box1_sda_analyzed_BACKPRE_dummy.csv",
-                background_post = "Aug7_2019_PAAR17-20_box1_sda_analyzed_BACKPOST_dummy.csv",
-                background_linear_gr = TRUE,
-                # background_slope = NULL, background.V = NULL,
-                match_background_Ch = TRUE,
-                path = "Foldering")
-</pre>
-<p>And SDA</p>
-<pre class = "sourceCode yaml"> 
-SDA(data.SDA ="Jul20_2019_PAAR8-16_box1_sda_analyzed_GLUED_n4.csv",
-    analyzed_MR="Jul19_2019_PAAR_box1_smr_analyzed_MR_analyzed.csv",
-    AnimalID = c("PAAR9","PAAR10","PAAR11","PAAR12"),
-    BW.animal = c(0.002,0.002,0.001,0.002),
-    resp.V = c(0.76, 0.78, 0.78, 0.78),
-    r2_threshold_smr = 0.9, date_format = "m/d/y",
-    drop_ch = c(3,4), N_Ch = 4,
-    SMR_calc = FALSE, # FALSE for no SMR calculations ## must have
-   # SMR_vals = c(NA,NA,NA,NA), ## must have
-    MLND = FALSE,
-  #  end_SDA_Ch = c(26,26, NA, NA), # in h
-    #sda_threshold = "SMR_mean10minVal",
-    sda_threshold_level = c("SMR_mean10minVal", 1.15),## must have
-    background_prior = "Jul19_2019_PAAR_box1_back2_analyzed.csv",
-    background_post = "Jul22_2019_PAAR_box1_back3_analyzed.csv",
-    background_linear_gr = TRUE,
-    # background_slope = NULL, background.V = NULL,
-    match_background_Ch = TRUE,
-    path = "SDAfolders",
-    handling_delay = 0,
-    begin_smr_hr_zero=TRUE) # in minutes, currently not used
-</pre>
 </div>
 
 <br>

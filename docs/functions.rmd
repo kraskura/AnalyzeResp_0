@@ -8,20 +8,23 @@
 
 <div class="well">
 All functions are currently compiled in one R script. 
-<p>Source code: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/R/AnalyzeResp_0.R" style = "color:gray;">AnalyzeResp_0.R</a></p>
+<p> Download here: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/R/AnalyzeResp_0.R" style = "color:gray;">AnalyzeResp_0.R</a></p>
+
+<p style="color:green;  font-weight:bold; text-align: left"> Please note: The function outputs are saved in users local directory </p>
+
 </div>
 
 ### Metabolic performance functions
 
 <ul>
   <li><a href="./SMR.html" style = "color:#8e8c84; font-weight:bold;"><code>SMR</code></a>
-    <p> Used to process continuous data recorded on consitent open(flush):closed(measure) cycles commonly used in <a href ="./about.html" style = "color:gray;">aquatic respirometry</a></p></li>. The output contains analyzed regression slopes of decreasing oxygen content in the respirometer; units: oxyegn content (mgO[2])
+    <p> Used to analyze O~2~ and temperature data recorded continuously using repeat open(flush):closed(measure) cycles to obtain regressions representative of metabolic rates. Refer to Figure 3 on this information page: <a href ="./about.html" style = "color:gray;">aquatic respirometry</a></p></li>
   <li><a href="./MMR.html" style = "color:#8e8c84; font-weight:bold;"><code>MMR</code></a>
-    <p> Used to process maximum metabolic rate measurement. </p></li> 
+    <p> Used to analyze O~2~ and temperature data recorded to obtain regressions representative of individual's maximum metabolic rate</p></li>
   <li><a href="./MMR_SMR_AS_EPOC.html" style = "color:#8e8c84; font-weight:bold;"><code>MMR_SMR_AS_EPOC</code></a>
-    <p> Uses the outputs from SMR and MMR functions to estimate the metabolic performances of animals: MMR, SMR, EPOC (recovery), and Absolute Aerobic Scope</p></li> 
-  <li><a href="./SDA.html" style = "color:#8e8c84; font-weight:bold;"><code>SDA</code></a>
-    <p> Used to estimate metabolic performances associated with digestion</p></li>
+    <p> Used to estimate aerobic metabolic performances in animals: MMR, SMR, EPOC (recovery), and Absolute Aerobic Scope. Relies on outputs from SMR and MMR functions</p></li> 
+  <li><a href="./SDA_TBD.html" style = "color:#8e8c84; font-weight:bold;"><code>SDA</code></a>
+    <p> Used to estimate metabolic performances associated with digestion (SDA refers to digestion costs). Development in progress</p></li>
 </ul>
 
 
@@ -29,25 +32,25 @@ All functions are currently compiled in one R script.
 
 <ul>
   <li><a href="./organize_MR_analysis.html" style = "color:#8e8c84; font-weight:bold;"><code>organize_MR_analysis</code></a>
-    <p> Automatically creates a collection of local directories that help organizing output files when using any of the metabolic rate functions (suggested, but not required)</p></li> 
+    <p> Used to create a collection of local directories that help organizing the analysis by exporting output files to specific folders associated with each metabolic performance function (not required)</p></li> 
   <li><a href="./txt_csv_convert.html" style = "color:#8e8c84; font-weight:bold;"><code>txt_csv_convert</code></a>
-    <p> Used to convert the raw .txt file with oxygen consumption data into .csv file (only keeps selected columns)</p></li> 
+    <p> Used to convert and format (strip from unused columns and rows) the raw '.txt' data file to produce a .csv file that is required for `MMR` and `SMR` functions</p></li> 
   <li><a href="./csv_file_split.html" style = "color:#8e8c84; font-weight:bold;"><code>csv_file_split</code></a>
-    <p> Used to split one file in 2 seperate files, where each newly created file starts with 0 min relative times (e.g. the MMR and SMR are recorded on one continuous file)</p></li> 
+    <p> Used to split one file into 2 separate files, where each newly created file starts with 0 min relative times (e.g., useful when MMR and SMR are recorded in one file)</p></li> 
   <li><a href="./combine_smr.html" style = "color:#8e8c84; font-weight:bold;"><code>combine_smr</code></a>
-    <p> Used to combine two auto-cycle files (e.g. when one experimental trial has more than one files for SMR) </p></li> 
+    <p> Used to combine two files to standardize data on one continuous relative timescale (e.g., useful when one experimental trial has more than one files for SMR overnight measurement) </p></li> 
 </ul>
 
 
-### Additional Funcitons
+### Additional functions
 
 <ul>
   <li><a href="./sum_backgr.html" style = "color:#8e8c84; font-weight:bold;"><code>sum_backgr</code></a>
-    <p> Used to summarizes background respiration rates across multiple test trials</p></li> 
+    <p> Used to summarizes background respiration rates across multiple trials</p></li> 
 </ul>
 <ul>
-  <li><a href="./convert.o2.Firesting.html" style = "color:#8e8c84; font-weight:bold;"><code>sconvert.o2.Firesting</code></a>
-    <p> Used to convert oxygen units before performing metabolic rate. Relies on `rMR::DO.unit.convert`</p></li> 
+  <li><a href="./convert.o2.Firesting.html" style = "color:#8e8c84; font-weight:bold;"><code>convert.o2.Firesting</code></a>
+    <p> Used to convert oxygen units on the file. Relies on `rMR::DO.unit.convert`</p></li> 
 </ul>
 
 

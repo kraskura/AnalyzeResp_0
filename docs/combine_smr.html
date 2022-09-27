@@ -339,10 +339,9 @@ About
 <h4 style="color:#495057; font-weight: bold;  text-align: left">
 Description
 </h4>
-<p>There may be more than one AUTO file recorded for one respirometry
-trial. Use this function to combine several files together to then
-calculate SMR/RMR using all measurement cycle values on one continuous
-(relative, start with 0 min) timescale.</p>
+<p>This function combines several analyzed .csv data files to create one
+continuous file for final analysis with the <code>MMR_SMR_AS_EPOC</code>
+function.</p>
 <h4>
 <a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a>
 </h4>
@@ -362,24 +361,27 @@ calculate SMR/RMR using all measurement cycle values on one continuous
 <tbody>
 <tr class="odd">
 <td align="right"><strong>smr_files</strong></td>
-<td align="left">A character vector of _…<em>analyzed.csv</em> . These
-are output files from <code>SMR</code> function. 2 or more files must be
-specified</td>
+<td align="left">The names of data files that need to be combined. A
+character vector. The used files should be the export files from the
+<code>SMR</code> function, with the name tag “(…)_analyzed.csv”. More
+than two files can be combined.</td>
 <td align="left">–</td>
 </tr>
 <tr class="even">
 <td align="right"><strong>date_format</strong></td>
 <td align="left">The date format used in the original FireSting files.
-Must specify one of the following:
-<code>c("m/d/y","d/m/y","y-m-d")</code></td>
+Must specify one of the following: <code>"m/d/y"</code>,
+<code>"d/m/y"</code>, <code>"y-m-d"</code>, and must be consistent
+across the files</td>
 <td align="left"><code>"m/d/y"</code></td>
 </tr>
 <tr class="odd">
 <td align="right"><strong>path</strong></td>
-<td align="left">Specify working directory for all output files. This
-argument has two options, i) files can be automatically organized in
-newly created folders, any character may be used, ii) the default is a
-local directory</td>
+<td align="left">Working directory for newly created data files. Two
+options: i) local directory (the default), and ii) the
+“../../MMR_SMR_AS_EPOC/input_files”, which only works if the
+<code>organize_MR_analysis</code> function was used and if the currently
+set working directory is “(…)/AUTO/csv_analyzed”</td>
 <td align="left"><code>"."</code> (local directory)</td>
 </tr>
 </tbody>
@@ -391,16 +393,12 @@ local directory</td>
 <h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;">
 <i class="fas fa-ellipsis-h"></i>  Data outputs
 </h5>
-<ol style="list-style-type: decimal">
-<li><em>.csv files</em></li>
-</ol>
+<p><strong>”.csv files”</strong></p>
 <ul>
-<li>“(…)_GLUED_nX.csv”
-<ul>
-<li>The combined file will get a new name tag where X = the N of files.
-The new file will be saved in two locations: i) the local directory and
-ii) in the folder “MMR_SMR_AS_EPOC/input_files”.</li>
-</ul></li>
+<li>The combined file with a new name tag: “(…)_GLUED_nX.csv”, where X =
+the N of files.</li>
+<li>The combined file is on a continuous timescale and starts with
+relative time “0”.</li>
 </ul>
 <br>
 <h4>
@@ -408,7 +406,7 @@ ii) in the folder “MMR_SMR_AS_EPOC/input_files”.</li>
 </h4>
 <p><br></p>
 <p>The output can be directly used in the MMR_SMR_AS_EPOC function. The
-input files are not affected in any manner.</p>
+original files used to create combined files are unchanged.</p>
 <br>
 <h4>
 <a name="Example" style="color:#495057; font-weight: bold;  text-align: left">Example</a>

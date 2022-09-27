@@ -1,46 +1,63 @@
 
 <div class="page-header">
   <h2 style="font-size: 30px; text-align:left;">About Aquatic Respirometry</h2>
-  <p>Source: <a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/about.rmd" style = "color:gray;">AnalyzeResp_0/docs/about.rmd</a></p>
 </div>
 
 
 <h4 style="color:#325d88; font-weight: bold;  text-align: left"> Abbreviations / Vocabulary </h4>
 
-- MR: Metabolic rate
-- MO~2~: oxygen consumption rate (a proxy for metabolic rates)
-- SMR: Standard Metabolic Rate, the minimim MR required to sustain life at the given set of conditions
-- MMR: Maximum Metabolic Rate, the maximim (measured) MR that an animal can elicit
-- EPOC: Excess Post-Exercise oxygen Consumption, or metabolic recovery (contains time and metabolic cost metrics)
-- Time[MMR50]: the time it takes to recover MO~2~ to 50% of the measured MMR.
+- MO~2~: Oxygen consumption uptake rate (a proxy for metabolic rate); often mgO~2~ min^-1 
+- MR: Metabolic Rate
+- SMR: Standard Metabolic Rate, the minimum MR to maintain basic bodilly functions, to sustain life
+- RMR: Resting Metabolic Rate (higher than SMR, often when some of the requirements for SMR are not met)
+- MMR: Maximum Metabolic Rate, the highest MR measured
+- AS: (also AAS), Absolute Aerobic Scope (AAS = MMR - SMR); the energy capacity to perform activities above resting levels
+- EPOC: Excess Post-exercise Oxygen Consumption, metabolic recovery (characterised by time and metabolic cost metrics)
+- Time[MMR50]: the time it takes to recover metabolic rates to 50% of the measured MMR.
 - SDA: Specific Dynamic Action, or metabolism associated with digestion (contains time and metabolic cost metrics)
-- QC: quality control that includes checking and ensuring the quality of data, and if neccessary data cleaning to exclude technical or experimental anomolous recordings.
+
 
 <br>
 
 ----------------------------------------------
 
-<h4 style="color:#325d88; font-weight: bold;  text-align: left"> Full picture first </h4>
+<h4 style="color:#325d88; font-weight: bold;  text-align: left"> An overview of respirometry trial </h4>
 
-A time series of all automatic measurements to obtain SMR and/or RMR, and recovery if the first measurement is MMR. This repeat measurement period can differ in length, e.g. some species achieve resting metabolic state much sooner (within few hours) after being placed in the respirometer, in which case overnight measurements are not necessary.
-In the figure below is an example O2 ~ time trend resulting from automatic metabolic rate measurements using intermittent flow respirometry. This may be used to enter the parameters in the SMR function correctly too, or to better relate to some data output files. Typically this measurement pattern is running overnight, producing several dozen of these cycles. The oxygen consumption rates a proxy of metabolic rates are recorded in animals that are undisturbed, not stressed, and is at post-absorptive state (common RMR and SMR assumption).
+The recorded MO~2~ measurements overnight on automatic cycle (e.g., 5:10, measure: flush, Figure 3) are all used to obtain i) SMR and/or RMR, ii) and recovery performance when the experiment begins with measuring MMR (Figure 2). EPOC represents the recovery costs (the area in between the measured MO~2~ during recovery and the `epoc_threshold` most commonly estimated SMR or RMR). A defined trend connecting each MO~2~ measurement is needed to estimate EPOC. This trend tracks each point directly, or it can be smoothed at different levels using `spar_levels` arg in the `MMR_SMR_AS_EPOC` function. The smoothing can be useful to minimize the effects of sporadic measurements while capturing the biologically representative metabolic rate trend of an animal.
+
 
 <img src="./Images/Full_trend_concept.png" alt="" style="max-width: 1000px; height: auto; display: block;
   margin-left: auto; margin-right: auto;">
+
+**Figure 1. An annotated example of overnight respirometry trial**
+
 <br>
 
-<h4 style="color:#325d88; font-weight: bold;  text-align: left"> Measuring maximum metabolic rates in 4 individuals </h4>
+<h4 style="color:#325d88; font-weight: bold;  text-align: left"> Measuring MMR in four individuals on manual time control</h4>
 
-There are several experimental approaches to measure maximum metabolic rates. The method that we have used is conceptually depicted below. 
+There are several experimental approaches to measuring MMR. Figure 2 shows one method where MMR is measured one individual at a time, in four individuals. In the provided example, it is assumed that these four individuals or respirometers are connected with one FireSting oxygen sensor, and one O~2~ probe per respirometer. Therefore, one raw-data file will contain O~2~, time, and temperature, at all times for each respirometer. Using an 8-channel Firesting, each respirometer may be connected to one temperature probe.
+
+The oxygen levels in each respirometer are recorded continuously, but the MMR is measured in sequence in one animal at a time. The figure's annotations can guide how these data are analyzed using the "AnalyzeResp" functions.
+
+In Figure 2, the arrows point to time points where flush pump turns on or off (Figure 3) depending of the measurument cycle progression. These times are experiment- and user-defined and are input as arguments in `MMR` and `SMR` functions accordingly. 
 
 <img src="./Images/MANUAL_conceptual.png" alt="" style="max-width: 1000px; height: auto; display: block;
   margin-left: auto; margin-right: auto;">
+
+**Figure 2. An annotated example of i) experimental sequence to measure MMR in four animals with manually controlled measurement durations, and ii) timer (auto) controlled MO~2~ measurements of recovery eventually leading to SMR**
+
 <br>
 
-<h5 style="color:#325d88; font-weight: bold;  text-align: left"> Measuring standard (and routine/resting) metabolic rates using automatic repeat measurement cycles</h5>
+<h5 style="color:#325d88; font-weight: bold;  text-align: left"> Measuring MO~2~ with automatic timer control</h5>
 
-Resting metabolic rate is an estimate measurement calculated from many recorded metabolic rate values in an individual. 
+Below is an example of changing oxygen levels in the respirometry chamber that is set to automated repeat closed (measure) and open (flush) cycles. This measurement pattern often continues overnight, producing several dozen oxygen uptake rate (MO~2~) measurement cycles.
+
+SMR (and RMR) is an estimated metric calculated from all high-quality MO~2 recorded during the trial. In Figure 3, AS  = air saturation. 
+
 <img src="./Images/AUTO_conceptual.png" alt="" style="max-width: 800px; height: auto; display: block;
   margin-left: auto; margin-right: auto;">
+
+**Figure 3. Two cycles of metabolic rate measurements with annotation to facilitate use of SMR function**
+
 <br>
 

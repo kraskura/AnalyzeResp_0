@@ -1,17 +1,17 @@
+Welcome! 
 
+This is “AnalyzeResp,” a developing set of functions (one day, hoping to call it a package in R). 
 
-## !!! this is not used for the web-front face ---
+The development of these functions presents a self-learning, passion-driven journey, which began as one file with few functions aiming to develop a consistent way to analyze our experimental data. It then began to grow larger, and the functionality continued to grow. 
 
-# AnalyzeResp_0
+We continue to use it, find ways to debug it and make it better.
+This would not be possible without the valuable feedback and support from everyone in the Eliason Lab and collaborators.  
 
-This is AnalyzeResp, a developing set of function (one day hoping to call it a package in R). This is a project that started as one file with few functions in R customise to analyse collected experimental data. It then began to grow into a more comprehensive package, and it continues to grow to this day. We continue to use it and while using it, new tools, capabilities are added to the function. 
-The maintenance and development of R script is lead by Krista Kraskura, a PhD Candidate at UCSB, but this would not be possible without the valuable feedback and support from the [Erika Eliason's Lab](www.erikaeliason.com) and collaborators. 
+**Transparent and honest work is our priority** While this is not packaged working library, it is open to use and further development. Please note the code of conduct below.
 
-**Trasnparent and open source work is our priority** While this is not packaged working library, this is my first attempt to make it available and citable. My forefront most important task under this project is to re-work the organisation of all functions and make the package installable via Github. 
-
-**Questions, feedback, suggestions are always welcome and much appreciated**
+**Questions, feedback, and suggestions are always welcome and are much appreciated**
 email: kkraskura@ucsb.edu, k.kraskura@gmail.com
 
-Please check out the github pages website that was developed to being documenting our functions and to provide demo examples using these functions. 
+Please check out the GitHub pages website developed to document our functions and provide demo examples using these functions. 
 
 [https://kraskura.github.io/AnalyzeResp_0/](https://kraskura.github.io/AnalyzeResp_0/)

@@ -343,14 +343,8 @@ See datafiles on GitHub</a>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">
 Description
 </h4>
-<p>Use this function to split your files in 2 parts at a defined time
-point. Most commonly this is needed when MMR and SMR parts are together
-in one file. For example, when manually controlled part of the data
-recording (manually initiated flush:measure cycles; typically MMR) is
-immediately followed by automatic data recording (auto timer controlled
-flush:measure cycles; typically SMR/RMR). These two parts are analyzed
-using different functions and so need to be in different <em>.csv</em>
-files.</p>
+<p>This function splits .csv raw data files into two separate files,
+adjusting the relative start time to “0” for each file.</p>
 <h4>
 <a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a>
 </h4>
@@ -370,47 +364,47 @@ files.</p>
 <tbody>
 <tr class="odd">
 <td align="right"><strong>data</strong></td>
-<td align="left">Data <em>.csv</em> to be split in two (manual/MMR and
-auto/SMR <em>.csv</em> files). Input must be a character</td>
+<td align="left">The name of the “.csv” data file must be split. A
+character string.</td>
 <td align="left">–</td>
 </tr>
 <tr class="even">
 <td align="right"><strong>split_data_name</strong></td>
-<td align="left">The name that will be used to save all output files.
-Input must be a character</td>
+<td align="left">The name that is used for split output files. A
+character string.</td>
 <td align="left">–</td>
 </tr>
 <tr class="odd">
 <td align="right"><strong>cycle_full_min</strong></td>
-<td align="left">cycle length (min) that the auto file was run on, this
-includes both flush + measure; no default</td>
+<td align="left">The duration of a full cycle (flush + measure; minutes)
+for the second part, presumably the SMR/RMR section. This is only used
+for visual assessment purposes.</td>
 <td align="left">–</td>
 </tr>
 <tr class="even">
-<td align="right"><strong>timeSplit</strong></td>
-<td align="left">The time at which the file will be split in two (the
-split time (min)). This time will be shown in output plots</td>
+<td align="right"><strong>time split</strong></td>
+<td align="left">The relative time that defines the split (in
+minutes).</td>
 <td align="left">–</td>
 </tr>
 <tr class="odd">
 <td align="right"><strong>date_format</strong></td>
-<td align="left">The date format. It must be provided, and can be
-either: <code>"m/d/y"</code>, <code>"d/m/y"</code>,
-<code>"y-m-d"</code>.</td>
+<td align="left">The format of the date. Must be either:
+<code>"m/d/y"</code>, <code>"d/m/y"</code>, <code>"y-m-d"</code>.</td>
 <td align="left"><code>NULL</code></td>
 </tr>
 <tr class="even">
 <td align="right"><strong>split</strong></td>
-<td align="left">Logical argument. When <code>TRUE</code> the original
-file will be cut and 2 <em>.csv</em> saved in the local directory</td>
+<td align="left">Logical argument. When <code>TRUE</code>, the original
+file is cut, and 2 files are exported or saved in the local
+directory.</td>
 <td align="left"><code>FALSE</code></td>
 </tr>
 <tr class="odd">
 <td align="right"><strong>N_Ch</strong></td>
-<td align="left">The number of FireSting channels. Options include 2, 4,
-8. Note, if either a 2- or 4-Channel FireSting was used, this argument
-can be ignored</td>
-<td align="left"><code>4</code></td>
+<td align="left">The number of FireSting channels. Use 4 or 8. If a
+2-Channel FireSting was used, this argument could be ignored</td>
+<td align="left">4</td>
 </tr>
 </tbody>
 </table>
@@ -418,41 +412,46 @@ can be ignored</td>
 <h4>
 <a name="Value" style="color:#495057; font-weight: bold;  text-align: left">Value</a>
 </h4>
+<p>The function may be useful when one data file contains both i) the
+manually timed MMR measurements and ii) automatically timed repeat
+measurement cycles to estimate SMR/RMR. These two parts are analyzed
+here using different functions, <code>MMR</code> and <code>SMR</code>,
+each requiring its own ‘.csv’ datafiles.</p>
+<p>Alternatively, this function can be valuable if one continuous
+SMR/RMR file contains data collected on two differently timed repeat
+measurement cycles (e.g., 7:8 minute flush: measure, transitioned into
+9:6 minute flush: measure).</p>
 <h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;">
 <i class="fas fa-ellipsis-h"></i>  Data outputs
 </h5>
-<ol style="list-style-type: decimal">
-<li><em>.csv files</em> ( - Saved locallly only if
-<code>split = TRUE</code>_)</li>
-</ol>
+<p><strong>“.csv” files</strong></p>
 <ul>
-<li>“split_data_name”_mmr_split.csv.
+<li>Saved in the current local working directory; only if
+<code>split = TRUE</code></li>
+<li>Export data file, the first part (MMR part):
 <ul>
-<li>The first part is as indicated, so should use the naming system</li>
-<li>The MMR part of the file, ready to go in MMR function</li>
+<li>has name extension “mmr_split.csv”</li>
+<li>ready as an input file for <code>MMR</code> function</li>
 </ul></li>
-<li>“split_data_name”_smr_split.csv.
+<li>Export data file, the second part (RMR part):
 <ul>
-<li>The SMR part of the file, ready to go in SMR function</li>
+<li>has name extension “smr_split.csv”</li>
+<li>ready as an input file for <code>SMR</code> function</li>
 </ul></li>
 </ul>
-<ol start="2" style="list-style-type: decimal">
-<li><em>.png files</em></li>
-</ol>
+<p><strong>“.png” files</strong></p>
 <ul>
-<li>“split_data_name”_respo_cycles.png
+<li>“split_data_(…)_respo_cycles.png”
 <ul>
-<li>all data displayed with indicator lines for the ‘splitting’ time and
-auto file cycle periods.</li>
+<li>all data displayed with vertical lines indicating the: i) split time
+and ii) the cycle durations for the second part that is assumed to be on
+auto-cycles.</li>
 </ul></li>
-<li>“split_data_name”_respo_confirm.png
+<li>“split_data_(…)_respo_confirm.png”
 <ul>
-<li>a zoomed in version (2 min) of the O2 trend data, plot contains
-lines and coloration to indicate where the ‘split’ would occur.</li>
-</ul></li>
-<li>“split_data_name”_respo.png
-<ul>
-<li>Saved locallly only if <code>split = TRUE</code></li>
+<li>a zoomed-in version (2 min) of the O<sub>2</sub> versus time data,
+specifically at the section of the split time. The lines indicate where
+the ‘split’ occurs when <code>split = TRUE</code>.</li>
 </ul></li>
 </ul>
 <br>

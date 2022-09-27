@@ -11,7 +11,7 @@
 
 
 
-<title>QC_protocol.knit</title>
+<title>convert.o2.Firesting.knit</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -315,146 +315,143 @@ $(document).ready(function () {
 
 <div class="page-header">
 <h2 style="font-size: 30px; text-align:left;">
-Visual assessment and modifications of data: example approach
+convert.o2.Firesting
 </h2>
 <p>
-Source:
-<a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/QC_protocol.md" style = "color:gray;">AnalyzeResp_0/blob/main/docs/QC_protocol.md</a>
+Source: <a href = "#" style = "color:gray;">kraskura/AnalyzeResp_0</a>
 </p>
 </div>
-<div class="well">
-<p style="color:green;  text-align: left">
-Everything on this page is group effort, and a product of our
-<a href = "./workshops_TBD.html">workshops</a>
-</p>
-</div>
+<p><br> <code>convert.o2.Firesting</code> <br></p>
 <h4 style="color:#495057; font-weight: bold;  text-align: left">
-Data Analysis Pipeline
+About
 </h4>
-<ol style="list-style-type: decimal">
-<li><strong>Visualize Data:</strong>
+<ul class="breadcrumb" style="background-color:#fff; border:none; color:#3e3f3a">
+<li>
+<a href="#Arguments">Arguments</a>
+</li>
+<li>
+<a href="#Value">Value</a>
+</li>
+<li>
+<a href="#Details">Details</a>
+</li>
+<li>
+<a href="#Example">Example</a>
+</li>
+<li>
+<a href="#"><i class="fas fa-download"></i>  See datafiles on GitHub</a>
+</li>
+</ul>
+<h4 style="color:#495057; font-weight: bold;  text-align: left">
+Description
+</h4>
+<p>A function that converts the oxygen level measurements to a different
+unit as provided. A modified function from: <a
+href="https://www.rdocumentation.org/packages/rMR/versions/1.1.0/topics/DO.unit.convert">rMR::DO.unit.convert</a></p>
+<p style="color:darkred;  text-align: left">
+Updates to increase flexibility in progress
+</p>
+<h4>
+<a style="color:#495057; font-weight: bold;  text-align: left" name="Arguments">Arguments</a>
+</h4>
+<table>
+<colgroup>
+<col width="18%" />
+<col width="63%" />
+<col width="18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Argument</th>
+<th align="left">Description</th>
+<th align="left">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">csv.data</td>
+<td align="left">The name of the data file where the units need to be
+converted. A character. One file must be provided.</td>
+<td align="left">–</td>
+</tr>
+<tr class="even">
+<td align="right">units_from</td>
+<td align="left">The units of the recorded O<sub>2</sub> levels. pct =
+percent air saturation, default.</td>
+<td align="left"><code>"pct"</code></td>
+</tr>
+<tr class="odd">
+<td align="right">units_to</td>
+<td align="left">The units that the O<sub>2</sub> levels will be
+converted to. mg L^-1 is default</td>
+<td align="left"><code>"mg/L"</code></td>
+</tr>
+<tr class="even">
+<td align="right">channels</td>
+<td align="left">Specifies the channels for which the conversion is
+necessary</td>
+<td align="left"><code>c(1,2,3,4)</code></td>
+</tr>
+<tr class="odd">
+<td align="right">salinity</td>
+<td align="left">Salinity of the water, in ppt.</td>
+<td align="left">–</td>
+</tr>
+<tr class="even">
+<td align="right">atm_pressure</td>
+<td align="left">Atmospheric pressure. in Atm; default = 1</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="right">n_ch</td>
+<td align="left">The number of channels of the FireSting. If 2-Channel
+FireSting was used, this argument could be ignored.</td>
+<td align="left">4</td>
+</tr>
+</tbody>
+</table>
+<h4>
+<a name="Value" style="color:#495057; font-weight: bold;  text-align: left">Value</a>
+</h4>
+<p><br></p>
+<h4>
+<a name="Details" style="color:#495057; font-weight: bold;  text-align: left">Details</a>
+</h4>
+<p><br></p>
+<h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;">
+<i class="fas fa-ellipsis-h"></i>  Data outputs
+</h4>
+<p><strong>“.csv files”</strong></p>
 <ul>
-<li>Plot all MO<sub>2</sub> data using the AnalyzeResp_0 code
-(<code>MMR</code> and <code>SMR</code> functions only at this
-point)</li>
-<li>Visually inspect all MO<sub>2</sub> plots (list of key plots to
-inspect below)
+<li>New files with converted O<sub>2</sub> units</li>
+<li>File is saved in locally created directory:
+“./csv_files_unitConvert/”
 <ul>
-<li><a
-href="https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/AUTO/plots_channel">/AUTO/plots_channel</a></li>
-<li><a
-href="https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/AUTO/plots_channel_cycle">/AUTO/plots_channel_cycle</a>
-(when <code>flush = TRUE</code> when running <code>SMR</code>
-function)</li>
-<li><a
-href="https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/AUTO/plots_channel_temperature_cycle">/AUTO/plots_channel_temperature_cycle</a></li>
-<li><a
-href="https://github.com/kraskura/AnalyzeResp_0/tree/main/Test/MANUAL/channel_plots">/MANUAL/channel_plots</a></li>
+<li>If the directory does not exist, it will be created with a message
+in the console:
+<code>"Creating a new directory to store converted files: ./csv_files_unitConvert/"</code></li>
+<li>If the directory exists, the new files will automatically be placed
+in this wd.</li>
 </ul></li>
-</ul></li>
-<li><strong>Group and Clean Data</strong>
-<ul>
-<li>Identify linear decline MO<sub>2</sub> regressions - <span
-style="color: #93c54b; font-weight: bold;">keep</span></li>
-<li>Identify regressions with minor issues - <span
-style="color: #f47c3c; font-weight: bold;">correct</span></li>
-<li>Identify non-linear MO<sub>2</sub> regression - <span
-style="color: #d9534f; font-weight: bold;">remove</span></li>
-</ul></li>
-<li><strong>Background</strong>
-<ul>
-<li>Assess if the background is present (<code>SMR</code> function run
-for background respiration)</li>
-<li>If the background is present, correct all MO<sub>2</sub> regressions
-for background respiration
-<ul>
-<li>See Rosewarne et al 2016 for guidance</li>
-<li>To customize the analysis use <code>MMR_SMR_AS_EPOC</code> function
-arguments:
-<code>background_prior = NA, background_post = NA, background_slope = NULL, background.V = NULL, background_linear_gr = FALSE, match_background_Ch = FALSE, mmr_background = "SAME_slope"</code></li>
-</ul></li>
-<li>We generally assume a linear increase between the “before” and
-“after” background and apply that to correct each MO<sub>2</sub> value
-for background respiration.
-<ul>
-<li>Use <code>background_linear_gr = TRUE</code></li>
-</ul></li>
-</ul></li>
-<li><strong>Plot the data and calculate MR values</strong>
-<ul>
-<li>Plot the (cleaned) data. Plot MO<sub>2</sub> vs. time and
-temperature vs. time.</li>
-<li>Calculate SMR, RMR, MMR, EPOC, time to 50% MMR (Time[MMR50]) or 75%
-MMR (Time[MMR75])</li>
-<li>Many ways to do this - talk to collogues and peers (i.e., which
-sliding measurement window for MMR; which SMR value; which EPOC
-threshold)</li>
-</ul></li>
-<li><strong>Assess metabolic scaling</strong>
-<ul>
-<li>Plot the data - SMR vs. body mass; MMR vs. body mass (use log-log
-plots and raw data plots)</li>
-<li>Adjust for scaling if needed (see above).
-<ul>
-<li>To customize the analysis use <code>MMR_SMR_AS_EPOC</code> function
-arguments:
-<code>scaling_exponent_mmr=1, scaling_exponent_smr=1, common_mass=1</code></li>
-</ul></li>
-</ul></li>
-</ol>
+</ul>
 <br>
-<h4 style="color:#495057; font-weight: bold;  text-align: left">
-Additional notes and suggestions from the Eliason Lab
+<h5 style="color:#495057; font-weight: bold;  text-align: left; text-indent:+10px;">
+<i class="fas fa-ellipsis-h"></i>  Messages on Console
 </h4>
-<ol style="list-style-type: decimal">
-<li><strong>Check for leaks</strong>
-<ul>
-<li>Plot the full measurement cycle at least once for a few respirometry
-trials runs:
-<ul>
-<li><code>SMR( ..., flush_plot = "ON"</code>)</li>
-</ul></li>
-<li>Are ‘L’ shapes for measurement cycles (measure phase) consistent
-across files? If yes, there might be a leak.</li>
-</ul></li>
-<li><strong>Notes and suggestions:</strong>
-<ul>
-<li>Do not cut the recovery or resting metabolic rate measurement down
-below the “sliding window” length selected for MMR.</li>
-<li>For cleaning: measurement cycles with R<sup>2</sup> below 0.7 are
-immediately rejected: <span
-style="color: #d9534f; font-weight: bold;">remove / no
-cleaning</span></li>
-<li>Experimental notes: If there are any measurements with a
-complementary note that anyone was messing with the respirometry chamber
-(relieving a bubble, etc.) or where data is missing from the measurement
-(low signal in the probe can cause this), it is advised to exclude the
-measurement.</li>
-</ul></li>
-</ol>
+<p><code>"Creating new directory to store converted files: ./csv_files_unitConvert/"</code></p>
 <br>
-<h4 style="color:#495057; font-weight: bold;  text-align: left">
-Some identified occasional data anomalies and possible solutions
+<h4>
+<a name="Example" style="color:#495057; font-weight: bold;  text-align: left">Example</a>
 </h4>
-<p>
-Source:
-<a href = "https://github.com/kraskura/AnalyzeResp_0/blob/main/docs/files/resources/qc_Eliason_lab.pdf" style = "color:gray;">PDF
-file</a>
-</p>
-<div
-style="background-color: #f8f5f0;  border: 2px solid #484f4f; padding: 10px">
-<p><img src= "files/resources/qc_Eliason_lab/Slide5.png" alt="scatter"></img>
-<img src= "files/resources/qc_Eliason_lab/Slide6.png" alt="scatter"></img>
-<img src= "files/resources/qc_Eliason_lab/Slide7.png" alt="scatter"></img>
-<img src= "files/resources/qc_Eliason_lab/Slide8.png" alt="scatter"></img>
-<img src= "files/resources/qc_Eliason_lab/Slide9.png" alt="scatter"></img>
-<img src= "files/resources/qc_Eliason_lab/Slide10.png" alt="scatter"></img>
-<img src= "files/resources/qc_Eliason_lab/Slide11.png" alt="scatter"></img>
-<img src= "files/resources/qc_Eliason_lab/Slide12.png" alt="scatter"></img>
-<img src= "files/resources/qc_Eliason_lab/Slide13.png" alt="scatter"></img>
-<img src= "files/resources/qc_Eliason_lab/Slide14.png" alt="scatter"></img>
-<img src= "files/resources/qc_Eliason_lab/Slide15.png" alt="scatter"></img></p>
-</div>
+<p><br></p>
+<p><em>The online provided example code has a loop that is handy when
+transforming all files in a given working directory</em></p>
+<pre class = "sourceCode yaml"> 
+
+# For a single file example: 
+convert.o2.Firesting(csv.data = "FileToCovert.csv", n_ch = 4, sal = 35)
+
+</pre>
 
 <br>
 <br>
