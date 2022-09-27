@@ -7,7 +7,7 @@ The development of these functions presents a self-learning, passion-driven jour
 We continue to use it, find ways to debug it and make it better.
 This would not be possible without the valuable feedback and support from everyone in the Eliason Lab and collaborators.  
 
-**Transparent and honest work is our priority** While this is not packaged working library, it is open to use and further development. Please note the code of conduct below.
+**Transparent and honest work is our priority** While this is not packaged working library, it is open to use and further development.
 
 **Questions, feedback, and suggestions are always welcome and are much appreciated**
 email: kkraskura@ucsb.edu, k.kraskura@gmail.com
