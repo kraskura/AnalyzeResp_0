@@ -3065,10 +3065,6 @@ Channel_mmr<-function(data.MMR, dataMMR, cycle_start, cycle_end, clean_start_mmr
 	}# end of Channel_mmr function	
 	
 
-
-
-
-
 MMR<-function(data.MMR,cycles, 
               cycle_start, 
               cycle_end,
@@ -3263,8 +3259,6 @@ MMR<-function(data.MMR,cycles,
 
 
 
-
-
 ####### FULL MR analysis functions #############
 
 #~ data.MMR -- the anaylzed data csv file / export file from the MMR function
@@ -3287,6 +3281,9 @@ EPOC.spar <- function(spar, d,  EPOCdata, mmr.val, epoc_threshold , recovMMR_thr
 	f = function(x) {predict(fit, x)$y}
 	
 	end<-round(d$time_mo2[nrow(d)],1)
+	
+	# print(c(head(d), tail(d)))
+	
 	newx<-seq(0,end, by=1)
 	newy<-predict(fit, newx, deriv=0)
 	lapply(newy, as.numeric)
@@ -3947,8 +3944,13 @@ MMR_SMR_AS_EPOC<-function(data.MMR,
   						new_min_length_mmr<-d_temp$cycle_mmr[d_temp$r2==max(d_temp$r2)][1]
   						d_ch<-d_ch[c(which(grepl("cycle", as.character(d_ch$cycle_type)) | d_ch$cycle_mmr== new_min_length_mmr)),]
   						d_new<-rbind(d_new, d_ch)
-  							message(paste(d_ch$Ch[1],": MMR measures all r2 below the set threshold: ", r2_threshold_mmr," / USE max r2 = ", d_ch$r2[1], sep="")) 
-  							message(paste(d_ch$Ch[1],": MMR measure time extended from ", min_length_mmr ," to ", new_min_length_mmr , sep=""))
+  						
+						if(new_min_length_mmr == 1){
+						  message(paste(d_ch$Ch[1],": Chosen MMR r2 is too high, no data: ", r2_threshold_mmr," | used the full measurement cycle with highest r2 = ", d_ch$r2[1], sep="")) 
+						} else {
+						  message(paste(d_ch$Ch[1],": Chosen MMR r2 is too high, no data: ", r2_threshold_mmr," | used the", new_min_length_mmr ," s measurement cycle with highest r2 = ", d_ch$r2[1], sep="")) 
+						}
+  						# message(paste(d_ch$Ch[1],": MMR measurement time extended from ", min_length_mmr ," to ", new_min_length_mmr , sep=""))
   					
   				}
   				
@@ -3960,7 +3962,7 @@ MMR_SMR_AS_EPOC<-function(data.MMR,
   						d_new<-rbind(d_new, d_ch)
   						
   							if (new_min_length_mmr==1){
-  								message(paste(d_ch$Ch[1],": MMR measure time extended from ", min_length_mmr ," to full file", sep=""))
+  								message(paste(d_ch$Ch[1],": MMR measure time extended from ", min_length_mmr ," to full measurement cycle", sep=""))
   							}else{
   								message(paste(d_ch$Ch[1],": MMR measure time extended from ", min_length_mmr ," to ", new_min_length_mmr , sep=""))
   							}
@@ -5414,128 +5416,128 @@ MMRslide_tunnel<-function(file){
 	
 	#
 		
-		if(endtime>180){
-			message("FILE > 3 min")
-			
-			length_slide<-c(10,20,30,60,90,120,180)
-			timeDiff_slide<-c(1)
+	if(endtime>180){
+		message("FILE > 3 min")
+		
+		length_slide<-c(10,20,30,60,90,120,180)
+		timeDiff_slide<-c(1)
 
-			for(k in 1:length(length_slide)){
+		for(k in 1:length(length_slide)){
+						
 							
-								
-				string_eval <- sprintf("
-					for (i in seq(starttime,(endtime-%s), by=%s)){
-						
-						j<-i+%s
-						test<-substr(file, start=11, stop=14) 
-						data_set<-data[data$time_sec>i & data$time_sec<j, ]
-						subset<-paste(\"min\",round(i/60,2),\"_\",round(j/60, 2), sep=\"\")
-																	
-						fit_set<-lm(data_set$Ch1_O2~data_set$time_min)
-						lm_coef_set <- round(coef(fit_set), 5) 	
-						r2_set<-as.character(summary(fit_set)$adj.r.squared)
+			string_eval <- sprintf("
+				for (i in seq(starttime,(endtime-%s), by=%s)){
 					
-						interc_set<-lm_coef_set[1]
-						slope_set<-lm_coef_set[2]
-						
-						temp_mean_set<-mean(data_set$Ch1_temp)
-						temp_max_set<-max(data_set$Ch1_temp)	
-						temp_min_set<-min(data_set$Ch1_temp)	
-						
-						date<-as.character(data_set[1,1])
-						time<-as.character(data_set[1,2])
-								
-						mo2_set<-slope_set*(425-bw.test)/bw.test
-						mo2_set<-abs(mo2_set)
-								
-						values_set<-as.data.frame(t(c(name,test, subset, date, time, r2_set, interc_set, slope_set, temp_min_set, temp_max_set, temp_mean_set, mo2_set, %s,%s, bw.test, sex )))	
-						colnames(values_set)<-c(\"filename\",\"test\",\"subset\",\"date\",\"time\",\"r2\",\"interc\", \"slope\",\"temp_min\", \"temp_max\",\"temp_mean\", \"mo2\", \"length_slide\", \"timeDiff_slide\", \"bw\", \"sex\")
-			
+					j<-i+%s
+					test<-substr(file, start=11, stop=14) 
+					data_set<-data[data$time_sec>i & data$time_sec<j, ]
+					subset<-paste(\"min\",round(i/60,2),\"_\",round(j/60, 2), sep=\"\")
+																
+					fit_set<-lm(data_set$Ch1_O2~data_set$time_min)
+					lm_coef_set <- round(coef(fit_set), 5) 	
+					r2_set<-as.character(summary(fit_set)$adj.r.squared)
+				
+					interc_set<-lm_coef_set[1]
+					slope_set<-lm_coef_set[2]
 					
-						colnames(df_set)<-c(\"filename\",\"test\",\"subset\",\"date\",\"time\",\"r2\",\"interc\", \"slope\",\"temp_min\", \"temp_max\",\"temp_mean\", \"mo2\", \"length_slide\", \"timeDiff_slide\", \"bw\", \"sex\")
-
-						df_set<-rbind(df_set, values_set)
-											
-					}
-						
-								
-				", length_slide[k],1, length_slide[k],length_slide[k], 1 )
-				eval(parse(text = string_eval)) 
-			}
-			
-			for (i in 1:length(length_slide)){
+					temp_mean_set<-mean(data_set$Ch1_temp)
+					temp_max_set<-max(data_set$Ch1_temp)	
+					temp_min_set<-min(data_set$Ch1_temp)	
+					
+					date<-as.character(data_set[1,1])
+					time<-as.character(data_set[1,2])
 							
-				subsetName<-paste("s",length_slide[i],"_1", sep="")
-				subsetD<-df_set[df_set$length_slide ==length_slide[i],]
+					mo2_set<-slope_set*(425-bw.test)/bw.test
+					mo2_set<-abs(mo2_set)
+							
+					values_set<-as.data.frame(t(c(name,test, subset, date, time, r2_set, interc_set, slope_set, temp_min_set, temp_max_set, temp_mean_set, mo2_set, %s,%s, bw.test, sex )))	
+					colnames(values_set)<-c(\"filename\",\"test\",\"subset\",\"date\",\"time\",\"r2\",\"interc\", \"slope\",\"temp_min\", \"temp_max\",\"temp_mean\", \"mo2\", \"length_slide\", \"timeDiff_slide\", \"bw\", \"sex\")
+		
+				
+					colnames(df_set)<-c(\"filename\",\"test\",\"subset\",\"date\",\"time\",\"r2\",\"interc\", \"slope\",\"temp_min\", \"temp_max\",\"temp_mean\", \"mo2\", \"length_slide\", \"timeDiff_slide\", \"bw\", \"sex\")
 
-				assign(subsetName, subsetD)
-			
-			}
-			
-				list<-list(s10_1, s20_1, s30_1, s60_1, s90_1, s120_1, s180_1)
+					df_set<-rbind(df_set, values_set)
+										
+				}
+					
+							
+			", length_slide[k],1, length_slide[k],length_slide[k], 1 )
+			eval(parse(text = string_eval)) 
 		}
 		
-		if(endtime<180 && endtime>120){
-			message("FILE > 2 min but less than 3 min")
-			
-			length_slide<-c(10,20,30,60,90,120)
-			timeDiff_slide<-c(1)
+		for (i in 1:length(length_slide)){
+						
+			subsetName<-paste("s",length_slide[i],"_1", sep="")
+			subsetD<-df_set[df_set$length_slide ==length_slide[i],]
 
-			for(k in 1:length(length_slide)){
-							
-								
-				string_eval <- sprintf("
-					for (i in seq(starttime,(endtime-%s), by=%s)){
-						
-						j<-i+%s
-						test<-substr(file, start=11, stop=14) 
-						data_set<-data[data$time_sec>i & data$time_sec<j, ]
-						subset<-paste(\"min\",round(i/60,2),\"_\",round(j/60, 2), sep=\"\")
-																	
-						fit_set<-lm(data_set$Ch1_O2~data_set$time_min)
-						lm_coef_set <- round(coef(fit_set), 5) 	
-						r2_set<-as.character(summary(fit_set)$adj.r.squared)
-					
-						interc_set<-lm_coef_set[1]
-						slope_set<-lm_coef_set[2]
-						
-						temp_mean_set<-mean(data_set$Ch1_temp)
-						temp_max_set<-max(data_set$Ch1_temp)	
-						temp_min_set<-min(data_set$Ch1_temp)	
-						
-						date<-as.character(data_set[1,1])
-						time<-as.character(data_set[1,2])
-								
-						mo2_set<-slope_set*(425-bw.test)/bw.test
-						mo2_set<-abs(mo2_set)
-						
-						values_set<-as.data.frame(t(c(name,test, subset, date, time, r2_set, interc_set, slope_set, temp_min_set, temp_max_set, temp_mean_set, mo2_set, %s,%s, bw.test, sex )))	
-						colnames(values_set)<-c(\"filename\",\"test\",\"subset\",\"date\",\"time\",\"r2\",\"interc\", \"slope\",\"temp_min\", \"temp_max\",\"temp_mean\", \"mo2\", \"length_slide\", \"timeDiff_slide\", \"bw\", \"sex\")
-			
-					
-						colnames(df_set)<-c(\"filename\",\"test\",\"subset\",\"date\",\"time\",\"r2\",\"interc\", \"slope\",\"temp_min\", \"temp_max\",\"temp_mean\", \"mo2\", \"length_slide\", \"timeDiff_slide\", \"bw\", \"sex\")
-
-						df_set<-rbind(df_set, values_set)
-											
-					}
-						
-								
-				", length_slide[k],1, length_slide[k],length_slide[k], 1 )
-				eval(parse(text = string_eval)) 
-			}
-			
-			for (i in 1:length(length_slide)){
-							
-				subsetName<-paste("s",length_slide[i],"_1", sep="")
-				subsetD<-df_set[df_set$length_slide ==length_slide[i],]
-
-				assign(subsetName, subsetD)
-			
-			}
-			
-				list<-list(s10_1, s20_1,s30_1, s60_1, s90_1, s120_1)
-			
+			assign(subsetName, subsetD)
+		
 		}
+		
+			list<-list(s10_1, s20_1, s30_1, s60_1, s90_1, s120_1, s180_1)
+	}
+	
+	if(endtime<180 && endtime>120){
+		message("FILE > 2 min but less than 3 min")
+		
+		length_slide<-c(10,20,30,60,90,120)
+		timeDiff_slide<-c(1)
+
+		for(k in 1:length(length_slide)){
+						
+							
+			string_eval <- sprintf("
+				for (i in seq(starttime,(endtime-%s), by=%s)){
+					
+					j<-i+%s
+					test<-substr(file, start=11, stop=14) 
+					data_set<-data[data$time_sec>i & data$time_sec<j, ]
+					subset<-paste(\"min\",round(i/60,2),\"_\",round(j/60, 2), sep=\"\")
+																
+					fit_set<-lm(data_set$Ch1_O2~data_set$time_min)
+					lm_coef_set <- round(coef(fit_set), 5) 	
+					r2_set<-as.character(summary(fit_set)$adj.r.squared)
+				
+					interc_set<-lm_coef_set[1]
+					slope_set<-lm_coef_set[2]
+					
+					temp_mean_set<-mean(data_set$Ch1_temp)
+					temp_max_set<-max(data_set$Ch1_temp)	
+					temp_min_set<-min(data_set$Ch1_temp)	
+					
+					date<-as.character(data_set[1,1])
+					time<-as.character(data_set[1,2])
+							
+					mo2_set<-slope_set*(425-bw.test)/bw.test
+					mo2_set<-abs(mo2_set)
+					
+					values_set<-as.data.frame(t(c(name,test, subset, date, time, r2_set, interc_set, slope_set, temp_min_set, temp_max_set, temp_mean_set, mo2_set, %s,%s, bw.test, sex )))	
+					colnames(values_set)<-c(\"filename\",\"test\",\"subset\",\"date\",\"time\",\"r2\",\"interc\", \"slope\",\"temp_min\", \"temp_max\",\"temp_mean\", \"mo2\", \"length_slide\", \"timeDiff_slide\", \"bw\", \"sex\")
+		
+				
+					colnames(df_set)<-c(\"filename\",\"test\",\"subset\",\"date\",\"time\",\"r2\",\"interc\", \"slope\",\"temp_min\", \"temp_max\",\"temp_mean\", \"mo2\", \"length_slide\", \"timeDiff_slide\", \"bw\", \"sex\")
+
+					df_set<-rbind(df_set, values_set)
+										
+				}
+					
+							
+			", length_slide[k],1, length_slide[k],length_slide[k], 1 )
+			eval(parse(text = string_eval)) 
+		}
+		
+		for (i in 1:length(length_slide)){
+						
+			subsetName<-paste("s",length_slide[i],"_1", sep="")
+			subsetD<-df_set[df_set$length_slide ==length_slide[i],]
+
+			assign(subsetName, subsetD)
+		
+		}
+		
+			list<-list(s10_1, s20_1,s30_1, s60_1, s90_1, s120_1)
+		
+	}
 			
 	df_set$length_slide<- as.numeric(as.character(df_set$length_slide))
 	df_set$timeDiff_slide<- as.numeric(as.character(df_set$timeDiff_slide))
